@@ -1,0 +1,28 @@
+%&pdflatex
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+        {\end{proof}}
+
+\begin{document}
+
+\title{Problems}
+\author{David Melendez}
+\maketitle
+
+\begin{equation*}
+  \int_{-\infty}^{\infty} \tan^{-1}(x)\ dx = 0
+\end{equation*}
+\begin{tikzcd}
+  & A \ar{r}{\alpha} \ar{dr}[swap]{\beta} & B \\
+  & & C \ar{u}[swap]{\gamma}
+\end{tikzcd}
+
+
+\end{document}

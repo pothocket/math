@@ -1,0 +1,43 @@
+%&pdflatex
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+        {\end{proof}}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 1, Section 4}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{4.1}
+    Composition is defined for \textit{two} morphisms. 
+    If more than two morphisms are given, e.g.:
+
+    \[\begin{tikzcd}
+        A \ar[r,"f"] & B \ar[r,"g"] & C \ar[r,"h"] & D \ar[r,"i"] & E
+    \end{tikzcd}\]
+
+    then one may compose them in several ways, for example:
+    \begin{equation*}
+        (ih)(gf),\,\,\,\, (i(hg))f,\,\,\,\, i((hg)f),\,\,\,\, etc.
+    \end{equation*}
+    so that at every step one is only composing two morphisms. 
+    Prove that the result of any such nested composition is independent of the placement of the parentheses.
+\end{problem}
+\begin{solution}
+  We will use induction on the number of morphisms being composed, which we will denote as $n$.\\
+  Base case: Suppose $n=3$. 
+  Then, since C is a category, we have $f_1(f_2f_3)$ = $(f_1f_2)f_3$.\\
+  Induction: Suppose that all groupings of $f_1,\, \ldots\, f_{n-1}$ are equivalent.
+  Then, let $\alpha=$
+\end{solution}
+
+\end{document}
+
