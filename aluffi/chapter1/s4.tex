@@ -32,11 +32,12 @@
     Prove that the result of any such nested composition is independent of the placement of the parentheses.
 \end{problem}
 \begin{solution}
-  We will use induction on the number of morphisms being composed, which we will denote as $n$.\\
-  Base case: Suppose $n=3$. 
-  Then, since C is a category, we have $f_1(f_2f_3)$ = $(f_1f_2)f_3$.\\
-  Induction: Suppose that all groupings of $f_1,\, \ldots\, f_{n-1}$ are equivalent.
-  Then, let $\alpha=$
+  Let $Z_m \in \text{Obj}(C)$ and $f_m \in \text{Hom}{(Z_{m}, Z_{m+1})}$ for every $m \in \mathbb{N}$. 
+  Let $n$ be the number of morphisms we're composing.
+  We will use induction on $n$.
+  \\\\Base case: Suppose $n=3$. 
+  Then, since $C$ is a category, we have $f_1(f_2f_3)$ = $(f_1f_2)f_3$.
+  \\\\Induction: Suppose that all parenthesizations of $f_1,\, \ldots\, f_{n-1}$ under composition are equivalent.
 \end{solution}
 
 \end{document}
