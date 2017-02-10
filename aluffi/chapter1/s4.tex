@@ -5,6 +5,8 @@
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
+\newcommand{\til}{\char`\~}
+
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
         {\end{proof}}
@@ -53,7 +55,16 @@
   For what types of relations is the corresponding category a groupoid?
 \end{problem}
 \begin{solution}
-  Recall that a \textit{groupoid} is a category in which every morphism is an isomorphism.
+  Recall that a \textit{groupoid} is a category in which every morphism is an isomorphism. \\
+  Let C be a category as defined in Example 3.3, and let $(S, \sim)$ be the category's designated set and relation.
+  C is a groupoid if $\sim$ is symmetric.
+  \begin{proof}
+    Let $(a,b)$ be a morphism from $a$ to $b$ in C. 
+    By our definition of C, we have $a\sim b$.
+    Since $\sim$ is symmetric, we then have $b\sim a$, and so $(b,a)$ is also a morphism in C (from $b$ to $a$).
+    Composing these, we have $(a,b)(b,a)=(b,b)=\text{id}_b$.
+    Similarly, we also have $(b,a)(a,b)=(a,a)=\text{id}_a$, making $(a,b)$ an isomorphism as desired.
+  \end{proof}
 \end{solution}
 
 \end{document}
