@@ -1,8 +1,7 @@
-%&pdflatex
-\documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd}
-
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
@@ -40,13 +39,21 @@
   \\\\Induction: Suppose that all parenthesizations of $f_1,\, \ldots\, f_{j-1}$ under composition are equivalent for all $1 \leq j < n$.
   Then, for some $1 < k \leq n$, let $\alpha$ be some parenthesization of $f_1, \ldots, f_{k-1}$, and let $\beta$ be some parenthesization of $f_k, \ldots, f_{n}$.
   Any parenthesization of $f_1, \ldots, f_n$ will then be of the form $\alpha\beta$.
-  By associativity and our inductive hypothesis, we have $\alpha=\left( (f_k \ldots f_{n-1})f_n \right)$. Thus, by associativity, we have
+  By associativity and our inductive hypothesis, we have $\alpha=\left( (f_k \ldots f_{n-1})f_n \right)$, and so
   \begin{align*}
     \alpha\beta &= (f_1\ldots f_{k-1})\left( (f_k\ldots f_{n-1})f_n \right) \\
     &= \left( (f_1 \ldots f_{k-1})(f_k \ldots f_{n-1}) \right)f_n \\
     &= ((\ldots((f_1f_2)f_3)\ldots)f_n
   \end{align*}
   as desired.
+\end{solution}
+\newpage
+\begin{problem}{4.2}
+  In Example 3.3 we have seen how to construct a category from a set endowed with a relation, provided this latter is reflexive and transitive.
+  For what types of relations is the corresponding category a groupoid?
+\end{problem}
+\begin{solution}
+  Recall that a \textit{groupoid} is a category in which every morphism is an isomorphism.
 \end{solution}
 
 \end{document}
