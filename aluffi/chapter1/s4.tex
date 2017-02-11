@@ -67,5 +67,24 @@
   \end{proof}
 \end{solution}
 
+\begin{problem}{4.3}
+  Let $A,B$ be objects of a category C, and $f\in \text{Hom}_C(A,B)$ a morphism.
+  \begin{enumerate}
+    \item If $f$ has a right-inverse, then $f$ is an epimorphism.
+      \begin{proof}
+        Let $f\in \text{Hom}_C(A,B)$ be a morphism, $g\in \text{Hom}_C(B,A)$ its right-inverse, and $\alpha_1, \alpha_2 \in \text{Hom}_C(A,Z)$ morphisms for some $Z\in \text{Obj}(C)$ with $\alpha_1f=\alpha_2f$.
+        We then have
+        \begin{align*}
+          \alpha_1 &= \alpha_1(fg)\\
+          &= (\alpha_1f)g\\
+          &= (\alpha_2f)g\\
+          &= \alpha_2(fg)\\
+          &= \alpha_2
+        \end{align*}
+        making $f$ an epimorphism.
+      \end{proof}
+  \end{enumerate}
+\end{problem}
+
 \end{document}
 
