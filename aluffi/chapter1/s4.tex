@@ -13,7 +13,14 @@
 
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
-        {\end{proof}}
+{\end{proof}}
+
+\newenvironment{sproof}{%
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
 
 \begin{document}
 
@@ -77,7 +84,7 @@
 \begin{solution}.
   \begin{enumerate}
     \item If $f$ has a right-inverse, then $f$ is an epimorphism.
-      \begin{proof}
+      \begin{sproof}
         Let $f\in \text{Hom}_C(A,B)$ be a morphism, $g\in \text{Hom}_C(B,A)$ its right-inverse, and $\alpha_1, \alpha_2 \in \text{Hom}_C(A,Z)$ morphisms for some $Z\in \text{Obj}(C)$ with $\alpha_1f=\alpha_2f$.
         We then have
         \begin{align*}
@@ -88,23 +95,29 @@
           &= \alpha_2
         \end{align*}
         making $f$ an epimorphism.
-      \end{proof}
+      \end{sproof}
     \item The converse of 1 does not hold; that is, there exists in some category C an epimorphism that does not have a right-inverse.
-      \begin{proof}
+      \begin{sproof}
         The category obtained by endowing $\mathbb{Z}$ with the relation $\leq$ contains morphisms that satisfy this property.
         Let \catname{C} be this category; $a, b \in \Obj{C}$ such that $a\neq b$ (so $a < b$); $f \in \Hom(a, b)$; $z \in \Obj{C}$ such that $b \leq z$; and $\alpha_1, \alpha_2 \in \Hom(b, z)$. 
         That $\alpha_1f = \alpha_2f$ implies $\alpha_1=\alpha_2$ is trivially true since \Hom(b, z) has exactly one morphism, so $f$ is an epimorphism. \\
         However, since $a < b$, $b > a$, meaning \Hom(b,a) has no morphisms. Thus, $f$ has no right-inverse.
 
-      \end{proof}
+      \end{sproof}
   \end{enumerate}
 \end{solution}
 
 \newpage
 
 \begin{problem}{4.4}
-  Prove that the composition of two morphisms is a monomorphism. Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$
+  Prove that the composition of two morphisms is a monomorphism. 
+Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a category \catname{C} by taking the same objects as in \catname{C}, and defining $\Hom_{\catname{C}_\text{mono}}(A,B)$ to be the subset of $\Hom_{\catname{C}}(A,B)$ consisting of monomorphisms, for all objects $A,B$. 
+  Do the same for epimorphisms. 
+  Can you define a subcategory $\catname{C}_{\text{nonmono}}$ of \catname{C} by restricting to morphisms that are \textit{not} monomorphisms? 
 \end{problem}
+\begin{solution}
+
+\end{solution}
 
 \end{document}
 
