@@ -6,6 +6,10 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
 \newcommand{\til}{\char`\~}
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Obj}[1]{\text{Obj}(\catname{C})}
+\newcommand{\Aut}{\text{Aut}}
 
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
@@ -69,6 +73,8 @@
 
 \begin{problem}{4.3}
   Let $A,B$ be objects of a category C, and $f\in \text{Hom}_C(A,B)$ a morphism.
+\end{problem}
+\begin{solution}.
   \begin{enumerate}
     \item If $f$ has a right-inverse, then $f$ is an epimorphism.
       \begin{proof}
@@ -83,7 +89,21 @@
         \end{align*}
         making $f$ an epimorphism.
       \end{proof}
+    \item The converse of 1 does not hold; that is, there exists in some category C an epimorphism that does not have a right-inverse.
+      \begin{proof}
+        The category obtained by endowing $\mathbb{Z}$ with the relation $\leq$ contains morphisms that satisfy this property.
+        Let \catname{C} be this category; $a, b \in \Obj{C}$ such that $a\neq b$ (so $a < b$); $f \in \Hom(a, b)$; $z \in \Obj{C}$ such that $b \leq z$; and $\alpha_1, \alpha_2 \in \Hom(b, z)$. 
+        That $\alpha_1f = \alpha_2f$ implies $\alpha_1=\alpha_2$ is trivially true since \Hom(b, z) has exactly one morphism, so $f$ is an epimorphism. \\
+        However, since $a < b$, $b > a$, meaning \Hom(b,a) has no morphisms. Thus, $f$ has no right-inverse.
+
+      \end{proof}
   \end{enumerate}
+\end{solution}
+
+\newpage
+
+\begin{problem}{4.4}
+  Prove that the composition of two morphisms is a monomorphism. Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$
 \end{problem}
 
 \end{document}
