@@ -5,6 +5,9 @@
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
 \newcommand{\til}{\char`\~}
 \newcommand{\catname}[1]{\normalfont\textbf{#1}}
 \newcommand{\Hom}{\text{Hom}}
@@ -70,13 +73,13 @@
   Recall that a \textit{groupoid} is a category in which every morphism is an isomorphism. \\
   Let C be a category as defined in Example 3.3, and let $(S, \sim)$ be the category's designated set and relation.
   C is a groupoid if $\sim$ is symmetric.
-  \begin{proof}
+  \begin{sproof}
     Let $(a,b)$ be a morphism from $a$ to $b$ in C. 
     By our definition of C, we have $a\sim b$.
     Since $\sim$ is symmetric, we then have $b\sim a$, and so $(b,a)$ is also a morphism in C (from $b$ to $a$).
     Composing these, we have $(a,b)(b,a)=(b,b)=\text{id}_b$.
     Similarly, we also have $(b,a)(a,b)=(a,a)=\text{id}_a$, making $(a,b)$ an isomorphism as desired.
-  \end{proof}
+  \end{sproof}
 \end{solution}
 
 \begin{problem}{4.3}
@@ -150,6 +153,25 @@ Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a catego
       for all $A, B \in \Objj(\catname{C}_\text{mono})$.
       Composition of morphisms is defined as normal (since we've proved monomorphisms are closed under composition, and the indentities are those in \catname{C} since identities are trivially monic. \\
         The proof for epimorphisms is analogous.\\
+        Non-monomorphisms, however, do not form a category:
+        \begin{proposition}
+          Let \catname{C} be a category;
+          $A,B,C,Z$ be objects in \catname{C}, and
+          $f\in \Hom_{\catname{C}}(A,B)$ and
+          $g\in \Hom_{\catname{C}}(B,C)$
+          be nonmonomorphisms. Then there exist morphisms
+          $\alpha_1, \alpha_2 \in \Hom_{\catname{C}}(C,Z)$ such that
+          $\alpha_1(gf) = \alpha_2(gf)$ but $\alpha_1\neq \alpha_2$.
+        \end{proposition}
+        \begin{sproof}
+          Since $g$ is not monic, there exist $\alpha_1, \alpha_2 \in \Hom_{\catname{C}}(C,Z)$ such that $a=\alpha_1g = \alpha_2g$ but $\alpha_1\neq \alpha_2$. Let $\alpha_1$ and $\alpha_2$ be these morphisms. Then, we have
+          \begin{align*}
+            \alpha_1(gf) &= (\alpha_1g)f\\
+            &= (\alpha_2g)f \\
+            &= \alpha_2(gf)
+          \end{align*}
+          but $\alpha_1\neq \alpha_2$. Thus, $gf$ is not monic.
+        \end{sproof}
 \end{solution}
 
 \end{document}
