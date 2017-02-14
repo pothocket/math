@@ -2,15 +2,22 @@
 \documentclass[12pt]{article} 
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
 \newenvironment{proposition}[1][Proposition]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
 
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
 \newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
 \newcommand{\catname}[1]{\normalfont\textbf{#1}}
 \newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
 \newcommand{\Objj}{\text{Obj}}
 \newcommand{\Obj}[1]{\text{Obj}(\catname{C})}
 \newcommand{\Aut}{\text{Aut}}
@@ -152,8 +159,8 @@ Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a catego
       \end{equation*} 
       for all $A, B \in \Objj(\catname{C}_\text{mono})$.
       Composition of morphisms is defined as normal (since we've proved monomorphisms are closed under composition, and the indentities are those in \catname{C} since identities are trivially monic. \\
-        The proof for epimorphisms is analogous.\\
-        Non-monomorphisms, however, do not form a category:
+        Non-monomorphisms do not form a category since identity morphisms are monic. 
+        Interestingly enough, however, non-monomorphisms \textit{do} compose to create non-monomorphisms.
         \begin{proposition}
           Let \catname{C} be a category;
           $A,B,C,Z$ be objects in \catname{C}, and
@@ -164,7 +171,8 @@ Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a catego
           $\alpha_1(gf) = \alpha_2(gf)$ but $\alpha_1\neq \alpha_2$.
         \end{proposition}
         \begin{sproof}
-          Since $g$ is not monic, there exist $\alpha_1, \alpha_2 \in \Hom_{\catname{C}}(C,Z)$ such that $a=\alpha_1g = \alpha_2g$ but $\alpha_1\neq \alpha_2$. Let $\alpha_1$ and $\alpha_2$ be these morphisms. Then, we have
+          Since $g$ is not monic, there exist $\alpha_1, \alpha_2 \in \Hom_{\catname{C}}(C,Z)$ such that $a=\alpha_1g = \alpha_2g$ but $\alpha_1\neq \alpha_2$. 
+          Let $\alpha_1$ and $\alpha_2$ be these morphisms. Then, we have
           \begin{align*}
             \alpha_1(gf) &= (\alpha_1g)f\\
             &= (\alpha_2g)f \\
@@ -172,6 +180,23 @@ Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a catego
           \end{align*}
           but $\alpha_1\neq \alpha_2$. Thus, $gf$ is not monic.
         \end{sproof}
+        The same proofs for epimorphisms are analogous.
 \end{solution}
 
+\newpage
+
+\begin{problem}{4.5}
+Give a concrete description of monomorphisms and epimorphisms in the category \catname{MSet} you constructed in Exercise 3.9.
+\end{problem}
+\begin{solution}
+  For the sake of completeness, I will include the definition of the category \catname{MSet} here.
+  \begin{definition}
+    Let a multiset be a set endowed with an equivalence relation, $(S,\til)$.
+    We will define the category \catname{MSet} as follows:\\\\
+
+    \noindent$\Obj{MSet} = \{M \mid M \text{ is a multiset}\}$\\
+    $\Homc{MSet}{(A,\rho_A), (B,\rho_B)} = \Homc{Set}{A/\rho_A, B/\rho_B}$ for all $A,B\in\Obj{MSet}$\\\\
+    Composition and identities are defined as they are in \catname{Set}.
+  \end{definition}
+\end{solution}
 \end{document}
