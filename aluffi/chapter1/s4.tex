@@ -8,6 +8,7 @@
 \newcommand{\til}{\char`\~}
 \newcommand{\catname}[1]{\normalfont\textbf{#1}}
 \newcommand{\Hom}{\text{Hom}}
+\newcommand{\Objj}{\text{Obj}}
 \newcommand{\Obj}[1]{\text{Obj}(\catname{C})}
 \newcommand{\Aut}{\text{Aut}}
 
@@ -116,8 +117,39 @@ Deduce that one can define a subcategory $\catname{C}_{\text{mono}}$ of a catego
   Can you define a subcategory $\catname{C}_{\text{nonmono}}$ of \catname{C} by restricting to morphisms that are \textit{not} monomorphisms? 
 \end{problem}
 \begin{solution}
-
+    Let \catname{C} be a category; 
+      $A, B, C \in \Obj{C}$ be objects in C; and
+      $f\in\Hom(A,B)$,
+      $g\in\Hom(B,C)$ be morphisms in C.
+      If $f$ and $g$ are monic, then $gf$ is also monic.
+      \begin{sproof}
+        Since $f$ and $g$ are monic, we have, for all $Z_1, Z_2 \in \Obj{C}$,
+        $\alpha_1, \beta_1 \in \Hom(B,Z_1)$, and
+        $\alpha_2, \beta_2 \in \Hom(C, Z_2)$:
+        \begin{align*}
+          \alpha_1f = \beta_1f \implies \alpha_1 = \beta_1\\
+          \alpha_2g = \beta_2g \implies \alpha_2 = \beta_2
+        \end{align*}
+        We then have:
+        \begin{alignat*}{3}\relax
+          \alpha_2(gf) = \beta_2(gf) &\implies (\alpha_2g)f &&= (\beta_2g)f\\
+          &\implies \alpha_2g &&= \beta_2g\\
+          &\implies \alpha_2 &&= \beta_2
+        \end{alignat*}
+        making $gf$ monic as desired.
+      \end{sproof}
+      
+      With this, we can define a category $\catname{C}_\text{mono}$ by 
+      \begin{equation*}
+        \Objj(\catname{C}_\text{mono}) = \Obj{C}
+      \end{equation*} 
+      \[\text{and} \]
+      \begin{equation*}
+        \Hom_{\catname{C}_\text{mono}}(A,B) = \{f \in \Hom_{\catname{C}}(A,B)\ \mid f \text{ is monic}\}
+      \end{equation*} 
+      for all $A, B \in \Objj(\catname{C}_\text{mono})$.
+      Composition of morphisms is defined as normal (since we've proved monomorphisms are closed under composition, and the indentities are those in \catname{C} since identities are trivially monic. \\
+        The proof for epimorphisms is analogous.\\
 \end{solution}
 
 \end{document}
-
