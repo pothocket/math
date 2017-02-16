@@ -1,0 +1,130 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{C})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 1, Section 5}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{5.1}
+  A final object in a category \catname{C} is initial in the opposite category $\catname{C}^{op}$.
+\end{problem}
+\begin{proof}
+  Let $T \in \Objc{C}$ be initial and $Z \in \Objc{C}$ be any object. 
+  Since $\Homc{C}{T, Z}$ is a singleton, 
+  $\Hom_{\catname{C}^{op}}(Z, T) = \Homc{C}{T, Z}$ 
+  is also a singleton, making $T$ final in $\catname{C}^{op}$
+\end{proof}
+
+\begin{problem}{5.2}
+  The empty set $\emptyset$ is the \textit{unique} initial object in \catname{Set}.
+\end{problem}
+\begin{proof}
+  Recall that the number of morphisms between any two sets $A$ and $B$ is given by $B^A$. 
+  Thus, the problem of finding the size of an initial object in \catname{Set} boils down to solving $|Z|^{|I|}=1$ for $|I|$, where $Z$ is an arbitrary set.
+  The only solution to this is $|I|=0$, which is only satisfied by the the null set, given that $\emptyset^\emptyset = 0$.
+\end{proof}
+
+\begin{problem}{5.3}
+  Final objects are unique up to isomorphism.
+\end{problem}
+\begin{proof}
+  Let \catname{C} be a category and $T_1, T_2\in \Objc{C}$ be final. Because $T_1$ and $T_2$ are final, we have, for all $Z\in\Homc{C}{Z, T}$:
+  \begin{align*}
+    \End(T_1) &= \{\id_{T_1}\}\\
+    \End(T_2) &= \{\id_{T_2}\}\\
+    \Hom(T_1, T_2) &= \{f\} \text{ for some } f\\
+    \Hom(T_2, T_1) &= \{g\} \text{ for some } g\\
+  \end{align*}
+  We then have $fg$ = $\id_{T_2}$ and $gf$ = $\id_{T_2}$, giving us $T_1 \cong T_2$.
+\end{proof}
+
+\newpage
+
+\begin{problem}{5.4}
+  What are the initial and final objects in the category of 'pointed sets' (Example 3.8)? Are they unique?
+\end{problem}
+\begin{solution}
+  For the sake of completeness, a description of this category $\catsup{Set}{*}$ will be included.
+  \begin{definition}
+    Define $\catsup{Set}{*}$ as follows:\\
+    Objects in $\catsup{Set}{*}$ are morphisms $f : \{*\} \to A$ where $A$ is any set, denoted $(f, A)$. \\
+    Morphisms $\sigma \in \Hom_{\catsup{Set}{*}}( (f_A, A), (f_B, B))$ are commutative diagrams: 
+    \[\begin{tikzcd}
+        A \ar{rr}{\sigma} && B \\
+        & \{*\} \ar{ul}{f_A} \ar{ur}[swap]{f_B}
+    \end{tikzcd}\]
+  \end{definition}
+  Now, we will answer the question.
+  \begin{proposition}
+    Initial and final objects in $\catsup{Set}*$ are objects $(i, T)$, where $T$ is a singleton and $i$ is the unique function that maps from $\{*\}$ to $T$.
+  \end{proposition}
+  \begin{sproof}
+    We will prove that the objects described are both initial and final in $\catsup{Set}*$.
+    \begin{enumerate}
+      \item Initial: \\
+        Consider the object described above. 
+        Then, a morphism from this object to another object 
+        $(f, B)\in \Obj(\catsup{Set}*)$
+        is given by the following commutative diagram:
+        \[\begin{tikzcd}
+          T \ar{rr}{\sigma} && B \\
+          & \{*\} \ar{ul}{i} \ar{ur}[swap]{f}
+        \end{tikzcd}\]
+        The only choice of $\sigma$ that makes this diagram commute is defined by $\sigma(i(*)) = f(*)$ (as $T$ is a singleton), so $T$ is initial.
+
+      \item Final: 
+        Consider the object described above. 
+        Then, a morphism to this object from another object 
+        $(f, B)\in \Obj(\catsup{Set}*)$
+        is given by the following commutative diagram:
+        \[\begin{tikzcd}
+          A \ar{rr}{\tau} && T \\
+          & \{*\} \ar{ul}{f} \ar{ur}[swap]{i}
+        \end{tikzcd}\]
+        The only choice of $\tau$ that makes this diagram commute is defined by $\tau(f(*)) = i(*)$ (as $T$ is a singleton), so $T$ is final.
+    \end{enumerate}
+  \end{sproof}
+\end{solution}
+\end{document}
