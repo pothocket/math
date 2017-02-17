@@ -127,4 +127,30 @@
     \end{enumerate}
   \end{sproof}
 \end{solution}
+
+\newpage
+
+\begin{problem}{5.5}
+  What are the final objects in the category considered in 5.3?
+\end{problem}
+\begin{solution}
+  Final objects in this category (let's denote it \catname{C}) are singletons.
+  \begin{sproof}
+    Let $\{*\}$ be a singleton.
+    Then morphisms $\tau$ from $(Z, \varphi) \in \Objc{C}$ to $\{*\}$ are commutative diagrams:
+    \[\begin{tikzcd}
+        Z \ar{rr}{\tau} && \{*\} \\
+        & A \ar{ul}{\varphi} \ar{ur}[swap]{i}
+    \end{tikzcd}\]
+    Since $\{*\}$ is a singleton, the only $\tau$ that satisfies
+    $\tau(\varphi(a)) = \iota(a)$ is defined by $\tau(z) = *$ for all $z\in Z$.
+    Thus $(\{*\}, \tau)$ is final in \catname{C}.
+  \end{sproof}
+\end{solution}
+
+\begin{problem}{5.6}
+  Consider the category corresponding to endowing (as in Example 3.3) the set $\mathbb{Z}^+$ with the divisibility relation. 
+  Thus there is exactly one morphism $d \to m$ in this category iff $d$ divides $m$ without remainder; there is no morphism between $d$ and $m$ otherwise.
+  Show that this category has products and coproducts. What are their 'conventional' names?
+\end{problem}
 \end{document}
