@@ -24,7 +24,7 @@
 \newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
 
 \newcommand{\Obj}{\text{Obj}}
-\newcommand{\Objc}[1]{\text{Obj}(\catname{C})}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\End}{\text{End}}
 
@@ -153,4 +153,25 @@
   Thus there is exactly one morphism $d \to m$ in this category iff $d$ divides $m$ without remainder; there is no morphism between $d$ and $m$ otherwise.
   Show that this category has products and coproducts. What are their 'conventional' names?
 \end{problem}
+\begin{solution}
+  Let \catname{Div} denote this category and $a, b \in \Objc{Div}$ be objects.
+  That \catname{Div} has products means the following:\\
+  For every $a, b \in \Objc{Div}$, 
+  there exists an object $a\times b \in \Objc{Div}$ such that
+  every $(x,f_a,f_b) \in \Obj(\catsup{Div}{a,b})$
+  admits a unique morphism $\sigma \in \Homc{Div}{x, a\times b}$
+  that makes the following diagram commute:
+  \[\begin{tikzcd}
+    &&&a\\
+    &x \ar[bend left]{urr}{f_a} \ar{r}{\sigma} \ar[bend right]{drr}[swap]{f_b}
+    &a\times b \ar{ur}{\pi_a} \ar{dr}[swap]{\pi_b}&\\
+    &&&b
+  \end{tikzcd}\]
+  Meaning, for every pair of integers $(a,b)$, there exists a unique
+  factor of a and b, $a\times b$, such that 
+  every common factor of $a$ and $b$ divides $a\times b$.
+  This is necessarily the greatest common factor of $a$ and $b$, since
+  it must be a multiple of every common factor of $a$ and $b$, and 
+  $\text{gcf}(a,b)$ is the product of the common factors of $a$ and $b$.
+\end{solution}
 \end{document}
