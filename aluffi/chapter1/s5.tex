@@ -192,4 +192,49 @@
     Since $a\sqcup b$ is a common multiple of $a$ and $b$ and $a\sqcup b \leq x$ for every common multiple $x$ of $a$ and $b$, $a\sqcup b$ is $\text{lcm}(a,b)$.
   \end{enumerate}
 \end{solution}
+
+\begin{problem}{5.9}
+  Let \catname{C} be a category with products. Find a reasonable candidate for the universal property that the product 
+  $A\times B\times C$ 
+  of \textit{three} objects of \catname{C} ought to satisfy, and prove that both 
+  $(A\times B)\times C$ and
+  $A\times (B\times C)$ 
+  satisfy this universal property.
+\end{problem}
+\begin{solution}
+  For objects $A,B,C$ of a category \catname{C}, $A\times B\times C$ ought to be universal with respect to the property of mapping to $A, B,$ and $C$.
+  In other words, every $(X, f_a, f_b, f_c)$ in the category $\catsup{C}{A,B,C}$ admits a unique morphism $\sigma \in \Homc{C}{X, A\times B\times C}$ such that the following diagram commutes:\\
+  \[\begin{tikzcd}
+    &&&A\\
+    &X 
+    \ar{r}{\sigma} 
+    \ar[bend left]{urr}{f_A} 
+    \ar[swap]{dr}{f_B}
+    \ar[bend right, swap]{ddrr}{f_C}
+    &A\times B\times C
+    \ar[swap]{ur}{\pi_A}
+    \ar{d}{\pi_B}
+    \ar[bend left]{ddr}{\pi_C}
+    &\\
+    &&B&\\
+    &&&C
+\end{tikzcd}\]
+Meaning, $\pi_A \sigma = f_A$, $\pi_B \sigma = f_B$, and $\pi_C \sigma = f_C$. \\
+\begin{proposition}
+  The products $A\times (B\times C)$ and $(A\times B)\times C$ satisfy this property.
+\end{proposition}
+\begin{proof}
+  First, consider the product $A\times (B\times C)\in \Objc{C}$
+  along with morphisms \\$\pi_A \in \Homc{C}{A\times (B\times C), A}$
+and $\pi_{B,C} \in \Homc{C}{A\times (B\times C), B\times C}$.
+Then, let \\$\phi_A \in \Homc{C}{B\times C, B}$ 
+and $\phi_B \in \Homc{C}{B\times C, C}$. 
+Using the commutativity of the diagrams given by the products
+$A\times (B\times C)$ and $B\times C$, we find that 
+  $\pi_A\sigma = f_A$,
+  $\pi_B\sigma = f_B$, and
+  $\pi_C\sigma = f_C$.
+  The proof for $(A\times B)\times C$ is entirely analogous.
+\end{proof}
+\end{solution}
 \end{document}
