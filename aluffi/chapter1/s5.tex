@@ -179,7 +179,7 @@
     That \catname{Div} has coproducts means the following:\\
     For every $a, b \in \Objc{Div}$, 
     there exists an object $a\sqcup b \in \Objc{Div}$ such that
-    every $(x,f_a,f_b) \in \Obj(\catsub{Div}{a,b})$
+    every $(x,f_a,f_b) \in \Obj(\catsup{Div}{a,b})$
     admits a unique morphism $\sigma \in \Homc{Div}{a\sqcup b, x}$
     that makes the following diagram commute:
     \[\begin{tikzcd}
@@ -204,10 +204,10 @@
 \begin{solution}
   For objects $A,B,C$ of a category \catname{C}, $A\times B\times C$ ought to be universal with respect to the property of mapping to $A, B,$ and $C$.
   In other words, every $(X, f_a, f_b, f_c)$ in the category $\catsup{C}{A,B,C}$ admits a unique morphism $\sigma \in \Homc{C}{X, A\times B\times C}$ such that the following diagram commutes:\\
-  \[\begin{tikzcd}
+  \[\begin{tikzcd}{(1)}
     &&&A\\
     &X 
-    \ar{r}{\sigma} 
+    \ar{r}{\sigma_{ABC}} 
     \ar[bend left]{urr}{f_A} 
     \ar[swap]{dr}{f_B}
     \ar[bend right, swap]{ddrr}{f_C}
@@ -218,23 +218,52 @@
     &\\
     &&B&\\
     &&&C
-\end{tikzcd}\]
+  \end{tikzcd}\]
 Meaning, $\pi_A \sigma = f_A$, $\pi_B \sigma = f_B$, and $\pi_C \sigma = f_C$. \\
 \begin{proposition}
   The products $A\times (B\times C)$ and $(A\times B)\times C$ satisfy this property.
 \end{proposition}
 \begin{proof}
-  First, consider the product $A\times (B\times C)\in \Objc{C}$
-  along with morphisms \\$\pi_A \in \Homc{C}{A\times (B\times C), A}$
-and $\pi_{B,C} \in \Homc{C}{A\times (B\times C), B\times C}$.
-Then, let \\$\phi_A \in \Homc{C}{B\times C, B}$ 
-and $\phi_B \in \Homc{C}{B\times C, C}$. 
-Using the commutativity of the diagrams given by the products
-$A\times (B\times C)$ and $B\times C$, we find that 
-  $\pi_A\sigma = f_A$,
-  $\pi_B\sigma = f_B$, and
-  $\pi_C\sigma = f_C$.
-  The proof for $(A\times B)\times C$ is entirely analogous.
+  Consider the product $A\times (B\times C)\in \Objc{C}$ and its diagram:
+  \[\begin{tikzcd}{(2)}
+    &&&A\\
+    &X 
+    \ar{r}{\sigma_{A(BC)}} 
+    \ar[bend left]{urr}{f_A} 
+    \ar[bend right, swap]{drr}{f_{BC}}
+    &A\times (B\times C)
+    \ar[swap]{ur}{\phi_A}
+    \ar{dr}{\phi_{BC}}
+    &\\
+    &&&B\times C
+  \end{tikzcd}\]
+  along with the product $B\times C$ and its diagram:
+  \[\begin{tikzcd}{(3)}
+    &&&B\\
+    &X 
+    \ar{r}{\sigma_{BC}} 
+    \ar[bend left]{urr}{f_B} 
+    \ar[bend right, swap]{drr}{f_C}
+    &B\times C
+    \ar[swap]{ur}{\phi_B}
+    \ar{dr}{\phi_C}
+    &\\
+    &&&C
+  \end{tikzcd}\]
+  Staring at these diagrams,
+  we can see that 
+  $A\times (B\times C)$ satisfies our universal property if we let:
+  $f_{BC} = \sigma_{BC}$,\\
+  $\pi_A = \phi_A$,\\
+  $\pi_B = \phi_B\sigma_{ABC}$, \\
+  $\pi_C = \phi_C\sigma_{ABC}$.\\
+  This makes the diagram for 
+  $A\times B\times C$ commute by the commutativity of (2) and (3), 
+  thereby forcing $\sigma_{ABC}=\sigma_{A(BC)}$ since the morphism
+  $A\to A\times (B\times C)$ that makes (2) commute is unique.\\
+  The proof for $(A\times B)\times C$ is entirely analogous, 
+  giving us that $(A\times B)\times C \cong A\times (B\times C)$ by their
+  satisfaction of the same universal property.
 \end{proof}
 \end{solution}
 \end{document}
