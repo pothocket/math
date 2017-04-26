@@ -266,4 +266,19 @@ Meaning, $\pi_A \sigma = f_A$, $\pi_B \sigma = f_B$, and $\pi_C \sigma = f_C$. \
   satisfaction of the same universal property.
 \end{proof}
 \end{solution}
+\begin{problem}{5.10}
+  Push the envelope farther still, and define products for families (i.e. indexed sets) of objects of a category. Do these exist in \catname{Set}?
+\end{problem}
+\begin{solution}
+  Let \catname{C} be a category and $S$ be a family of objects in \catname{C} indexed by a set $J$. 
+  The product $P=\prod_J S$
+  is an object of \catname{C} together with morphisms 
+  $\pi_j \in \Homc{C}{P,S_j}$ for all $j\in J$ such that
+  every $X\in\Objc{C}$ together with morphisms 
+  $f_j\in\Homc{C}{X,S_j}$ admits a unique morphism
+  $\sigma\in\Homc{C}{X,P}$ such that
+  $f_j = \pi_j\sigma$.\\
+  That these exist in \catname{Set} is equivalent to the Axiom of Choice.
+
+\end{solution}
 \end{document}
