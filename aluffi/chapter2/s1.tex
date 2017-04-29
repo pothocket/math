@@ -1,0 +1,124 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 1}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{1.3}
+  Prove that $(gh)^{-1} = h^{-1}g^{-1}$ for all elements $g,h$ of a group $G$.
+\end{problem}
+\begin{proof}
+  We have (by associativity) that $(gh)(g^{-1}h^{-1}) = e$. But $(gh)(gh)^{-1} = e$, so by cancellation 
+  $(gh)^{-1}=h^{-1}g^{-1}$.
+\end{proof}
+
+\begin{problem}{1.4}
+  Suupose that $g^2=e$ for all elements $g$ of a group $G$; prove that $G$ is commutative.
+\end{problem}
+\begin{proof}
+  $gh = ghe = gh(hg)^2 = ghhghg = gghg = hg$
+\end{proof}
+
+\begin{problem}{1.5}
+  Prove that ever row and every column of the 'multiplication table' of a group contains all elemtns of the group exactly once.
+\end{problem}
+\begin{solution}
+  That every row of a group $G$'s multiplication table is 'sudoku complete' (if you will) is equivalent to the following:\\
+  \begin{proposition}
+    For every $g, h \in G$ $g\neq h$, there exists a unique $x \in G$ such that $gx=h$.
+  \end{proposition}
+  \begin{sproof}
+    Putting $x=g^{-1}h$, we have $gx = gg^{-1}h = h$. 
+    If any $y$ satisfies this property, we have 
+    \begin{align*}
+    gx = h = gy &\implies gx = gy\\
+    &\implies g^{-1}x = g^{-1}y\\
+    &\implies x = y
+    \end{align*}
+  \end{sproof}
+  The proof for columns is entirely analogous.
+\end{solution}
+
+\newpage
+
+\begin{problem}{1.6}
+  Prove that there is only \textit{one} possible multiplication table for $G$ if $G$ has exactly $1, 2,$ or $3$ elements.
+  Analyze the possible multiplication tables for groups with exactly 4 elements, and show that there are \textit{two} distinct tables, up to reordering the elements of $G$.
+\end{problem}
+\begin{solution} .\\
+  \begin{enumerate}
+    \item The proof for $|G|=1$ is trivial.
+    \item For $|G|=2$ and $e, a\in G$, we have $ee = e$, $ea =a$, and $ae = e$.
+      Since each element of a group must have an inverse, we must also have 
+      $a = a^{-1}$ (since $e \neq a^{-1}$), so $a^2 = e$.
+    \item For $|G| = 3$, consider the table:\\
+      \[\begin{tabular}{c || l|c|r}
+        $\cdot$ & e & a & b \\ \hline\hline
+        e & e & a & b \\ \hline
+        a & a & ? & ? \\ \hline
+        b & b & ? & ? \\ 
+      \end{tabular}\]
+      We can complete the table like a sudoku puzzle using problem 1.5. 
+      Since $ea = a$, we cannot have $a^2 = a$. 
+      Since $eb=b$, we can't have $a^2=e$ since that would force $ab=b$. 
+      Hence, $a^2=b$.
+      \[\begin{tabular}{c || l|c|r}
+        $\cdot$ & e & a & b \\ \hline\hline
+        e & e & a & b \\ \hline
+        a & a & b & ? \\ \hline
+        b & b & ? & ? \\ 
+      \end{tabular}\]
+      The rest of the table is forced by problem 1.5.
+      \[\begin{tabular}{c || l|c|r}
+        $\cdot$ & e & a & b \\ \hline\hline
+        e & e & a & b \\ \hline
+        a & a & b & e \\ \hline
+        b & b & e & a \\ 
+      \end{tabular}\]
+  \end{enumerate}
+\end{solution}
+
+\end{document}
