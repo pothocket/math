@@ -19,7 +19,6 @@
 \newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
 \newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
 
-
 \newcommand{\Hom}{\text{Hom}}
 \newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
 
@@ -29,6 +28,8 @@
 \newcommand{\End}{\text{End}}
 
 \newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
 
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
@@ -118,7 +119,148 @@
         a & a & b & e \\ \hline
         b & b & e & a \\ 
       \end{tabular}\]
+    \item Consider the table for $|G|=4$:
+      \[\begin{tabular}{c || c|c|c|c}
+            $\cdot$ & e & a & b & c\\ \hline\hline
+            e & e & a & b & c \\ \hline
+            a & a & ? & ? & ? \\ \hline
+            b & b & ? & ? & ? \\ \hline
+            c & c & ? & ? & ? 
+        \end{tabular}\]
+        For this table we have two distinct cases: 
+        where $a^2=e$ and where $a^2=b$. 
+        The case where $a^2=c$ is the same as where $a^2=b$ up to reordering.\\
+        First consider $a^2=e:$
+        \[\begin{tabular}{c || c|c|c|c}
+            $\cdot$ & e & a & b & c\\ \hline\hline
+            e & e & a & b & c \\ \hline
+            a & a & e & ? & ? \\ \hline
+            b & b & ? & ? & ? \\ \hline
+            c & c & ? & ? & ? 
+        \end{tabular}\]
+        We can complete the rest of the table using problem 1.5:
+        \[\begin{tabular}{c || c|c|c|c}
+            $\cdot$ & e & a & b & c\\ \hline\hline
+            e & e & a & b & c \\ \hline
+            a & a & e & c & b \\ \hline
+            b & b & c & e & a \\ \hline
+            c & c & b & a & e 
+        \end{tabular}\]
+        Notice that we can also fill the table out this way:
+        \[\begin{tabular}{c || c|c|c|c}
+            $\cdot$ & e & a & b & c\\ \hline\hline
+            e & e & a & b & c \\ \hline
+            a & a & e & c & b \\ \hline
+            b & b & c & a & e \\ \hline
+            c & c & b & e & a 
+        \end{tabular}\]
+        As it turns out, this is equivalent to the case where $a^2=b$,
+        but with $b$ and $a$ switched (that is, up to reordering):
+        \[\begin{tabular}{c || c|c|c|c}
+            $\cdot$ & e & a & b & c\\ \hline\hline
+            e & e & a & b & c \\ \hline
+            a & a & b & c & e \\ \hline
+            b & b & c & e & a \\ \hline
+            c & c & e & a & b 
+        \end{tabular}\]
   \end{enumerate}
 \end{solution}
-
+\begin{problem}{1.8}
+  Let $G$ be a finite abelian group, with exactly one element $f$ of order 2.
+  Prove that $\prod_{g\in G} g = f$.
+\end{problem}
+\begin{proof}
+  Since every element of $G$ has an inverse and the order of composition
+  doesn't matter (since $G$ is abelian), we have, with each $g_j \in G$,
+  \begin{align*}
+    \prod_{g\in G} g &= e\cdot f\cdot 
+    (g_1\cdot g_1^{-1})\cdot (g_2\cdot g_2^{-1})\cdots(g_n\cdot g_n^{-1})\\
+    &= e\cdot f\cdot (e)(e)\cdots(e)\\
+    &= f
+  \end{align*}
+  where $n = |G| - 2$
+\end{proof}
+\begin{problem}{1.9}
+  Let $G$ be a finite group of order $n$ and let $m$ be the number of elements
+  $g\in G$ of order exactly 2. Prove that $n-m$ is odd.
+\end{problem}
+\begin{proof}
+  We can divide the elements of $G$ into three classes: elements of order 1,
+  elements of order 2, and elements of order greater than 2:
+  \begin{enumerate}
+    \item The only group element of order 1 is the identity $e$.
+    \item We have assumed that there are $m$ elements of order 2.
+    \item Note that for every element $g$ with $|g|>2$, we also have a distinct
+      $g^(-1)$, meaning that there are an even number of these elements.
+  \end{enumerate}
+  Taking these three classes into consideration, we have 
+  $|G| = n = 1 + m + 2j$ where $j$ is a nonnegative integer. Hence
+  $n-m=2j+1$ as desired.
+\end{proof}
+\begin{problem}{1.10}
+  Suppose the order of $g$ is odd. What can you say about the order of $g^2$?
+\end{problem}
+\begin{solution}
+  $|g^2| = \frac{\lcm{2,|g|}}{2}=|g|$
+\end{solution}
+\begin{problem}{1.11}
+  Prove that for all $g,h$ in a group $G$, $|gh| = |hg|$.
+\end{problem}
+\begin{solution}
+  Since $gh = h(gh)h^{-1}$, we just need to prove that $|aga^{-1}|=|g|$
+  for $a,g\in G$ (as is given in the problem as a hint).
+  \begin{sproof}
+    Note that, with $n=|g|$,
+    \begin{align*}
+      (aga^{-1})^n &= ag(a^{-1}a)g(a^{-1}a)\cdots ga^{-1} \\
+      &= a(g^n)a^{-1} \\
+      &= aa^{-1} \\
+      &= e
+    \end{align*}
+    Since $n$ is the smallest positive integer that makes the $g$'s 
+    vanish like this, we have $|aga^{-1}| = n = |g|$. 
+  \end{sproof}
+\end{solution}
+\begin{problem}{1.12}
+  In the group of $2\times 2$ matrices, consider
+  \begin{equation*}
+     g = \begin{pmatrix} 0 & -1\\ 1 & 0 \end{pmatrix} \qquad, \qquad
+     h = \begin{pmatrix} 0 & 1\\ -1 & -1 \end{pmatrix} 
+  \end{equation*}
+  Verify that $|g|=4$, $|h|=3$, and $|gh|=\infty$.
+  \begin{solution}
+    The first two are a trivial application of matrix multiplication.\\
+    Consider the product 
+    $gh = \begin{pmatrix}1&1\\0&1\end{pmatrix}$. We will work with its
+    corresponding linear map \\
+    \begin{proposition}
+      $|gh| = \infty$
+    \end{proposition}
+    \begin{proof}
+      Consider the corresponding linear map $T \in \mathcal{L}(\mathbb{R}^2)$.
+      Let ${x,y}$ be a basis of $\mathbb{R}^2$. We then have, from the matrix,
+      that
+      \begin{align*}
+        Tx &= x \\
+        Ty &= x + y
+      \end{align*}
+      (This is enough to define $T$ since T is linear).\\
+      It then follows that $T^n$ is as follows:
+      \begin{align*}
+        T^nx &= x \\
+        T^ny &= nx + y
+      \end{align*}
+      Finding the order of $gh$ then boils down to solving 
+      $T^n=I$ for $n$. Since $T^nx=x$, we just need to solve 
+      $T^ny=y$.
+      \begin{alignat*}{2}
+        & & T^ny &= y \\
+        &\implies &nx + y &= y \\
+        &\implies &nx &= 0 \\
+        &\implies &n &= 0 
+      \end{alignat*}{2}
+    Since no integer other than 0 gives $T^n=(gh)^n=e$, we have $|gh|=\infty$.
+    \end{proof}
+  \end{solution}
+\end{problem}
 \end{document}
