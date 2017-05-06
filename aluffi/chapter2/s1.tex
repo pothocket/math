@@ -191,7 +191,7 @@
     \item The only group element of order 1 is the identity $e$.
     \item We have assumed that there are $m$ elements of order 2.
     \item Note that for every element $g$ with $|g|>2$, we also have a distinct
-      $g^(-1)$, meaning that there are an even number of these elements.
+      $g^{-1}$, meaning that there are an even number of these elements.
   \end{enumerate}
   Taking these three classes into consideration, we have 
   $|G| = n = 1 + m + 2j$ where $j$ is a nonnegative integer. Hence
@@ -258,7 +258,7 @@
         &\implies &nx + y &= y \\
         &\implies &nx &= 0 \\
         &\implies &n &= 0 
-      \end{alignat*}{2}
+      \end{alignat*}
     Since no integer other than 0 gives $T^n=(gh)^n=e$, we have $|gh|=\infty$.
     \end{proof}
   \end{solution}
@@ -269,6 +269,19 @@
 \end{problem}
 \begin{solution}
   Let $h=g^{-1}$ and $g\neq e$.
-  Then clearly $g$ and $h$ commute, but\\ $\lcm{|g|,|h|}=|g|\neq|e|=1$.
+  Then clearly $g$ and $h$ commute, but\\ $\lcm{|g|,|h|}=|g|\neq|gh|=1$.
 \end{solution}
+\begin{problem}{1.14}
+  As a counterpoint to Exercise 1.13, prove that if $g$ and $h$ commute, and $\gcd(|g|,|h|)=1$, then
+  $|gh|=|g||h|$. (Hint: let $N=|gh|$; then $g^N = (h^{-1})^N$. What can you say about this element?)
+\end{problem}
+\begin{proof}
+  We will prove, with $|gh|=N, |g|=m, |h|=n$, that $N|mn$ and $mn|N$.\\
+  Note that since $g$ and $h$ commute, $(gh)^{mn} = g^{nm}h^{mn} = e$. Hence, $N | mn$.\\
+  Now, consider $(gh)^N$. Note that since $(gh)^N=e$, we have $g^N=(h^N)^{-1}=(h^{-1})^N$.
+  Then, since $(g^N)^n\left( (h^{-1})^N \right)^n = h^{-Nn}=e$, we have $m|Nn$. Similarly, $n|Nm$.
+  It then follows, since $\gcd(m, n) = 1$, that $m|N$ and $n|N$. 
+  Finally, since $m$ and $n$ are coprime, it follows from this that $N$ must be a product of the prime factors
+  of $n$, the prime factors of $m$, and some other positive integer, showing that $mn | N$, as desired.
+\end{proof}
 \end{document}
