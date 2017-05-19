@@ -1,0 +1,138 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 1}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{2.2}
+  If $d\leq n$, then $S_n$ contains elements of order $d$.
+\end{problem}
+\begin{proposition}
+  Let $c_d$, called a \textit{d-cycle} in $S_n$, be defined as follows:
+  \begin{equation*}
+    c_d(m) = 
+    \begin{cases}
+      d   & m = 1 \\
+      d-1 & 1 < m \leq d \\
+      m   & m > d
+    \end{cases}
+  \end{equation*}
+  For example, if we're working in $S_6$, then 
+  $c_4 = \begin{pmatrix} 1&2&3&4&5&6 \\ 4&1&2&3&5&6 \end{pmatrix}$. \\
+  Then $|c_d| = d$ for $1 \leq d \leq n$.
+\end{proposition}
+\begin{proof}
+  Note that if $0 < k < d$, then 
+  $c_d^k(d) = d-k \geq 1$ 
+  ($c_d^k$ never ``reaches'' the point at which it cycles from 1 to $d$ since $k<d$), 
+  so $|c_d| \geq d$. Then, we have, for $m\leq d$,
+  \begin{align*}
+    c_d^d(m) &= (c_d^m \cdot c_d^{d-m})(m)\\
+    &= c_d^{d-m}(d) \\
+    &= d - (d - m) \\
+    &= m
+  \end{align*}
+  Clearly $c_d^d(m) = m$ if $m>d$, so $c_d^d$ is the identity, as desired.
+\end{proof}
+
+\begin{problem}{2.5}
+  Describe generators and relations for all dihedral groups $D_{2n}$.
+\end{problem}
+\begin{solution}
+  We will define the dihedral group $D_{2n}$ as follows:
+  \begin{equation*}
+    D_{2n} = \left<x, y\ |\ x^2 = y^n = (xy)^2 = e\right>
+  \end{equation*}
+  \begin{proposition}
+    With this definition of $D_{2n}$, every combination 
+    $x^{i_1}y^{i_2}x^{i_4}y^{i_5}\cdots$ equals $x^iy^j$ 
+    for some $0 \leq i \leq 1, 0 \leq j < n$.
+  \end{proposition}
+  \begin{proof}
+    We will use induction on $m$, the number of elements we're composing. \\
+    The cases for $0 \leq m \leq 2$ are obvious. \\
+    Suppose this reduction holds for $m$. 
+    Then, if $m$ is odd, we have
+    \begin{align*}
+      \left(x^{k_1}y^{k_2}\cdots x^{k_m}\right)y^{k_{m+1}}
+      &= x^iy^jy^{k_{m+1}} \\
+      &= x^iy^{j+k_{m+1}}
+    \end{align*}
+    The case where $m$ is even is more interesting. First, we will establish
+    the following based off of the third relation:
+    \begin{alignat*}{2}
+      (xy)^2 = e &\implies xyxy &&= e \\
+      &\implies x(yxy) &&= e \\
+      &\implies x^{-1} &&=  yxy \\
+      &\implies yx &&= x^{-1}y^{-1} \\
+      &&&= xy^{n-1}
+    \end{alignat*}
+    Now, suppose $m$ is even. We then have, 
+    with $\leq i \leq 1$, $0\leq j < n$, and $0\leq k \leq 1$:
+    \begin{align*}
+      \left(x^{k_1}y^{k_2}\cdots x^{k_{m-1}}y^{k_m}\right)x^{k_{m+1}}
+      &= x^iy^jx^k \\
+    \end{align*}
+    Since every other case is trivial, we will assume
+    $0 \neq j \neq n$ and $k = 1$. 
+    Additionally, we will assume wlog that $j < n$.
+    Then, we have
+    \begin{align*}
+      x^iy^jx^k &= x^iy^jx\\
+      &= x^iy^{j-1}(yx)\\
+      &= x^iy^{j-1}xy^{n-1}\\
+      &= x^iy^{j-2}xy^{2n-2}\\
+      &= x^iy^{j-2}xy^{n-2}\\
+      &= x^iy^{j-3}xy^{n-3}\\
+      &= \cdots \\
+      &= x^iy^0xy^{n-j} \\
+      &= x^{i+1}y^{n-j} \\
+    \end{align*}
+    as desired.
+  \end{proof}
+\end{solution}
+\end{document}
