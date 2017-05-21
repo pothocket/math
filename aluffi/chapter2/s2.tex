@@ -135,4 +135,136 @@
     as desired.
   \end{proof}
 \end{solution}
+
+\begin{problem}{2.10}
+  Prove that $\mathbb{Z}/n\mathbb{Z}$ consists of precisely $n$ elements.
+\end{problem}
+\begin{proposition}
+  $\mathbb{Z}/n\mathbb{Z}$ consists exactly of the elements $S= \{[0]_n, [1]_n, \dots [n-1]_n\}$.
+\end{proposition}
+\begin{proof}
+  First, suppose $[a]_n, [b]_n \in S$ and (without loss of generality) $a < b$. 
+  Then, since $b-a<n$, we have $n \nmid b-a$, and so $[a]_n$ and $[b]_n$ (and hence all elements of S) are distinct.\\
+  Now, suppose $c \geq n$. 
+  Then we have, for some positive integers $q \geq 1$ and $0 \leq r < n$, $c = qn + r$. 
+  Hence $c-r = qn$, so $c \equiv r \mod n$. In other words, $[c]_n = [r]_n$ with $r<n$, completing the proof
+  that $\mathbb{Z}/n\mathbb{Z} = S$.
+\end{proof}
+
+\begin{problem}{2.11}
+  The square of every odd integer is congruent to 1 modulo 8.
+\end{problem}
+\begin{solution}
+  Let $n \geq 0$ be an integer. We will prove that $(2n+1)^2 \equiv 1 \mod 8$. \\
+  Note that $4x\equiv 0\mod 8$ if $x$ is even, and that
+  \begin{align*}
+    (2n+1)^2 &= 4n^2 + 4n + 1\\
+    &= 4n(n+1) + 1
+  \end{align*}
+  If $n=2m+1$ is odd, then we have
+  \begin{align*}
+    n(n+1) &= (2m+1)(2m+2) \\
+    &= 2(2m+1)(m+1)\\
+    &\equiv 0\mod 2
+  \end{align*}
+  Similarly, if $n=2m$ is even, then we have
+  \begin{align*}
+    n(n+1) &= 2m(2m+1) \\
+    &\equiv 0\mod 2
+  \end{align*}
+  Thus $n(n+1)$ is even, giving us $4n(n+1)\equiv 0\mod 8$, and hence 
+  \begin{align*}
+  (2n+1)^2 &= 4n(n+1) + 1 \\
+  &\equiv 1\mod 8
+  \end{align*}
+\end{solution}
+
+\begin{problem}{2.12}
+  There are no nonzero integers $a,b,c$ such that $a^2+b^2=3c^2$.
+\end{problem}
+\begin{solution}
+  I'll write this one down later. 
+  Essentially, you work in $\mathbb{Z}/4\mathbb{Z}$ (as given in the text as a hint) split the problem into cases, and deduce an even-odd contradiction between $a^2+b^2$ and $3c^2$.
+\end{solution}
+\begin{problem}{2.13}
+  There exist integers $a$ and $b$ such that $$am+bn=1$$ iff $\gcd(m,n)=1$.
+\end{problem}
+\begin{solution}
+  First suppose $\gcd(m,n)=1$. 
+  By Corollary 2.5, we know that $[m]_n$ generates $\mathbb{Z}/n\mathbb{Z}$, and hence 
+  $$am\equiv 1\mod n$$ for some integer $a$.
+  It then follows that $$am = bn + 1$$ for some integer $b$, and so $$am-bn=1$$ as desired.\\
+  For the proof in the other direction, suppose there exist integers $a$ and $b$ such that 
+  $$am+bn=1$$
+  Then we have $$am = 1-bn$$. 
+  Suppose, for the sake of contradiction, that $\gcd(m,n)=d>1$. We then have
+  \begin{align*}
+    \frac{am}{d} &= \frac{1}{d} - \frac{bn}{d} \\
+    \frac{am}{d} + \frac{bn}{d} &= \frac{1}{d}
+  \end{align*}
+  The LHS is an integer since $d|m$ and $d|m$, but the (nonzero) RHS is not since $d>1$. Absurd!
+\end{solution}
+
+\begin{problem}{2.14}
+  Show that multiplication on $\mathbb{Z}/n\mathbb{Z}$ is a well-defined operation.
+\end{problem}
+\begin{solution}
+  First, we shall prove a useful intuition regarding modulus.
+  \begin{proposition}
+    If $a\equiv b\mod n$, then there exist integers $k_1,k_2\geq0$ and $r$ with $0\leq r<n$ such that
+    \begin{align*}
+      a&=k_1n+r\\
+      b&=k_2n+r\\
+    \end{align*}
+  \end{proposition}
+  \begin{proof}
+    Recall that $\mathbb{Z}/n\mathbb{Z}$ consists entirely of the equivalence classes of the numbers in the set
+    of nonnegative integers up to but not including $n$. Thus, if $a\equiv b\mod n$, there exists an
+    $r$ with $0\leq r<n$ such that
+    \begin{align*}
+      n&|a-r\\
+      n&|b-r
+    \end{align*}
+    Hence, we have, for some nonnegative integers $k_1, k_2$:
+    \begin{align*}
+      k_1n &= a-r\\
+      k_2n &= b-r
+    \end{align*}
+    Therefore
+    \begin{align*}
+      a = k_1n + r\\
+      b = k_2n + r
+    \end{align*}
+    as desired.
+  \end{proof}
+  With this, we can show that multiplication on $\mathbb{Z}/n\mathbb{Z}$ is well-defined.
+  \begin{proposition}
+    If $a\equiv a'\mod n$ and $b\equiv b'\mod n$, then $ab\equiv a'b'\mod n$.
+  \end{proposition}
+  \begin{proof}
+    Suppose $a\equiv a'\mod n$ and $b\equiv b'\mod n$. 
+    Then, by the lemma above, we have:
+    \begin{align*}
+      a = k_1n + r \\
+      a' = k_2n + r \\
+      b = \ell_1n+s \\
+      b' = \ell_2n+s \\
+    \end{align*}
+    Next, consider the product $ab$:
+    \begin{align*}
+      ab &= (k_1n+r)(\ell_1n+s) \\
+      &= k_1\ell_1n^2 + k_1sn + \ell_1rn + rs \\
+      &= (k_1\ell_1n + k_1s + \ell_1r)n + rs \\
+      &\equiv rs \mod n 
+    \end{align*}
+    Similarly, for $a'b'$, 
+    \begin{align*}
+      a'b' &= (k_2n+r)(\ell_2n+s) \\
+      &= k_2\ell_2n^2 + k_2sn + \ell_2rn + rs \\
+      &= (k_2\ell_2n + k_2s + \ell_2r)n + rs \\
+      &\equiv rs \mod n 
+    \end{align*}
+    Hence $ab\equiv a'b'\mod n$ by transitivity.
+  \end{proof}
+\end{solution}
 \end{document}
