@@ -1,0 +1,120 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 3}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{3.1}
+  Let $\varphi : G\to H$ be a morphism in a category \catname{C} with products.
+  Explain why there is a unique morphism 
+  $$(\varphi\times\varphi) : G\times G\to H\times H$$
+    compatible in the evident way with the natural projections.
+\end{problem}
+\begin{solution}
+  I'm going to assume the author means the following:\\
+  Since $H\times H$ is a product in \catname{C}, we have that 
+  $G\times G$ along with two ``copies'' of $\varphi : G\to H$
+  admits a unique morphism $(\varphi\times\varphi) : G\times G\to H\times H$
+  that makes the following diagram commute:
+  \[\begin{tikzcd}
+    &&&H\\
+    &G\times G 
+    \ar{r}{\varphi\times\varphi} 
+    \ar[bend left]{urr}{\varphi\pi_{G_1}}
+    \ar[bend right]{drr}[swap]{\varphi\pi_{G_2}}
+    &H\times H 
+    \ar{ur}{\pi_{H_1}}
+    \ar{dr}[swap]{\pi_{H_2}}
+    &\\
+    &&&H
+  \end{tikzcd}\]
+  where $\pi_{G_1}$ and $\pi_{G_2}$ are the canonical projections of
+  $G\times G$ onto $G$.
+\end{solution}
+\begin{problem}{3.2}
+  Let $\varphi : G\to H$ and $\psi : H\to K$ be morphisms in a category with
+  products, and consider morphisms between the products 
+  $G\times G$, $H\times H$, and $K\times K$ as in Exercise 3.1. 
+  Prove that
+  $$(\psi\varphi)\times (\psi\varphi) 
+  = (\psi\times\psi)(\varphi\times\varphi)$$
+\end{problem}
+\begin{solution}
+  To demonstrate this result, first stare at this diagram, mapping 
+  $G\times G$ to the product $H\times H$ and 
+  $H\times H$ to the product $K\times H$.
+  \[\begin{tikzcd}
+    & G\ar{r}{\varphi} & H\ar{r}{\psi} & K \\
+    & G\times G \ar{r}{\varphi\times\varphi}
+    \ar{u}\ar{d} 
+    & H\times H \ar{r}{\psi\times\psi}
+    \ar{u}\ar{d} 
+    & K\times K \ar{u} \ar{d} \\
+    & G\ar{r}{\varphi} & H\ar{r}{\psi} & K 
+\end{tikzcd}\]
+Compare it to the following diagram, mapping 
+$G\times G$ straight to $K\times K$:
+\[\begin{tikzcd}
+  & G\ar{r}{\psi\varphi} & K\\
+  & G\times G \ar{r}{(\psi\varphi)\times(\psi\varphi)} 
+  \ar{u} \ar{d} 
+  & K\times K \ar{u} \ar{d} \\
+  & G\ar{r}{\psi\varphi} & K
+\end{tikzcd}\]
+Notice that we have morphisms 
+$(\psi\varphi) \times (\psi\sigma)$ and 
+$(\psi\times\psi)(\varphi\times\varphi)$
+from $G\times G$ to $K\times K$ determined by the universal property for
+products with regards to $K\times K$. 
+These must be equal per Problem 3.1.
+\end{solution}
+\begin{problem}{3.3}
+  Show that if $G$ and $H$ are both \textit{abelian} groups, then
+  $G\times H$ satisfies the universal property for coproducts in 
+  \catname{Ab}.
+\end{problem}<++>
+\end{document}
