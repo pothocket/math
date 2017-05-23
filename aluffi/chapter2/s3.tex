@@ -94,7 +94,7 @@
     & H\times H \ar{r}{\psi\times\psi}
     \ar{u}\ar{d} 
     & K\times K \ar{u} \ar{d} \\
-    & G\ar{r}{\varphi} & H\ar{r}{\psi} & K 
+    & G\ar{r}[swap]{\varphi} & H\ar{r}[swap]{\psi} & K 
 \end{tikzcd}\]
 Compare it to the following diagram, mapping 
 $G\times G$ straight to $K\times K$:
@@ -103,12 +103,12 @@ $G\times G$ straight to $K\times K$:
   & G\times G \ar{r}{(\psi\varphi)\times(\psi\varphi)} 
   \ar{u} \ar{d} 
   & K\times K \ar{u} \ar{d} \\
-  & G\ar{r}{\psi\varphi} & K
+  & G\ar{r}[swap]{\psi\varphi} & K
 \end{tikzcd}\]
 Notice that we have morphisms 
-$(\psi\varphi) \times (\psi\sigma)$ and 
+$(\psi\varphi) \times (\psi\varphi)$ and 
 $(\psi\times\psi)(\varphi\times\varphi)$
-from $G\times G$ to $K\times K$ determined by the universal property for
+from $G\times G$ to $K\times K$, both determined by the universal property for
 products with regards to $K\times K$. 
 These must be equal per Problem 3.1.
 \end{solution}
@@ -116,5 +116,45 @@ These must be equal per Problem 3.1.
   Show that if $G$ and $H$ are both \textit{abelian} groups, then
   $G\times H$ satisfies the universal property for coproducts in 
   \catname{Ab}.
-\end{problem}<++>
+\end{problem}
+\begin{solution}
+  That $G\times H$ satisfies the universal property for coproducts in \catname{Ab} means the following:\\
+  Every triple $(X, \delta_G, \delta_H)$ (as in the diagram) admits a unique morphism $\sigma$ 
+  such that the following diagram commutes:
+  \[\begin{tikzcd}
+    & & G \ar{dl}[swap]{f_G} \ar{d}{\delta_G}\\
+    & X & G\times H \ar{l}[swap]{\sigma} \\
+    & & H \ar{ul}{f_H} \ar{u}[swap]{\delta_G}
+  \end{tikzcd}\]
+  That is, $$\sigma\delta_G = f_G$$ $$\sigma\delta_H = f_H$$
+  Define $\sigma : G\times H \to X$ by 
+  $$\sigma(g,h) = f_G(g)\cdot f_H(h)$$
+  Also define $\delta_G : G\to G\times H$ $\delta_H : H\to G\times H$ by
+  \begin{align*}
+    \delta_G(g) = (g, e_H) \\
+    \delta_G(h) = (e_G, h) 
+  \end{align*}
+  The proof that these are homomorphisms is trivial.
+  To show that $\sigma$ makes the diagram commute, note that
+  \begin{align*}
+    \sigma(\delta_G(g)) &= \sigma(g,e_H) \\
+    &= f_G(g)\cdot f_H(e_H) \\
+    &= f_G(h)
+  \end{align*}
+  The same proof applies to $H$. \\
+  This is where our groups being abelian comes in. We will show that $\sigma$ is a homomorphism:
+  \begin{align*}
+    \sigma\left( (g_1,h_1)(g_2,h_2) \right) &= \sigma(g_1g_2,h_1h_2) \\
+    &= f_G(g_1g_2)\cdot f_H(h_1h_2) \\
+    &= f_G(g_1)g_G(g_2)f_H(h_1)f_H(h_2) \\
+    &= \left( f_G(g_1)f_H(h_1) \right)\left( f_G(g_2)f_h(h_2) \right) \\
+    &= \sigma(g_1,h_1)\cdot\sigma(g_2,h_2)
+  \end{align*}
+  done
+\end{solution}
+\begin{problem}{3.4}
+  Let $G,H be groups$, and assume that $G\cong H\times H$. Can you conclude that H is trivial? (Hint: no.)
+\end{problem}
+\begin{solution}
+\end{solution}
 \end{document}
