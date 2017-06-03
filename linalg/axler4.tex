@@ -1,0 +1,93 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+\newcommand{\nul}{\text{null}\ }
+\newcommand{\range}{\text{range}\ }
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Linear Algebra Done Right Exercises\\ \large Chapter 4}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{5}
+  Suppose $m$ is a nonnegative integer, $z_1,\dots,z_{m+1}$ are distinct elements of $\mathbb{F}$, and
+  $w_1,\dots,w_{m+1} \in \mathbb{F}$. Prove that there exists a unique polynomial 
+  $p\in \mathcal{P}_m(\mathbb{F})$ such that
+  \begin{equation*}
+    p(z_j) = w_j
+  \end{equation*}
+  for $j = 1,\dots,m+1$.
+\end{problem}
+\begin{proof}
+  Let $T \in \mathcal{L}(\mathcal{P}_m(\mathbb{F}), \mathbb{F}^X)$ where $X = \{z_1,\dots,z_{m+1}\}$. 
+  Define $T$ by
+  \begin{equation*}
+    T(p)(x_j) = p(x_j)\\
+  \end{equation*}
+  It is easy to show that this transformation is linear.\\
+  Now we compute the null space of $T$.
+  Note that when $Tp=0$, we have that $p(x)=0$ for all $x\in X$, 
+  and thus $p$ has at least $|X| = m+1$ distinct zeroes. 
+  But since the degree of $p$ is at most $m$, this must mean that $p$ is the zero polynomial.
+  Hence $T$ is injective and $\dim\nul T = 0$. 
+  We then have
+  \begin{align*}
+    \dim\range T &= \dim \mathcal{P}_m(\mathbb{F}) - \dim\nul T\\
+    &= m + 1 \\
+    &=\footnotemark \dim \mathbb{F}^X\text{.}
+  \end{align*}
+  \footnotetext{See the following Stack Exchange post:
+  https://math.stackexchange.com/questions/2288812/finding-dimension-of-a-vector-space-v/2289241\#2289241}
+  This shows that $\range T = \mathbb{F}$, and therefore that $T$ is an isomorphism between
+  $\mathcal{P}_m(\mathbb{F})$ and $\mathbb{F}^X$. 
+  Since $T^{-1}$ assigns a unique polynomial to each function 
+  (i.e. set of ordered pairs distinct in the first slot) 
+  as stated in the problem, this completes the proof.
+\end{proof}
+\begin{problem}{6}
+  Suppose $p\in\mathcal{P}(\mathbb{C})$ has degree $m$. 
+  Prove that $p$ has $m$ distinct zeros if and only if $p$ and its derivative $p'$ have no zeros in common.
+\end{problem}
+\begin{proof}
+  We will prove the contrapositive.
+  Suppose $z$ is a zero of both $p$ and $p'$.
+  Note that
+  \begin{align*}
+    p(x) &= (x-z)q(x)\\
+    p'(x) &= q(x) + (x-z)q'(x)
+  \end{align*}
+  We then have
+  \begin{align*}
+    0 &= p'(z) \\
+    &= q(z)
+  \end{align*}
+  and hence $z$ is a zero of $q$. 
+  This means that $(x-z)^2$ is a factor of $p$, and therefore it can have at most $m-1$ distinct zeros.
+\end{proof}
+\end{document}
+
