@@ -16,6 +16,7 @@
 \newcommand{\bs}{\textbackslash} 
 \newcommand{\nul}{\text{null}\ }
 \newcommand{\range}{\text{range}\ }
+\newcommand{\conj}[1]{\overline{#1}}
 
 \newenvironment{solution}
   {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
@@ -59,7 +60,7 @@
   \begin{align*}
     \dim\range T &= \dim \mathcal{P}_m(\mathbb{F}) - \dim\nul T\\
     &= m + 1 \\
-    &=\footnotemark \dim \mathbb{F}^X\text{.}
+    &\stackrel{\footnotemark}{=} \dim \mathbb{F}^X\text{.}
   \end{align*}
   \footnotetext{See the following Stack Exchange post:
   https://math.stackexchange.com/questions/2288812/finding-dimension-of-a-vector-space-v/2289241\#2289241}
@@ -89,5 +90,69 @@
   and hence $z$ is a zero of $q$. 
   This means that $(x-z)^2$ is a factor of $p$, and therefore it can have at most $m-1$ distinct zeros.
 \end{proof}
+\begin{problem}{7}
+  Every polynomial of odd degree with real coefficients has a real zero.
+\end{problem}
+\begin{proof}
+  According to 4.17, every polynomial with real coefficients can be factored into a product of linear
+  and quadratic factors with real coefficients, with each linear factor corresponding to a real zero
+  and each quadratic factor representing a pair of nonreal zeros. Since the polynomial in question is
+  of odd degree, this factorization must have an odd number of linear factors, and thus at least one
+  real zero.
+\end{proof}
+\begin{problem}{8}
+  Define $T : \mathcal{P}(\mathbb{R}) \to \mathbb{R}^\mathbb{R}$ by
+  \begin{equation*}
+    Tp = \begin{cases}
+      \dfrac{p-p(3)}{x-3} & \text{if  } x\neq 3 \\
+      p'(3) & \text{if  } x = 3
+    \end{cases}
+  \end{equation*}
+  Show that $Tp\in \mathcal{P}(\mathbb{R})$ for every polynomial $p\in\mathcal{P}(\mathbb{R})$ and that
+  $T$ is a linear map.
+\end{problem}
+\begin{solution}
+  Since $3$ is a zero of the polynomial $r(x) = p(x) - p(3)$, we have
+  \begin{equation*}
+    p(x) - p(3) = (x-3)q(x)
+  \end{equation*}
+  for some $q\in\mathcal{P}(\mathbb{R})$.
+  Taking the derivative of both sides, we have
+  \begin{equation*}
+    p'(x) = (x-3)q'(x) + q(x)
+  \end{equation*}
+  and hence $p'(3) = q(3)$.
+  Since $q(x) = (Tp)(x)$ for all $x\in\mathbb{R}$, we then have $Tp=q$.\\
+\end{solution}
+\begin{problem}{9}
+  Suppose $p\in \mathcal{P}(\mathbb{C})$. Define $q:\mathbb{C}\to\mathbb{C}$ by
+  \begin{equation*}
+    q(z)=p(z)\conj{p(\conj{z})}
+  \end{equation*}
+  Prove that $q$ is a polynomial with real coefficients.
+\end{problem}
+\begin{solution}
+  We will work with the corresponding factorizations.
+  Let $m=\deg p$ and each $\zeta_k$ be a zero of $p$.
+  We then have
+  \begin{align*}
+    q(z) &= p(z)\conj{p(\conj{z})}\\
+    &= \prod_{k=0}^{m}(z-\zeta_k)\conj{\prod_{k=0}^{m}(\conj{z}-\zeta_k)}\\
+    &= \prod_{k=0}^{m}(z-\zeta_k)\conj{(\conj{z}-\zeta_k)}\\
+    &= \prod_{k=0}^{m}(z-\zeta_k)(z-\conj{\zeta_k})\\
+    &= \prod_{k=0}^{m}(z^2 - 2(\text{Re } \zeta_k)z + |\zeta_k|^2z)
+  \end{align*}
+\end{solution}
+\begin{problem}{10}
+  Suppose $m$ is a nonnegative integer and $p\in\mathcal{P}_m(\mathbb{C})$ is such that there exist
+  distinct real numbers $x_0,x_1,\dots,x_m$ such that $p(x_j)\in\mathbb{R}$ for $j=0,1,\dots,m$.
+  Prove that all the coefficients of $p$ are real.
+\end{problem}
+\begin{solution}
+  This follows directly from the uniqueness part of problem 5.
+\end{solution}
+\begin{problem}{11}
+  
+\end{problem}
 \end{document}
 
