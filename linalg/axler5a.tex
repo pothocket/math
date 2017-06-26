@@ -1,0 +1,54 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+\newcommand{\nul}{\text{null}\ }
+\newcommand{\range}{\text{range}\ }
+\newcommand{\conj}[1]{\overline{#1}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Linear Algebra Done Right Exercises\\ \large Chapter 5, Section A}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{13}
+  Suppose V is finite-dimensional, $T\in\mathcal{L}(V)$, and $\varphi\in\mathbb{F}$.
+  Prove that there exists $\alpha\in\mathbb{F}$ such that 
+  $|\varphi-\lambda| < \frac{1}{1000}$
+  and $T-\alpha I$ is invertible.
+\end{problem}
+\begin{solution}
+  Let $X$ be the set of $\alpha\in\mathbb{F}$ such that $|\varphi-\lambda| < \frac{1}{1000}$,
+  and let $E$ be the set of eigenvalues of $T$.
+  We know that $T-\alpha I$ being invertible is equivalent to $\alpha$ being an eigenvalue of $T$,
+  so we just have to prove that there is an $\alpha\in X$ that is not in $E$; that is, $X\nsubseteq E$. 
+  This is clear due to the fact that $|E| < |X|$, 
+  since $E$ is finite as a result of $V$ being finite-dimensional.
+\end{solution}
+
+\end{document}
+

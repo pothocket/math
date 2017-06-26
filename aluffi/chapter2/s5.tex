@@ -1,0 +1,136 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 5}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{1}
+  Let $\mathscr{F}^A$ be a category whose objects $(f, G)$ are pairs consisting of a group $G$ along with
+  a function $f : A \to G$, and whose morphisms $(f_1, G_1)\to (f_2, G_2)$ are morphisms 
+  $\varphi : G_1 \to G_2$
+  such that the following diagram commutes:
+  \[\begin{tikzcd}
+    & G_1\ar{r}{\varphi} & G_2 \\
+    & A \ar{u}{f_1} \ar{ur}[swap]{f_2}
+    \end{tikzcd}\]
+    Does this category have final objects?
+\end{problem}
+\begin{solution}
+  Yes. If $T$ is the trivial group and $\kappa_e$ is the trivial homomorphism 
+  (i.e. sends all elements to the identity in the destination group),
+  then $(\varphi_e,T)$ is final in this group. 
+  \begin{sproof}
+    Let $(f, G)\in \Obj(\mathscr{F}^A)$, and suppose $\varphi$ is such that the following diagram commutes:
+   \[\begin{tikzcd}
+    & G\ar{r}{\varphi} & T \\
+    & A \ar{u}{f} \ar{ur}[swap]{\kappa_e}
+    \end{tikzcd}\]
+    Clearly the only morphism $G\to T$ is the trivial morphism (i.e. $\varphi(g) = e$ for all $g\in G$),
+    and this diagram does commute for such a $\varphi$ since $\varphi(f(a)) = e$.
+    Hence $(\kappa_e,T)$ is final in $\mathscr{F}^A$.
+  \end{sproof}
+\end{solution}
+
+\begin{problem}{5.2}
+  Explain why $(\kappa_e,T)$ is not initial in $\mathcal{F}^A$ (unless $a=\emptyset$).
+\end{problem}
+\begin{solution}
+  Let $(f, G)\in \Obj(\mathscr{F}^A)$, and consider the following diagram: 
+   \[\begin{tikzcd}
+       & T\ar[dashed]{r}{\varphi} & G \\
+    & A \ar{u}{\kappa_e} \ar{ur}[swap]{f}
+    \end{tikzcd}\]
+    Since the only group homomorphism $T\to G$ is the trivial one, we must have 
+    $f(a) = e_G$ for all $a\in A$ for this diagram to commute.
+    This is the only case for all $(f,G)$ if $A=\emptyset$.
+\end{solution}
+\begin{problem}{5.3}
+  Use the universal property of free groups to prove that the map $j : f \to F(A)$ is injective,
+  for all sets $A$.
+\end{problem}
+\begin{solution}
+  Recall that a free group along with inclusion $\iota, F(A)$ is initial in the category $\mathscr{F}^A$.
+  For any $a,b\in A$ with $a\neq b$, consider the following diagram:
+   \[\begin{tikzcd}
+       & F(A)\ar[dashed]{r}{\varphi} & C_2 \\
+       & A \ar{u}{\iota} \ar{ur}[swap]{f}
+    \end{tikzcd}\]
+    Define $f$ by $f(a) = e$, and $f(x) = g$ if $x\neq a$ 
+    (where $e$ and $g$ are the identity and generator in $C_2$, respectively.
+      We then have $f(a)\neq f(b)$, so $(\varphi\circ\iota)(a) \neq (\varphi\circ\iota)(b)$,
+      and hence \\$\iota(a)\neq\iota(b)$, making $\iota$ injective.
+\end{solution}
+\begin{problem}{5.5}
+  Verify explicitly that $H^{\oplus A}$ is a group.
+\end{problem}
+\begin{solution}
+  Let $H$ be a group. 
+  If $\alpha$ is a function from $A$ to $H$, define 
+  $$\ker' \alpha := \{a\in A \ |\ \alpha(a) \neq e_H\}.$$
+  We then define $H^{\oplus A}$ by
+  \begin{equation*}
+    H^{\oplus A} := \{\alpha : A \to H\ |\ \ker' \alpha \text{ is finite}\}
+  \end{equation*}
+  To define the group operation on $H^{\oplus A}$, let $\alpha_1, \alpha_2\in H^{\oplus A}$.
+  We then define
+  \begin{equation*}
+    (\alpha_1\cdot\alpha_2)(a) = \alpha_1(a) \cdot \alpha_2(a)
+  \end{equation*}
+  This operation "inherits" associativity and inverses from the group $H$.
+  Furthermore, this group is closed under inverses, since the inverse of the identity is the identity.
+  To prove closure, we must show that
+  \begin{equation*}
+    \ker' (\alpha_1\cdot\alpha_2) \text{ is finite.}
+  \end{equation*}
+  Some examination shows us that
+  \begin{equation*}
+    \ker' (\alpha_1\cdot\alpha_2) = (\ker` \alpha_1 \cup \ker` \alpha_2) \setminus 
+    \{a\in A\ |\ \alpha_1(a) = \alpha_2(a)^{-1}\},
+  \end{equation*}
+  which is clearly finite; hence $(\alpha_1\cdot\alpha_2)$ is in $H^{\oplus A}$.
+\end{solution}
+\end{document}

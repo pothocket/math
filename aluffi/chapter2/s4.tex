@@ -109,4 +109,92 @@
     $x^d=1$ in $\mathbb{Z}/p\mathbb{Z}$. It then follows that $|G|\leq|g|$ by the given theorem in the problem,
     so $|G| = |g|$ and therefore $G$ is cyclic.
 \end{solution}
+
+\begin{problem}{4.12}
+  Compute the order of $[9]_{31}$ in the group $(\mathbb{Z}/31\mathbb{Z})^*$ 
+  and determine if $x^3-9=0$ has any solutions in $\mathbb{Z}/31\mathbb{Z}$.
+\end{problem}
+\begin{solution}
+  The order of $[9]_{31}$ in $(\mathbb{Z}/31\mathbb{Z})^*$ is 15.
+  \begin{proposition}
+    The equation $x^3-9=0$ has no solutions in $\mathbb{Z}/31\mathbb{Z}$.
+  \end{proposition}
+  \begin{sproof}
+    Suppose $x\in\mathbb{Z}/31\mathbb{Z}$, and $$x^3-9\equiv0\mod 31.$$
+    We then have $$x^3\equiv9\mod31,$$ and so
+    $$x^{45}\equiv1\mod31.$$
+    This tells us that $|x|$ divides $45$ and so the order of $x$ is either 3, 5, 9, 15, or 45.
+    It cannot equal 45 because the order of $(\mathbb{Z}/31\mathbb{Z})^*$ is less than 45,
+    and it cannot be 3, 9, or 15 because this would contradict the order of $[9]_{31}$ being 13.
+    Hence, $|[x]_{31}$ must equal 5.
+    However, this tells us that
+    \begin{align*}
+      9^5 &\equiv (x^3)^5 \mod 5 \\
+      &\equiv (x^5)^3 \mod 5 \\
+      &\equiv 1 \mod 5,
+    \end{align*}
+    which contradicts the order of $[9]_{31}$ in $(\mathbb{Z}/31\mathbb{Z})*$ being 45.
+  \end{sproof}
+\end{solution}
+
+\begin{problem}{4.14}
+  Prove that the order of the group of automorphisms of a cyclic group $C_n$ is the number of positive
+  integers $r<n$ that are relatively prime to n.
+\end{problem}
+\begin{solution}
+  First, we will prove that the homomorphisms on a cyclic group are uniquely determined by their
+  values at a generator.
+  \begin{proposition}
+    Let $\varphi_1$ and $\varphi_2$ be homomorphisms on the cyclic group $C_n$, and let $[m]_n\in C_n$
+    be a generator. Then $\varphi_1 = \varphi_2$ if and only if $\varphi_1([m]_n) = \varphi_2([m]_n)$.
+  \end{proposition}
+  \begin{sproof}
+    One direction is obvious. 
+    For the other direction, let $[m]_n\in C_n$ be a generator and let 
+    $\varphi_1, \varphi_2\in \Aut(C_n)$ be such that
+    $\varphi_1([m]_n) = \varphi_2([m]_n)$. 
+    Since $\varphi_1$ and $\varphi_2$ are homomorphisms, we have
+    \begin{align*}
+      \varphi_1(k[m]_n) &= k\varphi_1([m]_n) \\
+      &= k\varphi_2([m]_n) \\
+      &= \varphi_2(k[m]_n)
+    \end{align*}
+    for $0\leq k < n$; that is, $\varphi_1=\varphi_2$.
+  \end{sproof}
+  We know that a class $[m]_n$ generates $C_n$ if and only if $\gcd(m,n)=1$, so all we have to do is prove that
+  an endomorphism $\varphi$ is iso if and only if it sends a generator to a generator.
+  \begin{proposition}
+    Let $\varphi$ be an endomorphism on the cyclic group $C_n$ and let $[m]_n$ be a generator. 
+    Then $\varphi$ is an automorphism if and only if $\varphi([m]_n)$ generates $C_n$.
+  \end{proposition}
+  \begin{sproof}
+    First suppose $\varphi$ is an automorphism.
+    Then, since $\varphi$ is surjective, we know that for every $x\in C_n$, there exists a $k$ such that
+    \begin{align*}
+      x &= \varphi(k[m]_n) \\
+      &= k\varphi([m]_n).
+    \end{align*}
+    Hence $\varphi([m]_n)$ generates $C_n$, completing the proof in one direction.\\
+    Next, suppose $\varphi([m]_n)$ generates $C_n$. 
+    It is clear, then, that $\varphi$ is surjective. 
+    To prove that $\varphi$ is injective, we will show that $\ker \varphi = {[1]_n}$.\\
+    Suppose $\varphi(x) = [1]_n$. 
+    Since $[m]_n$ generates $C_n$, we then have, for some $k$, \\
+    \begin{equation*}
+      \varphi(k[m]_n) = [1]_n.
+    \end{equation*}
+    It then follows that 
+    \begin{equation*}
+      k\varphi([m]_n)=[1]_n,
+    \end{equation*}
+    and hence $k=|C_n|$, since $\varphi([m]_n)$ is a generator.
+    However, since $[m]_n$ is also a generator, it then follows that
+    $k[m]_n=[1]_n$, and so $x=[1]_n$, completing the proof.
+  \end{sproof}
+  Having established all this, we know that an endomorphism $\varphi\in C_n$ is an automorphism
+  if and only if $\varphi([1]_n) = [k]_n$ generates $C_n$, 
+  and we know that $[k]_n$ generates $C_n$ if and only if $\gcd(k,n)=1$,
+  so it then follows that there are precisely as many automorphisms in $C_n$ as there are
+  integers less than and coprime to $n$.
+\end{solution}
 \end{document}
