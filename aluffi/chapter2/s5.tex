@@ -133,4 +133,55 @@
   \end{equation*}
   which is clearly finite; hence $(\alpha_1\cdot\alpha_2)$ is in $H^{\oplus A}$.
 \end{solution}
+\begin{problem}{5.6}
+  Prove that the group $F(\{x,y\})$ is a coproduct $\mathbb{Z}*\mathbb{Z}$ of 
+  $\mathbb{Z}$ by itself in the category $\catname{Grp}$.
+\end{problem}
+\begin{proof}
+  Let $S$ be the set $\{x,y\}$, let $G$ be a group,
+  and suppose we have group homomorphisms as in the following diagram:
+  \[ \begin{tikzcd}
+    & \mathbb{Z} 
+    \ar{r}{\epsilon_x} 
+    \ar{dr}[swap]{f_x}
+    & F(S)
+    \ar[dashed]{d}{\varphi}
+    & \mathbb{Z}
+    \ar{l}[swap]{\epsilon_y}
+    \ar{dl}{f_y}
+    \\
+    & & G &
+  \end{tikzcd} \]
+  where $\epsilon_x$ and $\epsilon_y$ are the "exponential maps" $\epsilon_g(n) = g^n$.
+  If a $\varphi$ exists that makes this diagram commute, note that we must have
+  \begin{align*}
+    \varphi(x) &= \varphi(\epsilon_x(1)) \\
+    &= f_x(1)
+  \end{align*}
+  and similarly
+  \begin{align*}
+    \varphi(y) &= \varphi(\epsilon_y(1)) \\
+    &= f_y(1)
+  \end{align*}
+  Keeping this in mind, we turn our attention to the following diagram:
+  \[\begin{tikzcd}
+      & F(S) \ar[dashed]{r}{\varphi} & G \\
+      & S \ar{u}{\iota} \ar{ur}[swap]{f} &
+  \end{tikzcd}\]
+  where $\iota:S\to F(S)$ is the usual inclusion and $f:S\to G$ is a set function mapping
+  $x\mapsto f_1(1)$ and $y\mapsto f_2(1)$.\\
+  The group homomorphism $\varphi$ making this diagram commute exists and is unique by the 
+  universal property for free groups.
+  Since this is the only group homomorphism satisfying those properties listed above required to 
+  make the coproduct diagram commute, we simply must check that this homomorphism does indeed
+  make that diagram commute.
+  We have
+  \begin{align*}
+    \varphi(\epsilon_x(n)) &= \varphi(x^n) \\
+    &= \varphi(x)^n \\
+    &= f_x(1)^n \\
+    &= f_x(n),
+  \end{align*}
+  and similarly for $f_y$. This completes the proof.
+\end{proof}
 \end{document}
