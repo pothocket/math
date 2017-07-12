@@ -1,0 +1,176 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 6}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{6.2}
+  Prove that the set of upper-triangular matrices form a subgroup of $\text{GL}_2(\mathbb{Z})$.
+\end{problem}
+\begin{solution}
+  Let $V$ be an $n$-dimensional vector space over $\mathbb{C}$, 
+  and let $\mathcal{M} : \mathcal{L}(V)\to \mathbb{C}^{n,n}$ be the isomorphism that takes a linear
+  operator to its matrix with respect to some basis $$\mathcal{B}=\{v_1,\dots,v_n\}.$$
+  Let $A, B$ be upper-triangular matrices, and let $S,T$ (respectively) be $\mathcal{M}^{-1}(A)$ and
+  $\mathcal{M}^{-1}(B)$. 
+  We then know, due to a theorem in Axler, that $\text{span}(v_1,\dots,v_k)$ is invariant under
+  $S$ and $T$ for $1\leq k\leq n$ (this property is equivalent to the matrix being upper-triangular). 
+  Using this property and the invertibility of $T$, it then follows that
+  \begin{align*}
+    T^{-1}(a_1v_1+\dots+a_kv_k) &= T^{-1}(T(b_1v_1+\dots+b_kv_k)) \\
+    &= b_1v_1 + \dots + b_kv_k
+  \end{align*}
+  meaning $\text{span}(v_1,\dots,v_k)$ is invariant under $T^{-1}$, and hence that $T^{-1}$ 
+  is upper-triangular.
+  Similarly, 
+  \begin{align*}
+    (ST^{-1})(a_1v_1+\dots+a_kv_k) &= S(b_1v_1+\dots+b_kv_k) \\
+    &= c_1v_1 + \dots + c_kv_k,
+  \end{align*}
+  making $ST^{-1}$ upper-triangular and completing the proof.
+\end{solution}
+\begin{problem}{6.4}
+  Let $G$ be a commutative group, and let $n>0$ be an integer.
+  Prove that $\{g^n | g \in G\}$ is a subgroup of $G$.
+  Prove that this is not necessarily the case if $G$ is not commutative.
+\end{problem}
+\begin{solution}
+  Let $G$ be a commutative group, and let $G' = \{g^n | g\in G\}$  where $n$ is any positive integer.
+  To prove that this is a group, suppose $g = g_1^n$ and $h=g_2^n$ are elements of $G'$.
+  We then have:
+  \begin{align*}
+    gh^{-1} &= (g_1^n)(g_2^n)^{-1} \\
+    &= (g_1)^n(g_2^{-1})^n \\
+      &= (g_1g_2^{-1} )^n \\
+      &\in G'
+  \end{align*}
+  Hence $G'$ is a subgroup of $G$. \\
+  As a counterexample in the case that $G$ is not commutative, let $G = F(\{x,y\})$, the free group generated
+  by $x$ and $y$, and let $n=2$. 
+  In order for $G'$ to be closed under its operation, we would need to have $g\in G$ such that
+  $$g^2=x^2y^2.$$
+  That such a $g$ does not exist is turning out to be harder to prove than I suspected, so I'll come back to this later.
+\end{solution}
+\begin{problem}{6.6}$ $
+  \begin{enumerate}
+    \item Let $H,H'$ be subgroups of a group $G$.
+      Prove that $H\cup H'$ is a subgroup of $G$ only if $H\subseteq H'$ or $H'\subseteq H$.
+    \item On the other hand, let $H_0\subseteq H_1\subseteq H_2\subseteq\cdots$ 
+      be subgroups of a group $G$.
+      Prove that $G'=\bigcup_{i\geq0}H_i$ is a subgroup of $G$.
+  \end{enumerate}
+\end{problem}
+\begin{solution} $ $
+  \begin{enumerate}
+    \item Suppose $H\cup H'$ is a subgroup of G. 
+      We then have, by closure, for all $h\in h$ and $h\in h'$, that $hh' = g$ for some $g\in H\cup H'$.
+      If $g\in H$, we have $h' = h^{-1}g \in H$, meaning $H'\subseteq H$.
+      Alternatively, if $g\in H'$, we have $h = g(h')^{-1} \in H'$ meaning $H\subseteq H'$.
+    \item Let $h_1\in H_j$ and $h_2\in H_k$ (both in $G'$, of course),
+        and assume without loss of generality that $j\leq k$.
+        By the sequence of subset relations, we know that $h_1\in H_k$, so \\$h_1h_2^{-1}\in H_k \subseteq G'$,
+        completing the proof.
+  \end{enumerate}
+\end{solution}
+\begin{problem}{6.8}
+  Prove that an abelian group $G$ is finitely generated if and only if there is a surjective homomorphism
+  \begin{equation*}
+    \bigoplus_{i=1}^n \mathbb{Z} \twoheadrightarrow G
+  \end{equation*}
+  for some $n$.
+\end{problem}
+\begin{solution}
+  First, suppose that an abelian group $G$ is finitely generated.
+  This, by definition, means that there exists a finite subset $A$ of $G$ such that $\langle A\rangle=G$;
+  in other words, $G$ is the image of the homomorphism $\varphi_A$ obtained by applying the universal property
+  for the free abelian group over $A$ as follows:
+  \[
+  \begin{tikzcd}
+    & F^{ab}(A) \ar[dashed]{r}{\varphi_A} & G \\
+    & A \ar{u}{j} \ar{ur}[swap]{\iota}
+  \end{tikzcd} \]
+  where $\iota$ and $j$ are the inclusion maps into $G$ and $F^{ab}(A)$, respectively.
+  We know by exercise $5.7$ that $Z=\bigoplus_{i=1}^n\mathbb{Z}\cong F^{ab}(A)$, so we have a surjection
+  \[\begin{tikzcd}
+      & Z \ar{r}{\sim} 
+      & F^{ab}(A) \ar[twoheadrightarrow]{r}{\varphi_A} 
+      & G
+  \end{tikzcd}\]
+  For the proof in the other direction, suppose we have a surjective homomorphism \\
+  $\varphi : Z \to G$.
+  For integers $0 \leq m\leq n$, let $\beta_m$ be the $n$-tuple with 0 in every slot except for the $m$th
+  slot, where there is a 1.
+  Define $A$ to be the set $\{\varphi(\beta_1),\dots,\varphi(\beta_n)\}$
+  (since the coproduct and product in \catname{Ab} are the same), and let $a_m$ be the $m$th element
+  of $A$ as listed above. Define the isomorphism $i : F^{ab}(A) \to Z$ by
+  \begin{equation*}
+    i(m_1a_1 + \cdots + m_na_n) = (m_1,\dots,m_n),
+  \end{equation*}
+  and let $f : F^{ab}(A) \to G$ be defined by $f = i\varphi$.
+  Finally, let $j$ and $\iota$ be the standard inclusions into $F^{ab}(A)$ and $G$, respectively..
+  the following diagram illustrates these morphisms:
+  \[\begin{tikzcd}
+      & & Z \ar[two heads]{dr}{\varphi} \\
+      & F^{ab}(A) \ar{ur}{i} \ar[dashed]{rr}{\varphi_A} && G\\
+      & A \ar{u}{j} \ar{urr}[swap]{\iota} &&
+  \end{tikzcd}\]
+  Define $\alpha_m$ to be $j(a_m)$, let $a = m_1a_1 + \cdots + m_na_n$, and let $\alpha=j(a)$.
+  We then have:
+  \begin{align*}
+    (f\circ j)(a) &= f(\alpha)\\
+    &= (\varphi\circ i)(m_1\alpha_1 + \cdots + m_n\alpha_n) \\
+    &= \varphi(m_1, \dots, m_n) \\
+    &= m_1\varphi(\beta_1) + \cdots + m_n\varphi(\beta_n) \\
+    &= m_1\iota(a_1) + \cdots + m_n\iota(a_n) \\
+    &= \iota(a)
+  \end{align*}
+  Since the morphism $\varphi_A$ is the only morphism that satisfies this property (by the universality of 
+    $F^{ab}(A)$, we know that $f = \varphi_A$. 
+    But $f$ (and hence $\varphi_A$) is surjective, giving us \\
+    $G = \text{im}(\varphi_A) = \langle A\rangle$, as desired.
+\end{solution}
+\end{document}
