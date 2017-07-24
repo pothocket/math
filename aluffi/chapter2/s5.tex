@@ -42,6 +42,8 @@
   \end{proof}
 }
 
+\newtheorem{lemma}{Lemma}
+
 \begin{document}
 
 \title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 5}
@@ -197,27 +199,18 @@
       and $A\cong B$ as sets.
   \end{enumerate}
 \end{problem}
-\begin{solution}
+\begin{solution}~
   \begin{enumerate}
-    \item First suppose that $A$ is finite.
-      We then know, by exercise 5.7 (which extends easily from 5.6), that we can think of elements of $F$ 
-      as tuples of integers.
-      Consider, then, $f, f'\in F$ with\\
+    \item This follows immediately from the fact that $F\cong (\mathbb{Z}/2\mathbb{Z})^A$ (see exercise 7.4).
+      More specifically, if $A$ is infinite then $(\mathbb{Z}/2\mathbb{Z})$ is also infinite, and if it is
+      finite, then \\$|F| = |(\mathbb{Z}/2\mathbb{Z})^A| = 2^{|A|}$.
+    \item If A is finite, then 
       \begin{align*}
-        f &= (a_1, \dots, a_n)\\
-        f'&= (b_1,\dots, b_n)
+      2^{|A|} &= |F^{ab}(A)| \\
+      &= |F^{ab}(B)| \\
+      &= 2^{|B|}
       \end{align*}
-      We then have $f\sim f'$ if and only if $b_j - a_j$ is even for each $j$, and hence if and only if
-      each $b_j$ and $a_j$ have the same parity (i.e. are congruent modulo 2).
-      There are, then, as many equivalence classes in $F/{\sim}$ as there are tuples 
-      $(p_1, \dots, p_n)$ where each $p_j \in \mathbb{Z}/2\mathbb{Z}$, and hence 
-      $|F/{\sim}| = |(Z/2\mathbb{Z})^n| = 2^n$ (which, of course also proves that $F/{\sim}$ is finite).\\
-      Conversely, suppose that $A$ is infinite.
-      We then have, for each distinct $x\in A$, a distinct equivalence class $[x]_{\sim}$
-      (since $x\sim a$ iff $a = x^{n} a_1^{n_1} a_2^{n_2} \cdots$ with each $a_k\in A$ distinct from $x$
-        and each other,
-      each $n_k$ even, and $n$ odd); hence the cardinality of $F/{\sim}$ is at least the cardinality of $A$.
-    \item 
-  \end{enumerate}
+      Hence $|A| = |B|$.
+  \end{enumerate} 
 \end{solution}
 \end{document}
