@@ -50,4 +50,116 @@
 \author{David Melendez}
 \maketitle
 
+\begin{problem}{7.4}
+  Prove that the relation defined in Exercise 5.10 on a free abelian group $F = F^{ab}(A)$ by 
+  \begin{equation*}
+    f \sim f' \Leftrightarrow (\exists g\in G): ~ f'-f = 2g
+  \end{equation*}
+  is compatible with the group structure.
+  Determine the quotient $F/{\sim}$ as a better known group.
+\end{problem}
+\begin{solution}
+  The relation $\sim$ is compatible with the group structure on $F$ if and only if, considering 
+  Proposition 7.3,
+  \begin{equation*}
+    (\forall f,f',a\in F): ~ f\sim f'\implies a+f\sim a+f' 
+  \end{equation*}
+  (since $F$ is abelian).
+  Suppose then, we have $f\sim f'$, that is $f' - f = 2g$.
+  We then have $(f' + a) - (f + a) = 2g$, and hence $a+f'\sim a+f$.
+
+  To determine $F/{\sim}$ as a better known group, we will establish an isomorphism between the group $F$ and the abelian group 
+  $G := (\mathbb{Z}/2\mathbb{Z})^A$. \\
+  Define the set function $\kappa : A\to G$ as follows:
+  \begin{equation*}
+    (\forall a,a'\in A):~ \kappa(a)(a') = [\delta_{a'a}]_2,
+  \end{equation*}
+  where $\delta$ is the kronecker delta function.
+  We then use this function and the universal property for free (abelian) groups to induce a group
+  homomorphism $\varphi : F\to G$ that makes the following diagram commute:
+  \[ \begin{tikzcd}
+    & F^{ab}(A) \ar[dashed]{r}{\varphi} & (\mathbb{Z}/2\mathbb{Z})^A \\
+    & A \ar{u}{j} \ar{ur}[swap]{\kappa}
+  \end{tikzcd} \]
+  where $j : A\to F$ is the usual inclusion.
+  We will now prove two lemmas essential to constructing the desired isomorphism.
+
+  \newpage
+
+  \begin{lemma}
+    The homomorphism $\varphi$ is surjective.
+  \end{lemma}
+  \begin{sproof}
+    Suppose $f\in (\mathbb{Z}/2\mathbb{Z})^A$, let $\bar{a} = j(a) \in F$, and allow 
+    $f(x)y$ to be "multiplication" by a coset representitive of $f(x)$, i.e. 
+    $[0]_2y= 0y$ and $[1]_2y = 1y$.
+    We then have, with the symbol at the top of each sigma representing for clarity the abelian group
+    in which the sum is taking place,
+    \begin{align*}
+      (\forall a,a'\in A) \varphi\left( \sum_{a\in A}^{F} f(a)\bar{a} \right)(a')
+      &= \sum_{a\in A}^{G} \left( \varphi(f(a)\bar{a}) \right)(a') \\
+      &= \sum_{a\in A}^{G} \left( f(a)(\varphi(\bar{a})(a')) \right) \\
+      &= \sum_{a\in A}^{\mathbb{Z}/2\mathbb{Z}} \left( f(a)([\delta_{a'a}]_2) \right) \\
+      &= f(a')
+    \end{align*}
+    Hence every $f\in G$ is in the image of $\varphi$.
+  \end{sproof}
+  \begin{lemma}
+    The homomorphism $\varphi$ agrees with the relation $\sim$; that is, 
+    \begin{equation*}
+      f\sim f'\implies \varphi(f) = \varphi(f')
+    \end{equation*}
+    \begin{sproof}
+      Suppose $f,f'\in F$ and $f\sim f'$.
+      We then have, for all $a\in A$ and for some $g\in (\mathbb{Z}/2\mathbb{Z})^A$:
+      \begin{align*}
+        (\varphi(f') - \varphi(f))(a) &= \varphi(f'-f)(a) \\
+        &= (2g)(a) \\
+        &= 2(g(a)) \\
+        &= [0]_2
+      \end{align*}
+      (as $\mathbb{Z}/2\mathbb{Z}$ has order 2); hence $\varphi(f') = \varphi(f)$, as desired.
+    \end{sproof}
+  \end{lemma}
+  \begin{lemma}
+    If we define $H = [e_F]_{\sim}$ then we have $F/H = F/{\sim}$, and $\ker(\varphi) = H$.
+  \end{lemma}
+  \begin{sproof}
+    The first statement follows from Proposition 7.4, Proposition 7.7, and the definition of quotient
+    by a normal subgroup. \\
+    For the second statement, first suppose that $h\in H$. 
+    It then follows, since $h\sim e_F$, that $\varphi(h) = \varphi(e_F) = e_G$, so $h\subseteq F$.
+    For the other direction, suppose $f\in\ker(\varphi)$, and 
+    \begin{equation*}
+      f = \sum_{a\in A} n_a \bar{a}
+    \end{equation*}
+    We then have, for all $a'\in A$,
+    \begin{align*}
+      \varphi(f)(a') &= \varphi\left( \sum_{a\in A} n_a\bar{a} \right)(a') \\
+      &= \sum_{a\in A}\left( n_a\varphi(\bar{a})(a') \right) \\
+      &= \sum_{a\in A}\left( n_a\kappa(a)(a') \right) \\
+      &= \sum_{a\in A}\left( n_a[\delta_{a'a}]_2 \right) \\
+      &= [n_{a'}]_2
+    \end{align*}
+    Since $\varphi(f) = e_G$, we know that each $n_{a'}$ is congruent to 0 modulo two; that is, even.
+    Hence, we have:
+    \begin{align*}
+      f - e_F &= f \\
+      &= 2\sum_{a\in A} \frac{n_a}{2} \bar{a}
+    \end{align*}
+    This shows that $f\sim e_f$ and thus $f \in H$, giving us $\ker(\varphi)\subseteq H$.
+    Therefore $\ker(\varphi) = H$, as desired.
+  \end{sproof}
+  With this all established, we can finally find our isomorphism.
+  We now construct a homomorphism 
+  $\widetilde{\varphi} : F/H\to G$ using the universal property for quotient by an equivalence relation:
+  \[\begin{tikzcd}
+      & F \ar{d}[swap]{\pi} \ar{r}{\varphi} & G \\
+    & F/H \ar[dashed]{ur}[swap]{\widetilde{\varphi}} &
+  \end{tikzcd}\]
+  Here, $\pi$ is the quotient map $\pi(f) = [f]_{\sim}$, and $\widetilde{\varphi}$ is the unique homomorphism
+  making the diagram commute.
+  The first isomorphism theorem shows that $\widetilde{\varphi}$ is an isomorphism,
+  and so $F/{\sim} \cong (\mathbb{Z}/2\mathbb{Z})^A$.
+\end{solution}
 \end{document}
