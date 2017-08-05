@@ -1,0 +1,100 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 2, Section 8}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{8.1}
+  If a group $H$ may be realized as a subgroup of two groups $G_1$ and $G_2$, and
+  \begin{equation*}
+    \frac{G_1}{H} \cong \frac{G_2}{H},
+  \end{equation*}
+  does it follow that $G_1\cong G_2$?
+  Give a proof or counterexample
+\end{problem}
+\begin{solution}
+  No.
+  As a counterexample, take $G_1 = D_6$, $G_2 = C_6$, and $H=C_3$. 
+  In this case, we have $D_6/C_3\cong C_2\cong C_6/C_3$, but $D_6\not\cong C_3$.
+\end{solution}
+
+\begin{problem}{8.2}
+  Suppose $G$ is a group, and $H\subseteq G$ is a subgroup of index 2.
+  Prove that $H$ is normal in $G$.
+\end{problem}
+\begin{solution}
+  Consider the function $\varphi : G\to C_2$ defined by
+  \begin{equation*}
+    \varphi(g) = \begin{cases}
+      0 & g\in H \\
+      1 & g\not\in H
+    \end{cases}
+  \end{equation*}
+  To check that this is a homomorphism, suppose $g_1,g_2\not\in H$.
+  In particular, $g_2^{-1}\not\in H$, so 
+  \begin{equation*}
+    g_1H = g_2^{-1}H,
+  \end{equation*}
+  since there are only two left cosets of $H$ in $G$, so
+  \begin{equation*}
+    g_1g_2\in H
+  \end{equation*}
+  and hence
+  \begin{align*}
+    \varphi(g_1g_2) &= 0 \\
+    &= 1+1\\
+    &= \varphi(g_1) + \varphi(g_2).
+  \end{align*}
+  Clearly $\ker\ \varphi=H$, so $H$ is normal in $G$.
+\end{solution}
+\end{document}
