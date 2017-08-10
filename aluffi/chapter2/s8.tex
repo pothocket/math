@@ -286,6 +286,21 @@
     and hence an element of order $p$ for each prime divisor $p$ of $|G|$.
   \end{sproof}
 \end{solution}
+\begin{solution}[Alternative (better) proof]\\
+  Let $p$ be any prime divisor of $|G|$.
+  We will proceed by strong induction on $|G|$.\\
+  \textbf{Base Case ($|G|=p$):} Since $|G|$ is of prime order, it is cyclic, and so any non-identity
+  element will be a generator, i.e. of order $p$.\\
+  \textbf{Induction ($|G|=n$):} Suppose the statement holds for every group of order $p\leq k<n$.
+  Take some $g\in G$, and consider the group $\langle g\rangle$.
+  If we take some prime divisor $q$ of $|g|$, then $h:=g^{\frac{|g|}{q}}$ has order $q$.
+  If $q=p$, then we're done.
+  Otherwise, let $H=<h>$, and consider the group $G/H$.\\
+  We know that $\left|\frac{G}{H}\right| = \frac{|G|}{q} < |G|$.
+  Moreover, $p$ divides $|H|$, so by our inductive hypothesis, there exists a $gH\in G/H$ of order $p$.
+  The same argument from part 3 of the inductive step of the other proof of this exercise applies here,
+  giving us an element of $G$ of order $p$, as desired.
+\end{solution}
 
 \begin{problem}{8.18}
   Let $G$ be an abelian group of order $2n$, where $n$ is odd.
