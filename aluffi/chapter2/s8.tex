@@ -28,6 +28,7 @@
 \newcommand{\End}{\text{End}}
 
 \newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
 
 \newcommand{\lcm}[1]{\text{lcm}(#1)}
 
@@ -322,5 +323,131 @@
 \begin{solution}
   No.
   The group $S_4$ has no elements of order 8, or more generally, of order greater than 4.
+\end{solution}
+\begin{problem}{8.20}
+  Assume $G$ is a finite abelian group, and let $d$ be a proper divisor of $|G|$.
+  Prove that there exists a subgroup $H\leq G$ of order $d$.
+\end{problem}
+\begin{solution}
+  We will proceed by strong induction on the order of $G$. \\\\
+  \textbf{Base Case ($|G|=1)$:} Trivial.\\\\
+  \textbf{Induction ($|G|=n$)}: 
+  Suppose every group of order $1\leq k<n$ has a subgroup of order $d$ for every integer $d~|~k$.
+  Let $p$ be a prime factor of $d$, and let $P=\langle p\rangle$.
+  The group $G/P$ is then of order $\frac{d}{p}x$ for some integer $x$.
+  By our inductive hypothesis, there is a subgroup $H$ of $G/P$ with order $\frac{d}{p}$.
+  If we define $\pi : G\to G/P$ to be the quotient map and let $K=\pi^{-1}(H)$, then $H=K/P$.
+  It then follows that
+  \begin{equation*}
+    \left|\frac{K}{P}\right| = \frac{d}{p}.
+  \end{equation*}
+  Hence 
+  \begin{equation*}
+    |K|=d.
+  \end{equation*}
+  as desired.
+\end{solution}
+\begin{problem}{8.21}
+  Let $H,K$ be subgroups of a group $G$.
+  Construct a bijection between the set of cosets $hK$ with $h\in H$ and the set of left cosets of 
+  $H\cap K$ in $H$.
+  If $H$ and $K$ are finite, prove that
+  \begin{equation*}
+    |HK| = \frac{|H|\cdot|K|}{|H\cap K|}.
+  \end{equation*}
+\end{problem}
+\begin{solution}
+  Let $H'$ be the set of cosets $hK$ with $h\in H$, and consider the function 
+  \begin{align*}
+    \varphi:H' &\to \frac{H}{H\cap K} \\
+    hK &\mapsto h(H\cap K).
+  \end{align*}
+  This function is well-defined:
+  \begin{align*}
+    h_1K=h_2K &\implies h_1h_2^{-1}\in K \\
+    &\implies h_1h_2^{-1}\in H\cap K \\
+    &\implies h_1(H\cap K) = h_2(H\cap K)
+  \end{align*}
+  (as $h_1h_2^{-1}\in H$ by closure).\\
+  This function is injective:
+  \begin{align*}
+    \varphi(h_1)=\varphi(h_2) &\implies h_1(H\cap K) = h_2(H\cap K)\\
+    &\implies h_1h_2^{-1}\in H\cap K\\
+    &\implies h_1h_2^{-1}\in K \\
+    &\implies h_1K = h_2K
+  \end{align*}
+  This function is surjective:
+  \begin{align*}
+    h(H\cap K) &= \varphi(hK)
+  \end{align*}
+  Hence $\varphi$ is a bijection, and $|H'| = \left|\frac{H}{H\cap K}\right|$.\\
+  Next, define a function
+  \begin{align*}
+    \psi:H'&\to\frac{HK}{K}\\
+    hK&\mapsto (he_K)K\\
+    &= hK
+  \end{align*}
+  This function is quite clearly well-defined and injective.
+  To prove that it's surjective, note that
+  \begin{align*}
+    (hk)K &= (he_KK)(e_HkK) \\
+    &= (hK)(kK)\\
+    &= hK\\
+    &= \psi(hK)
+  \end{align*}
+  Hence $|H'| \cong \frac{HK}{K}$.
+  We then have,
+  \begin{equation*}
+    \left|\frac{HK}{K}\right| = |H'| = \left|\frac{H}{H\cap K}\right|, 
+  \end{equation*}
+  and so, by Langrange's theorem,
+  \begin{equation*}
+    |HK|=\frac{|H|\cdot |K|}{|H\cap K|}.
+  \end{equation*}
+\end{solution}
+
+\begin{problem}{8.22}
+  Let $\varphi:G\to G'$ be a group homomorphism, and 
+  let $N$ be the smallest normal subgroup containing $\im\varphi$.
+  Prove that $G'/N$ satisfies the universal property of coker $\varphi$ in \catname{Grp}.
+\end{problem}
+\begin{solution}
+  Let $K$ be a group, and let $\alpha:G'\to K$ be a homomorphism satisfying
+  \begin{equation*}
+    \alpha\circ\varphi = 0,
+  \end{equation*}
+  or equivalently,
+  \begin{equation*}
+    \im\varphi\subseteq\ker\alpha.
+  \end{equation*}
+  Let $\pi:G'\to G'/N$ be the canonical projection
+  Since $\im\varphi\subseteq N=\ker\pi$, $(G/N, \pi)$ is an object in the relevant category.\\
+  Now, consider a morphism $\bar\alpha:G/N\to K$ with the property
+  \begin{equation*}
+    \bar\alpha\circ\pi=\alpha.
+  \end{equation*}
+  We then must have, for all $h_1,h_2\in G'$,
+  \begin{equation*}
+    h_1N=h_2N \implies \alpha(h_1)=\alpha(h_2)
+  \end{equation*}
+  in order for the morphism to be well defined.
+  Suppose then, that $h_1N=h_2N$, or equivalently, that $h_1h_2^{-1}\in N$.
+  Then there exist $g_i\in G'$ and $k_i\in\im\varphi$ such that
+  \begin{equation*}
+    h_1h_2^{-1}=\prod_{i=1}^{n} g_ik_ig_i^{-1}.
+  \end{equation*}
+  With this,
+  \begin{align*}
+    \alpha(h_1h_2^{-1}) &= \alpha\left(\prod_{i=1}^{n} g_ik_ig_i^{-1}\right) \\
+    &= \prod_{i=1}^{n} \alpha(g_i)\alpha(k_i)\alpha(g_i^{-1}) \\
+    &= \prod_{i=1}^{n} \alpha(g_i)\alpha(g_i^{-1}) \\
+    &= e_K
+  \end{align*}
+  and so
+  \begin{equation*}
+    \alpha(h_1)=\alpha(h_2),
+  \end{equation*}
+  as desired.
+  Since $\bar\alpha$ defined by the required relation is well-defined on $\im\pi = G/N$, we are done.
 \end{solution}
 \end{document}
