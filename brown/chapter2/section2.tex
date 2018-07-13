@@ -4,8 +4,6 @@
 \usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
 \usepackage{enumerate}
 
-\usepackage{euler}
-
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
@@ -30,7 +28,7 @@
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\End}{\text{End}}
 
-\newcommand{\Int}{\text{Int}}
+\newcommand{\Int}[1]{\text{Int}\,#1}
 
 \newcommand{\id}{\text{id}}
 
@@ -151,6 +149,122 @@ and the closure of $A$ is the smallest closed set containing $A$.
   and $A$ is \textit{dense} if $\overline{A}=X$.
   Prove that if $A$ is dense in $X$ and $U$ is open then 
   $$U\subseteq \overline{A\cap U}.$$
-\end{problem}<++>
+\end{problem}
+\begin{proof}
+  Recall from the previous exercise that $\overline{A}=A\cup\widehat{A}$.
+  Since $A$ is dense in $X$, we then know from this that $X=A\cup\widehat{A}$.
+  With this in mind, we proceed to consider the two cases for any $x\in U\subseteq X$:\\
+  \indent If $x\in A$, then of course $x\in U\cap A\subseteq\overline{U\cap A}$.\\
+  \indent Otherwise, suppose $x\in \widehat{A}$, and let $N$ be any neighborhood of $x$.
+  Since $U$ is open, we know that $N\cap U$ is also a neighborhood of $x$, 
+  and because $x\in\widehat{A}$, we know that $N\cap U$ meets $A$; 
+  that is, there exists an $a\in N\cap U\cap A$ with $a\neq x$.
+  Clearly, then, this $a$ is also an element of $U\cap A$, allowing us to conclude that
+  every neighborhood of $x$ meets $U\cap A$, and so $x\in \overline{U\cap A}$, as desired.
+\end{proof}
+
+\begin{problem}{5}
+  Let $\mathbb{I} = [0,1]$.
+  Define an order relation $\leq$ on $\mathbb{I}^2 = \mathbb{I}\times\mathbb{I}$ by
+  $$(x,y)\leq(x',y') \Leftrightarrow y < y' \text{ or } (y=y' \text{ and } x\leq x').$$
+  \indent The \textit{television topology} on $\mathbb{I}^2$ is the order topology 
+  with respect to $\leq$.
+  Let A be the set of points $(1/2, 1-n^{-1})$ for positive integral $n$.
+  Prove that in the television topology on $\mathbb{I}^2$,
+  $$\overline{A} = A\cup\{(0,1)\}.$$
+\end{problem}
+\begin{solution}
+  (Sketch)
+  Note that an interval of a point $p=(x,y)\in\mathbb{I}^2$ 
+  (with respect to the television order) which
+  also contains the point $(x',y')\in\mathbb{I}^2$ for $y'<y$ will contain
+  the "vertical interval" $\mathbb{I}\times ]y',y[$, where $]y',y[$
+  is an open interval with respect to the usual order topology on $\mathbb{R}$.\\
+  \indent Since $p=(x,y) \leq (0,1)$ if and only if $y < 1$, we then know that any neighborhood
+  of $p$ contains the open $\mathbb{I}^2$-interval $\mathbb{I}^2\times]r, 1[$ for some real number
+  $0\leq r < 1$.
+  By the Archimedean propoerty of the reals, there exists some positive integral $n$ such that
+  $n^{-1} < 1-r$, whence $1-n^{-1} > r$, and so the point $(1/2, 1-n^{-1})$ is contained in the 
+    neighborhood in question.
+    Hence the point $(0,1)$ is in $\overline{A}$.\\
+    \indent Points $(x,y)$ with $y<1$ are not contained in $\overline{A}$ 
+    since $A$ will contain some points above $\mathbb{I}^2$-neighborhoods about $(x,y)$ 
+    that don't stretch to the top of $\mathbb{I}^2$.
+    Neither will points with $x>0$, since there exist $\mathbb{I}^2$-neighborhoods about this point
+    which only contain points of one $y$-value.
+\end{solution}
+
+\begin{problem}{7}
+  Prove that if $A$ is the closure of an open set, then $A = \overline{\Int{A}}$.
+\end{problem}
+\begin{proof}
+  First, suppose that $x\in A = \overline{U}$, where $U\subset X$ is open.
+  By definition, this means that every neighborhood of $x$ meets $U = \Int{U}$.
+  Since the interior operator preserves inclusions, we know that $U\subseteq\overline{U}$
+  implies $\Int{U}\subseteq\Int\overline{U}$, and so, continuing our previous line of reasoning,
+  every neighborhood of $x$ meets $\Int\overline{U}$, meaning 
+  $x\in\overline{\Int\overline{U}}=\overline{\Int{A}}$, 
+  by the definition of closure.
+  Therefore, $A\subseteq\overline{\Int{A}}$.\\
+  \indent Conversely, suppose $x\in\overline{\Int{A}}$.
+  Then, by the definition of closure, every neighborhood of $x$ meets $\Int{A}$, and so
+  every neighborhood of $x$ meets $A$, whence $x\in\overline{A}$, which equals $A$
+  since $A$ is closed.
+  Thus $\overline{\Int\overline{A}}\subseteq A$, and so $\overline{\Int\overline{A}}=A$,
+  completing the proof.
+\end{proof}
+
+\begin{problem}{9}
+  A topological space $H$ (the \textit{half-open topology}) is defined as follows.
+  The underlying set of $H$ is $\mathbb{R}$, and for each $x\in H$ and $N\subseteq H$, 
+  $N$ is a neighborhood of $x$ iff there are real numbers $a$ and $b$ such that
+  \begin{equation*}
+    x\in[a,b[\ \subseteq N.
+  \end{equation*}
+  \indent Prove hat $H$ is a topological space and that:
+  \begin{enumerate}
+    \item Each interval $[a,b[$ is both open and closed
+    \item $H$ is separable
+    \item If $A\subseteq H$, then $A\setminus\widehat{A}$ is countable
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  To begin, we verify that $H$ is a topological space using the neighborhood topology axioms.
+
+  \indent First, if $N$ is a neighborhood of $x$, then there exist $a,b$ in $\mathbb{R}$
+  such that $x\in[a,b[\ \subseteq N$, meaning $x\in N$. \\
+  \indent Next, if $N\subseteq\mathbb{R}$ contains a neighborhood $M$ of $x$, then
+  there exists an interval $[a,b[$ with $x\in[a,b[\ \subseteq M\subseteq N$, whence
+  $M$ is a neighborhood of $x$. \\
+  \indent Next, suppose $N_1$ and $N_2$ are neighborhoods of $x$ so that 
+  $x\in[a_1,b_1[\ \subseteq N_1$, and $x\in[a_2,b_2[\ \subseteq N_2$.
+  We then have $x\in[\max(a_1,a_2),\min(b_1,b_2)[\ \subseteq{N_1\cap N_2}$, and so
+  $N_1\cap N_2$ is a neighborhood of $x$. \\
+  \indent Finally, let $N$ be a neighborhood of $x$, and let $I=[a,b[\ \subseteq N$ be
+      an interval containing $x$.
+      Then $I$ itself is a subset of $N$ containing $x$ such that $N$ is a 
+      neighborhood of every point of $I$.
+  Now we prove each of the additional statements:
+  \begin{enumerate}
+    \item Each interval $[a,b[$ is both open and closed.
+          \begin{sproof}
+            Note that if $x\in [a,b[$, then $[a,b[$ is itself a half-open interval 
+            within $[a,b[$ containing $x$, and so $\Int[a,b[\ =[a,b[$.
+            Hence $[a,b[$ is open.
+            Additionally, $H\setminus[a,b[\ = ]-\infty, a[\ \cup\ [b, \infty[$, which is
+            the union of two open sets, and hence is open.
+            Therefore $[a,b[$ is also closed.
+          \end{sproof}
+    \item $H$ is separable.
+    \begin{sproof}
+        Consider the rationals $\mathbb{Q}\subseteq H$.
+        Since half open intervals $[a,b[$ cannot contain a single element, every neighborhood of
+        an irrational number contains a rational number, and so $\overline{\mathbb{Q}} =  H$.
+        Hence $H$ is separable.
+    \end{sproof}
+  \end{enumerate}
+
+
+\end{solution}
 
 \end{document}
