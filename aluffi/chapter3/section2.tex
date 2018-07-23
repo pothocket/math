@@ -106,8 +106,60 @@ Prove that if there is a homomorphism from a zero ring to a ring $R$, then $R$ i
   \end{enumerate}
 \end{solution}
 
-\begin{problem}
-
-\end{problem}<++>
-
+\begin{problem}{6}
+Verify the 'extension property' of polynomial rings, stated in Example 2.3.
+\end{problem}
+\begin{solution}\ 
+  I will instead do the more general case, stating and proving a universal property for \textit{monoid} rings.
+  \begin{proposition}
+    Let $R$ be a ring, and $M$ a monoid.
+    The monoid ring $R[M]$, as defined in the text, then satisfies the following universal property:\\
+    \indent Let $\iota_M : (M,\cdot)\hookrightarrow (R[M],\cdot)$ be the monoid homomorphism
+    $m\mapsto 1_Rm$, and let $\iota_R:R\hookrightarrow R[M]$ be the ring homomorphism
+    $r\mapsto r1_M$.
+    If $S$ is a ring, $\varphi:R\to S$ is a ring homomorphism, and $j:M\to S$ is a monoid homomorphism
+    with respect to multiplication on $S$ such that $a\in\im j$ and $b\in\im\varphi$ implies $ab=ba$,
+    then there exists a unique ring homomorphism $\overline\varphi:R[M]\to S$ such that the following
+    diagram commutes:
+    \[
+      \begin{tikzcd}
+        & R \ar{d}[swap]{\iota_R} \ar{drr}{\varphi} \\
+        & R[M] \ar[dashed,near start]{rr}{\overline\varphi} && S \\
+        & M \ar{u}{\iota_M} \ar{urr}[swap]{j}
+      \end{tikzcd}
+    \]
+  \end{proposition}
+  \begin{sproof}
+  First, we show that $\overline\varphi$ is determined by the fact that it must be a ring homomorphism
+  that makes the diagram above commute.
+  \begin{align*}
+    \overline\varphi\left( \sum_{m\in M} r_mm \right) &=\sum_{m\in M}\overline\varphi(r_mm) \\
+    &= \sum_{m\in M} \overline\varphi(\iota_R(r_m)\cdot\iota_M(m)) \\
+    &= \sum_{m\in M} \overline\varphi(\iota_R(r_m))\cdot\overline\varphi(\iota_M(m)) \\
+    &= \sum_{m\in M} \varphi(r_m)\cdot j(m)
+  \end{align*}
+  \indent Since this function $\overline\varphi$ is the only function making the diagram commute, 
+  we just have to prove that it is a ring homomorphism.
+  The fact that $\overline\varphi$ preserves addition and the identity is clear enough, so we will
+  just show that it preserves multiplication.
+  If we let $p=\sum_{m\in M}a_mm$ and $q=\sum_{m\in M}b_mm$, we then have:
+    \begin{align*}
+      \overline\varphi(p)\cdot \overline\varphi(q) 
+      &= \left( \sum_{m\in M} \varphi(a_m)\cdot j(m) \right)
+         \left( \sum_{m\in M} \varphi(b_m)\cdot j(m) \right) \\
+      &= \sum_{m\in M} \sum_{n\in M} \varphi(a_m)\cdot j(m)\cdot \varphi(b_n)\cdot j(n) \\
+      &= \sum_{m\in M} \sum_{n\in M} \varphi(a_m)\cdot \varphi(b_n)\cdot j(m)\cdot j(n) \\
+      &= \sum_{m\in M} \sum_{n\in M} \varphi(a_mb_n)\cdot j(mn) \\
+      &= \sum_{\ell\in M} \sum_{mn=\ell} \varphi(a_mb_n)\cdot j(\ell) \\
+      &= \overline\varphi(pq).
+    \end{align*}
+    Hence $\overline\varphi$ is a homomorphism, and thus it satisfies the universal property, as
+    desired.
+  \end{sproof}
+  \indent This universal property is a generalization of the universal property for polynomial rings over
+  one indeterminant mentioned in the text, which is really just the monoid ring $R[\mathbb{N}]$.
+  Additionally, much to our pleasure, polynomial rings in $n$ indeterminants (which commute with each other)
+  can be thought of
+  as monoid rings $R\left[\mathbb{N}^n\right]$.
+\end{solution}
 \end{document}
