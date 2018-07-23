@@ -1,0 +1,113 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 3, Section 2}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{1}
+Prove that if there is a homomorphism from a zero ring to a ring $R$, then $R$ is a zero ring.
+\end{problem}
+\begin{solution}
+  Let $Z$ denote the zero ring, and let $\varphi : Z\to R$ be a ring homomorphism.
+  Since $\varphi$ is a homomorphism, it must take the identity in $Z$ to the identity in $R$,
+  so $\varphi(0) = 1_R$.
+  But 0 is also the \textit{additive} identity in $Z$, meaning $\varphi(0) = 0$,
+  and so $0 = 1$ in $R$.\\
+  \indent If $r\in R$, we then have $1\cdot r = 0\cdot r = 0$, showing that $R$ is the zero ring.
+\end{solution}
+
+\begin{problem}{2}
+  Let $R$ and $S$ be rings, and let $\varphi : R\to S$ be a function preserving both operations
+  $+,\cdot$.
+  \begin{enumerate}
+    \item Prove that if $\varphi$ is surjective, then necessarily $\varphi(1_R) = 1_S$.
+    \item Prove that if $\varphi\neq0$ and $S$ is an integral domain, then $\varphi(1_R)=1_S$.
+  \end{enumerate}
+\end{problem}
+
+\begin{solution}\ 
+  \begin{enumerate}
+    \item First suppose $\varphi$ is surjective.
+    Then, if $s\in S$, then there exists an $r\in R$ such that $\varphi(r)=s$.
+    Note that 
+    \begin{align*}
+      \varphi(1_R)\cdot s &= \varphi(1_R)\cdot\varphi(r) \\
+      &= \varphi(1_R\cdot r) \\
+      &= \varphi(r) \\
+      &= s.
+    \end{align*}
+    Since this is true for all $s\in S$ (as $\varphi$ is surjective), this implies that
+    $\varphi(1_R) = 1_S$, as desired.
+
+    \item Now, let $\varphi\neq 0$ and suppose $\varphi(1_R)\neq1_S$.
+    This implies that $\varphi(1_R)-1_S\neq0$. 
+    Since $\varphi$ is nonzero, there exists an $r\in R$ with $\varphi(r)\neq 0$.
+    Note, then, that we have:
+    \begin{align*}
+      \varphi(r)\cdot(\varphi(1_R)-1_S) &=  \varphi(r)\cdot\varphi(1_R) - \varphi(r)\cdot1_S\\
+      &= \varphi(r\cdot1_R) - \varphi(r)\\
+      &= \varphi(r)-\varphi(r)\\
+      &= 0,
+    \end{align*}
+    implying $S$ is not an integral domain since both of the terms in the original product are nonzero.
+    Therefore, if $S$ is an integral domain and $\varphi\neq0$, then $\varphi(1_R)=1_S$.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}
+
+\end{problem}<++>
+
+\end{document}
