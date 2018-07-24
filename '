@@ -212,21 +212,8 @@ Prove that the center of a division ring is a field.
 \begin{problem}{2.10}
   The \textit{centralizer} of an element $a$ of a ring $R$ consists of the elements $r\in R$
   such that $ar=ra$.
-\end{problem}
   Prove that the centralizer of $a$, denoted $C_R(a)$ is a subring of $R$, for every $a\in R$.
-\begin{proof}
-  This follows from an argument identital to the one above for the center of a ring.
-\end{proof}
-  Prove that the center of $R$ is the intersection of all its centralizers.
-\begin{proof}
-  Suppose $a\in C_R(r)$ for all $r\in R$.
-  Then, by definition, $a$ commutes with every element of $r$, and so $a\in Z(R)$.
-  Suppose conversely that $a\in Z(R)$.
-  Then $r\in R$ implies $a$ commutes with $r$, again by definition, so $a\in C_R(r)$.
-\end{proof}
-  Prove that every centralizer in a division ring is a division ring.
-  \begin{proof}
-    By the argument at the top of this page, an element $a$ being in a centralizer implies its
-    inverse $a^{-1}$ is also in that centralizer.
-  \end{proof}
+
+\end{problem}<++>
+
 \end{document}
