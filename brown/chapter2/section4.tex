@@ -1,0 +1,160 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+\usepackage{enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\Int}[1]{\text{Int}\,#1}
+\newcommand{\Cl}[2]{\text{Cl}_{#1}\,#2}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Topology and Groupoids Exercises\\ \large Chapter 2, Section 4}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{1}
+  Prove that the relation '$X$ is a subspace of $Y$' is a partial
+  order relation for topological spaces.
+\end{problem}
+\begin{solution}
+  Denote by $\leq$ the relation 'is a subspace of'.
+  Of course '$X$ is a subset of $Y$' is a partial order relation for
+  sets, so we simply need to verify that the topologies line up as
+  they should. We will be working with open set topologies.\\
+  \indent First, consider $(X,\tau_1)$ as a subspace of $(X,\tau)$,
+  where $\tau_1$ is the relative topology on $X$.
+  If $U\in\tau_1$, then there exists a set $V\in\tau$ such that
+  $U=V\cap X$.
+  Since $X$ and $V$ are $\tau$-open, $U=V\cap X$ is also $\tau$-open,
+  so $U\in\tau$.
+  Hence $\tau_1\subseteq\tau$.
+  Conversely, if $U\in\tau$, then of course $U=U\cap X\in\tau_1$,
+  and so $\tau_1=\tau$.
+  Therefore $X\leq X$, and so $\leq$ is reflexive.\\
+  \indent Next, suppose $X\leq Y$ and $Y\leq X$.
+  Then, in particular, $X\subseteq Y$ and $Y\subseteq X$, so $X=Y$,
+  and so $\leq$ is antisymmetric.\\
+  \indent Finally, suppose $(X,\tau_X)\leq(Y,\tau_Y)$ and
+  $(Y,\tau_Y)\leq(Z,\tau_Z)$.
+  Then $U\in\tau_X$ implies there exists some $V\in\tau_Y$ such that
+  $U = V\cap X$.
+  Further, since $V\in\tau_Y$, and $Y$ is a subspace of $Z$, there
+  exists a $\tau_Z$-open $W$ such that $V=W\cup Y$.
+  We then have $U=W\cup Y\cup X = W\cup X$ (since $X\subseteq Y$
+  implies $Y\cup X=X$, and so $U$ is open in the relative
+  topology on $X$ with respect to $Z$. \\
+  \indent Conversely, suppose $U$ is open in $Z$.
+  Then note that $U\cup X=U\cup(X\cup Y)=(U\cup Y)\cup X$ is open in $X$,
+  since $Y\leq Z$ implies $U\cup Y$ is $\tau_Y$-open, and 
+  $X\leq Y$ implies $(U\cup Y)\cup X$ is $\tau_X-open$.
+  Thus $\leq$ is transitive, completing the proof that $\leq$ is a
+  partial order of topological spaces.
+\end{solution}
+
+\begin{problem}{2}
+  Prove that the set $I=\{x\in\mathbb{Q} : -\sqrt2\leq x\leq \sqrt2\}$
+  is both open and closed in $\mathbb{Q}$.
+\end{problem}
+\begin{solution}
+  Note that $I=\left(-\sqrt2,\sqrt2\right)\cap\mathbb{Q}
+  =\left[-\sqrt2,\sqrt2\right]\cap\mathbb{Q}$, where the first interval is
+  open in $\mathbb{R}$ and the second is closed in $\mathbb{R}$.
+  The result then follows from the conditions on open and closed sets
+  in a relative topology.
+\end{solution}
+
+\begin{problem}{3}
+  Let $A$ be the subspace of $\mathbb{R}$ of point $1/n$ for 
+  $n\in\mathbb{Z}\setminus\{0\}$.
+  Prove that $A$ is discrete, but that the subspace $A\cup\{0\}$ of
+  $\mathbb{R}$ is not discrete.
+\end{problem}
+\begin{solution}
+  Note that if $1/n\in A$, then we have 
+  $\displaystyle{\left\{\frac{1}{n}\right\}=\left(\frac{1}{n+1}, \frac{1}{n-1}\right)\cap A}$, where the interval
+  is an open interval in $\mathbb{R}$.
+  Hence all singletons in $A$ are open, implying that all subsets of $A$
+  are open since the union of any family of open sets of $A$ is also open.
+  This means $A$ is discrete.\\
+  \indent Now, denote by $Y$ the subspace $A\cup\{0\}$ of $X$.
+  Take $A$ as a subset of $Y$, and note that 
+  $\Cl{Y}{A}=\overline{A}\cap Y = Y\neq A$ (note that every 
+  $\mathbb{R}$-neighborhood of $0$ meets $A$, and so $0\in\overline{A}$);
+  hence $A$ is not closed in $Y$, and its complement $\{0\}$ is not
+  open in $Y$.
+  Therefore $Y$ does not have the discrete topology.
+\end{solution}
+
+\begin{problem}{4}
+  Prove that a subspace of a discrete space is discrete, and a subspace of an indiscrete space is indiscrete.
+\end{problem}
+\begin{solution}
+  Let $Z$ be a discrete topological space, and let $A\subseteq Z$ 
+  be a subspace.
+  Then $x\in A$ implies $\{x\}=\{x\}\cap A$, where the singleton on the right
+  side is open in $Z$; hence $\{x\}$ is open in $A$, implying every set in
+  $A$ is open, and so $A$ is discrete.\\
+  \indent On the other hand, let $X$ be an indiscrete topological space,
+  and let $A\subseteq X$ be a subspace. 
+  If $U\subseteq A$ is open, then there exists an open set $V$ in $X$
+  such that $U=V\cap A$.
+  Since $X$ is indiscrete, $V$ is either $\varnothing$ or $X$, and so
+  $U$ is either $\varnothing\cap A=\varnothing$ or $X\cap A=A$;
+  hence $A$ is indiscrete.
+\end{solution}
+  
+\begin{problem}{5}
+  Let $A$ be the subspace $[0,2]\setminus\{1\}$ of $\mathbb{R}$.
+  Prove that $I=[0,1)$ is both open and closed in $A$.
+\end{problem}
+\begin{solution}
+  This follows from the fact that $I=(-1, 1)\cap A=[-1,1]\cap A$. 
+\end{solution}
+
+\begin{problem}{6}
+  Let $x\in X$ and let $A$ be a neighborhood (in $X$) of $x$.
+  Prove that the neighborhoods in $A$ of $x$ are exactly the
+  neighborhoods in $X$ of $x$ which are contained in $A$.
+\end{problem}<++>
+\end{document}
+
