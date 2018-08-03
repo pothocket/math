@@ -155,6 +155,21 @@
   Let $x\in X$ and let $A$ be a neighborhood (in $X$) of $x$.
   Prove that the neighborhoods in $A$ of $x$ are exactly the
   neighborhoods in $X$ of $x$ which are contained in $A$.
-\end{problem}<++>
-\end{document}
+\end{problem}
+\begin{solution}
+  First, suppose $N$ is a neighborhood in $X$ of $x$ contained in $A$. 
+  Then there exists an open set $U$ in $X$ such that $x\in U\subseteq N$.
+  Note, then, that $U\cap A\subseteq N\cap A = N$ is an open set in $A$
+  that contains $x$, and so $N$ is a neighborhood of $x$ in $A$.\\
+  \indent Conversely, suppose $N$ is a neighborhood of $x$ in $A$, and so
+  there exists an open set $U$ in $A$ such that $x\in U\cap A$.
+  Since $U$ is open in $A$, there exists a set $V$ open in $X$ such
+  that $U=V\cap A$.
+  Hence, we have $V\cap A\subseteq N$ is a neighborhood of $x$ in $X$,
+  and so $N$ is a neighborhood of $x$ in $X$ contained in $A$.
+\end{solution}
+\begin{problem}{7}
+  Let $\leq$ be an order relation on the set $X$.
+\end{problem}
 
+\end{document}
