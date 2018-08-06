@@ -235,6 +235,105 @@ Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
   Let $R$ be a ring, and let $a\in R$.
   Prove that $Ra$ is a left-ideal of $R$ and $aR$ is a right-ideal of $R$.
   Prove that $a$ is a left-, resp. right-, unit if and only if $R=aR$, resp $R=Ra$.
-\end{problem}<++>
+\end{problem}
+\begin{solution}
+  First we will prove that $Ra$ is a left-ideal of $R$.
+  Suppose $x\in Ra$ so that $x=ra$ for some $r\in R$.
+  Then if $s\in R$, we have $sx=sra=(sr)a\in Ra$.
+  Hence $Ra$ is a left ideal of $R$.
+  A similar argument shows that $aR$ is a right-ideal of $R$. \\
+  \indent For the second question, note that $R=aR$ (resp. $R=Ra$) if and only
+  if left- resp. right- multiplication by $a$ is surjective, if and only if
+  $a$ is a left- resp. right- ideal of $R$.
+\end{solution}
+
+\begin{problem}{3.8}
+  Prove that a ring $R$ is a division ring if and only if the only
+  left-ideals and right-ideals are $\{0\}$ and $R$.\\
+  \indent In particular, a commutative ring $R$ is a field if and 
+  only if the only ideals of $R$ are $\{0\}$ and $R$.
+\end{problem}
+\begin{solution}
+  Suppose $R$ is a division ring, and $I$ is a right-ideal of $R$.
+  Of course $\{0\}$ is a right-ideal of $R$, so suppose $r\neq0$ is an
+  element of $I$.
+  Then since $R$ is a division ring, $r$ has a two-sided inverse
+  $r^{-1}$.
+  Note, then, that since $I$ is an ideal of $R$, we have 
+  $rr^{-1}=1_R\in I$, and so $I=R$. The same argument applies
+  if $I$ is a left-ideal of $R$, completing the proof in one direction.\\
+  \indent Conversely, suppose the only left- and right-ideals of $R$
+  are $\{0\}$ and $R$ itself.
+  Then it follows from exercise 3.7 that for all nonzero $a\in R$,
+  we have $aR = R$ and $Ra = R$ (since $aR$ and $Ra$ are nonzero 
+  ideals of $R$), and so $a$ is a left- and right-unit in $r$;
+  hence every element of $R$ is a two-sided unit, and $R$ is
+  a divison ring.
+\end{solution}
+
+\begin{problem}{3.9}
+  Counterpoint to Exercise 3.8: It is \textit{not} true that a ring
+  $R$ is a division ring if and only if its only two-sided ideals
+  are $\{0\}$ and $R$.
+  A nonzero ring with this property is said to be \textit{simple};
+  by Exercise 3.8, fields are the only simple \textit{commutative}
+  rings.\\
+  \indent Prove that $\mathcal{M}_n(\mathbb{R})$ is simple. 
+  (Use Exercise 3.6).
+\end{problem}
+\begin{solution}
+  Suppose $J$ is a nonzero two-sided ideal of $\mathcal{M}_n(\mathbb{R})$.
+  Let $\alpha$ be a nonzero entry of a matrix in $J$.
+  Then, by exercise 3.5, the matrix with $\alpha$ at the position
+  $(1,1)$ and $0$ elsewhere is in $J$.
+  If we then multiply this matrix with the matrix that has $\alpha^{-1}$
+  at position $(1,1)$, we then find (using the fact that $J$ is an ideal)
+  that the matrix with $1$ at $(1,1)$ and zero elsewhere is in $J$.
+  Applying 3.5 again and the fact that $J$ is closed under addition,
+  we find that the identity matrix is in $J$, and so $J$ is the whole of 
+  $\mathcal{M}_n(\mathbb{R})$.
+  Therefore $\mathcal{M}_n(\mathbb{R})$ is simple.
+\end{solution}
+
+\newpage
+
+\begin{problem}{3.10}
+  Let $\varphi:k\to R$ be a ring homomorphism, where $k$ is a field
+  and $R$ is a nonzero ring.
+  Prove that $\varphi$ is injective.
+\end{problem}
+\begin{solution}
+  Suppose $\nu\in k$ is nonzero and $\varphi(\nu) = 0$.
+  Then we have
+  \begin{align*}
+    0 &= \varphi(\nu) \\
+    &= \varphi(\nu)\varphi(\nu^{-1}) \\
+    &= \varphi(\nu\nu^{-1}) \\
+    &= \varphi(1) \\
+    &= 1,
+  \end{align*}
+  which is a contradiction since $R$ is nonzero.
+  Hence $\nu=0$ and $\varphi$ is injective.
+\end{solution}
+
+\begin{problem}{3.11}
+  Let $R$ be a ring containing $\mathbb{C}$ as a subring.
+  Prove that there are no ring homomorphisms $R\to\mathbb{R}$.
+\end{problem}
+\begin{solution}
+  Since $\mathbb{C}$ is a subring of $R$, the element $i$ is then in $R$.
+  Note, then, that $i^4=1$, and so if $\varphi$ is to be a 
+  homomorphism $R\to\mathbb{R}$, we must then have $\varphi(i^4)=1$.
+  Since this implies $\varphi(i)^4=1$, we then know that 
+  $\varphi(i)$ is either $1$ or $-1$, since the only fourth roots
+  of $1$ in $\mathbb{R}$ are $1$ and $-1$.
+  Either way, we then have, since $\varphi$ is a homomorphism,
+  that $\varphi(i^2) = \varphi(i)^2=1$.
+  But we also have $\varphi(i^2)=\varphi(-1)=-\varphi(1)=-1$, which
+  implies that $1=-1$.
+  Since this is not true in $R$, we then know that $\varphi$ is not
+  a homomorphism, and so there are no ring homomorphisms from $R$ 
+  to $\mathbb{R}$.
+\end{solution}
 
 \end{document}
