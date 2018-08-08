@@ -468,7 +468,7 @@ Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
         \end{align*}
         \indent Here, the first line is clear, and the second line is true for two reasons: 
         Firstly, the union of two sets can be expressed in terms of symmetric 
-        differences and unions of those two sets ($X\cup Y=(X+Y)+(X\cap Y)$), 
+        differences and intersections of those two sets ($X\cup Y=(X+Y)+(X\cap Y)$), 
         and so any finite union can be expressed in these terms, although this is
         difficult to write explicitly.
         Secondly, ideals are closed under addition (here the symmetric difference) and multiplication 
@@ -476,7 +476,7 @@ Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
         is of course in $\mathcal{J}$.
         We then have, finally:
         \begin{align*}
-          A &= A\cap\bigcap\mathcal{I}\\
+          A &= A\cap\bigcup\mathcal{I}\\
           &\in\mathcal{J},
         \end{align*}
         where the first line is true because $A\subseteq\bigcup\mathcal{I}$, and the second line
@@ -491,7 +491,7 @@ Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
       I'm not immediately sure how to construct an explicit counterexample, but the proof above fails
       in the case that $S$ is infinite, since $\mathcal{J}$ being infinite would make $\mathcal{I}$
       potentially infinite, and so it's not at all clear that you can write the union of infinitely
-      many sete in terms of intersections and symmetric differences.
+      many sets in terms of intersections and symmetric differences.
       In fact, even if such a feat were possible, the proof would still fail, since the
       algebraic structures we're dealing with are only required to be closed under \textit{finite} 
       applications of the relevant operations.
