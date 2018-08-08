@@ -336,4 +336,170 @@ Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
   to $\mathbb{R}$.
 \end{solution}
 
+\begin{problem}{3.12}
+  Let $R$ be a commutative ring.
+  Prove that the set of nilpotent elements of $R$ is an ideal of $R$.
+  (This ideal is called the \textit{nilradical} of $R$.) \\
+  \indent Find a noncommutative ring in which the set of nilpotent elements is \textit{not}
+  an ideal.
+\end{problem}
+\begin{solution}
+  First we will prove that the set of nilpotent elements of the commutative ring $R$
+  is an ideal of $R$.
+  \begin{sproof}
+    Most of the work here has essentially been done here in $1.6$, where we establish
+    that if $a,b$ are nilpotent and commute with each other, then $a+b$ is also nilpotent;
+    hence the set $N$ of nilpotent elements in $R$ form a subgroup of $(R,+)$.\\
+    \indent To show that $N$ is an ideal of $R$, let $\nu\in N$ (so that $\nu^n=0$) 
+    and $r\in R$.
+    Note, then, that $(r\nu)^n=r^n\nu^n=0$, since $R$ is commutative, and so $N$ is an ideal
+    of $R$.\\
+  \end{sproof}
+    \indent We already showed in Exercise 1.6, again, that $\mathfrak{gl}_2(\mathbb{R})$ is a noncommutative 
+    ring in which the set of nilpotent isn't even a subgroup; the matrices $A$ and $B$:
+    \begin{equation*}
+      A=\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}\enspace;\enspace
+      B=\begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}\enspace;\enspace
+    \end{equation*}
+    are nilpotent, but their sum is not.
+\end{solution}
+
+\newpage
+
+\begin{problem}{3.13}
+  Let $R$ be a commutative ring, and let $N$ be its nilradical.
+  Prove that $R/N$ contains no nonzero nilpotent elements.
+  (Such a ring is said to be \textit{reduced}).
+\end{problem}
+\begin{solution}
+  Let $\nu+N\in R/N$ be nilpotent.
+  Then, by definition, there exists some integer $m$ such that $0=(\nu+N)^m=\nu^m+N$.
+  This, of course, means that $\nu^m\in N$, meaning $\nu^m$ is nilpotent in $R$,
+  and so there exists some integer $n$ such that $0=(\nu^m)^n = \nu^{mn}$.
+  This means that $\nu$ is nilpotent and hence in $N$ and so $\nu+N$ is zero in $R/N$.
+  Therefore, all nilpotent elements in $R/N$ are zero.
+\end{solution}
+
+\begin{problem}{3.14}
+  Prove that the characteristic of an integral domain is either $0$ or a prime integer.
+  Do you know any ring of characteristic $1$?
+\end{problem}
+\begin{solution}
+  We will proceed by proving the contrapositive.
+  \begin{sproof}
+    Let $R$ be a ring of nonzero characteristic $n$, and suppose $n$ is \textit{not} prime.
+    Let $\varepsilon:\mathbb{Z}\to R$, $m\mapsto m\cdot1_R$ be the unique ring homomorphism from $\mathbb{Z}$.
+    Since $n$ is not prime, we can decompose it as a product $ab$ of two nonzero integers.
+    Note, then, that $0=\varepsilon(ab)=\varepsilon(a)\varepsilon(b)$, but 
+    $\varepsilon(a)$ and $\varepsilon(b)$ are not zero since $a$ and $b$ are less than
+    the characteristic $n$ of $R$.
+    Hence $R$ is not an integral domain.\\
+    \indent Therefore, if $R$ is an integral domain, its characteristic $n$ is either prime or zero.
+  \end{sproof}
+  The only ring of characteristic $1$ is the ring for which $\ker\varepsilon=1\mathbb{Z}=\mathbb{Z}$,
+   which is only true for the zero ring.
+\end{solution}
+
+\begin{problem}{3.15}
+  A ring $R$ is \textit{Boolean} if $a^2=a$ for all $a\in R$.
+  Prove that $\mathscr{P}(S)$ is Boolean, for every set $S$.
+  Prove that every nonzero Boolean ring is commutative and has characteristic 2.
+  Prove that if an integral domain $R$ is Boolean, then $R\cong\mathbb{Z}/2\mathbb{Z}$.
+\end{problem}
+\begin{solution}
+  The proof that $\mathscr{P}(S)$ is boolean is easy: 
+  Remember that multiplication in $\mathscr{P}(S)$ is just set intersection;
+  of course, then, $A\cap A=A$ for all $A\subseteq S$, and so $\mathscr{P}(S)$ is Boolean.\\
+  \indent If $R$ is a Boolean ring, note that in particular if $r\in R$, 
+    \begin{align*}
+      r+1 &= (r+1)^2 \\
+      &= r^2+r+r+1 \\
+      &= r+r+r+1,
+    \end{align*}
+    which implies that $$r=-r$$.
+    This, of course, implies that $1+1=1+(-1)=0$, and so the characteristic of $R$ is 2.\\
+    \indent Additionally, we have, for all $a,b\in R$,
+      \begin{align*}
+        0 &= a+b-(a+b)\\
+        &= (a+b)^2-(a+b)\\
+        &= a^2+ab+ba+b^2-(a+b)\\
+        &= a+ab+ba+b-(a+b)\\
+        &= ab+ba\\
+        &= ab-ba,
+      \end{align*}
+    and so $ab=ba$ for all $a,b\in R$, showing that $R$ is commutative.
+\end{solution}
+
+\begin{problem}{3.16}
+  Let $S$ be a set and $T\subseteq S$ a subset.
+  Prove that the subsets of $S$ contained in $T$ form an ideal of the power set ring 
+  $\mathscr{P}(S)$.
+  Prove that if $S$ is finite, then \textit{every} ideal of $\mathscr{P}(S)$ is of this form.
+  For $S$ infinite, find an ideal of $\mathscr{P}(S)$ that is \textit{not} of this form.
+\end{problem}
+
+\begin{solution}\ 
+  \begin{enumerate}
+    \item The subsets of $S$ contained in $T$ form an ideal of the power set ring 
+      \begin{sproof}
+        First, let $T$ be a subset of $S$, and let $A,B\in\mathscr{P}(T)$.
+        Then of course \\$A+B=(A\cup B)\setminus(A\cap B)$ is a subset of $T$.
+        Additionally, the null set is the identity with respect to this addition, and
+        it is also in $\mathscr{P}(T)$.
+        Hence $(\mathscr{P}(T), +)$ is a subgroup of $(\mathscr{P}(S),+)$.\\
+        \indent Now, to show that $\mathscr{P}(T)$ is an ideal of $\mathscr{P}(S)$, let
+        $A$ be a subset of $T$ and let $\alpha$ be a subset of $S$. 
+        Then $\alpha\cap A\subseteq A\subseteq T$, and so $\alpha\cap A\in\mathscr{P}(S)$.
+        Since $\mathscr{P}(S)$ is commutative, this shows that $\mathscr{P}(T)$ is an ideal.\\
+      \end{sproof}
+
+    \item If $S$ is finite, then \textit{every} ideal of $\mathscr{P}(S)$ is of this form.
+      \begin{sproof}
+        \indent Suppose $\mathcal{J}\subseteq\mathscr{P}(S)$ 
+        is an ideal of $\mathscr{P}(S)$.
+        Let $J\in\mathscr{P}(S)$ be the union of all sets in $\mathcal{J}$.
+        Clearly $A\in \mathcal{J}$ implies $A\subseteq J$, so suppose conversely that $A\subseteq J$.
+        Let $\mathcal{I}\subseteq\mathcal{J}$ be the set of all sets in $\mathcal{J}$ that meet $A$
+        (i.e. have a non-empty intersection with $A$).
+        Since $A\subseteq J$, we know that there are sets in $\mathcal{J}$ whose union contains $A$, and so
+        \begin{align*}
+          A &\subseteq \bigcup\mathcal{I} \\
+          &\in \mathcal{J}.
+        \end{align*}
+        \indent Here, the first line is clear, and the second line is true for two reasons: 
+        Firstly, the union of two sets can be expressed in terms of symmetric 
+        differences and unions of those two sets ($X\cup Y=(X+Y)+(X\cap Y)$), 
+        and so any finite union can be expressed in these terms, although this is
+        difficult to write explicitly.
+        Secondly, ideals are closed under addition (here the symmetric difference) and multiplication 
+        (here intersection), so the union of all sets in $\mathcal{I}$, for the reason stated above,
+        is of course in $\mathcal{J}$.
+        We then have, finally:
+        \begin{align*}
+          A &= A\cap\bigcap\mathcal{I}\\
+          &\in\mathcal{J},
+        \end{align*}
+        where the first line is true because $A\subseteq\bigcup\mathcal{I}$, and the second line
+        is true because $\mathcal{J}$ is an ideal, $\bigcup\mathcal{I}\in\mathcal{J}$, and 
+        $A\in\mathscr{P}(S)$.
+        Thus $A\subseteq J$ implies $A\in\mathcal{J}$.\\
+        \indent We've just proven that $A\in\mathcal{J}$ if and only if $A\subseteq J$; it then follows
+        that $\mathcal{J} = \mathscr{P}(J)$, as desired.
+      \end{sproof}
+
+      \item For $S$ infinite, find an deal of $\mathscr{P}(S)$ that is \textit{not} of this form.\\
+      I'm not immediately sure how to construct an explicit counterexample, but the proof above fails
+      in the case that $S$ is infinite, since $\mathcal{J}$ being infinite would make $\mathcal{I}$
+      potentially infinite, and so it's not at all clear that you can write the union of infinitely
+      many sete in terms of intersections and symmetric differences.
+      In fact, even if such a feat were possible, the proof would still fail, since the
+      algebraic structures we're dealing with are only required to be closed under \textit{finite} 
+      applications of the relevant operations.
+  \end{enumerate}
+
+
+
+  
+\end{solution}
+
 \end{document}
