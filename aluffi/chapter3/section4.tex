@@ -1,0 +1,195 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 3, Section 4\\ 
+\large Ideals and quotients: Remarks and examples. Prime and maximal ideals}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{4.1}
+  Let $R$ be a ring, and let $\left\{ I_\alpha \right\}_{\alpha\in A}$ be a family of ideals of $R$.
+  We let
+  \begin{equation*}
+    \sum_{\alpha\in A} I_\alpha = \left\{ \sum_{\alpha\in A}r_\alpha
+    \text{ such that $r_\alpha\in I_\alpha$ and $r_\alpha=0$ for all but finitely many $\alpha$} 
+    \right\}
+  \end{equation*}
+  Prove that $J=\sum_\alpha I_\alpha$ is an ideal of $R$ and that it is the smallest ideal
+  containing all of the ideals $I_\alpha$.
+\end{problem}
+\begin{solution}
+  First we prove that $J$ is an ideal of R. 
+  \begin{sproof}
+    Let $a,b\in J$, so that
+    \begin{align*}
+      a &= \sum_{\alpha\in A} r_\alpha \\
+      b &= \sum_{\alpha\in A} s_\alpha,
+    \end{align*}
+    where each $r_\alpha,s_\alpha\in I_\alpha$ and all but finitely many $r_\alpha$ and $s_\alpha$
+    are nonzero.
+    We then have:
+    \begin{align*}
+      a+b &= \sum_{\alpha\in A} r_\alpha + \sum_{\alpha\in A} s_\alpha \\
+      &= \sum_{\alpha\in A} r_\alpha+s_\alpha.
+    \end{align*}
+    Each term $r_\alpha+s_\alpha$ is in $I_\alpha$ since $r_\alpha,s_\alpha\in I_\alpha$ and
+    $I_\alpha$ is an ideal, and clearly all but finitely many $r_\alpha+s_\alpha$ are nonzero
+    since $(r_\alpha)_{\alpha\in A}$ and $(s_\alpha)_{\alpha\in A}$ both have that property, so
+    $a+b\in J$.\\
+    \indent Additionally, if $s\in R$ and $r\in J$ so that $r=\sum_{\alpha\in A}r_\alpha$ 
+    (where all but finitely many $r$'s are zero),
+    then we have
+    \begin{align*}
+      rs &= \left( \sum_{\alpha\in A} r_\alpha \right)s\\
+      &= \sum_{\alpha\in A} r_\alpha s \\
+      &\in J,
+    \end{align*}
+    where the last line is true because each $r_\alpha s\in I_\alpha$ as a result of each $I_\alpha$
+    being a right-ideal of $R$, and the fact that if $r_\alpha$ is zero then $r_\alpha s$ is also zero, 
+    implying that there are cofinitely many zero terms in this resulting sum as well.
+    A similar argument shows that $J$ is a left-ideal of $R$ if each $I_\alpha$ is also a left-ideal.
+  \end{sproof}
+
+  Now, we will show that $J=\sum_{\alpha\in A} I_{\alpha}$ is the smallest ideal of $R$ containing
+  each of the ideals $I_\alpha$ for $\alpha\in A$.
+  \begin{sproof}
+    We just proved that $J$ is an ideal of $R$, so now we just need to show that $J$ is a subset
+    of any ideal containing each of the ideals $I_\alpha$.
+    This is immediate: if $r\in J$ is such that $r=\sum_{\alpha\in A} r_\alpha$ for 
+    $r_\alpha\in I_\alpha$, then of course any ideal of $R$ containing each $I_\alpha$
+    contains $r$, since such an ideal is closed under addition.
+  \end{sproof}
+\end{solution}
+
+\begin{problem}{4.2}
+  Prove that the homomorphic image of a Noetherian ring is Noetherian.
+  That is, prove that if $\varphi:R\to S$ is a surjective ring homomorphism and $R$ is Noetherian,
+  then $S$ is Noetherian.
+\end{problem}
+\begin{solution}
+  Suppose $I=(a_1,\dots,a_n)$ is an ideal of $R$ and $\varphi:R\to S$ is surjective.
+  Then we have
+  \begin{align*}
+    \varphi(I) &= \varphi\left( \sum_{i=1}^{n} (a_i) \right) \\
+    &= \sum_{i=1}^{n}\varphi((a_i)) \\
+    &= \sum_{i=1}^{n}(\varphi(a_i)),
+  \end{align*}
+  and so $\varphi(I)$ is finitely generated.\\
+  \indent To see that these operations are justified, note that if $g\in R$ and $J=(g)$ is an ideal,
+  then we have
+  \begin{align*}
+    \varphi(J) &= \varphi\left(  \{rg : r\in R\}\right)\\
+    &= \{\varphi(r)\varphi(g) : r\in R\} \\
+    &= \{r\varphi(g) : r\in R\} \\ 
+    &= (\varphi(g)),
+  \end{align*}
+  where the third equality follows from the surjectivity of $\varphi$.\\
+  \indent Additionally, if $I,J$ are ideals of $R$, then we also have
+  \begin{align*}
+    \varphi(I+J) &= \varphi(\{i+j : i\in I, j\in J\}) \\
+    &= \{\varphi(i)+\varphi(j) : i\in I, j\in J\} \\
+    &= \varphi(I)+\varphi(J)
+  \end{align*}
+  \indent Note, then, that if $J$ is an ideal of $S$, then $\varphi^{-1}(J)$ is an ideal of $R$, allowing
+  us to see that $J=\varphi(\varphi^{-1}(J))$ is finitely generated.
+  Therefore, every ideal of $S$ is finitely generated, and so $S$ is Noetherian.
+\end{solution}
+
+\begin{problem}{4.3}
+  Prove that the ideal $(2,x)$ of $\mathbb{Z}[x]$ is not principal.
+\end{problem}
+\begin{solution}
+  First, we (quite clumsily) compute the ideal $(2,x)$ as follows:
+  \begin{align*}
+    (2,x) &= \{2p+xq : p,q\in\mathbb{Z}[x]\} \\
+    &= \{(2a_0+2a_1x+\dots+2a_nx^n) + (b_1x+b_2x^2+\dots+b_mx^m):a_j,b_j\in\mathbb{Z}\}\\
+    &= \{2a_0+a_1x+a_2x^2+\dots+a_nx^n : a_j\in\mathbb{Z}\}.
+  \end{align*}
+  In other words, the ideal $(2,x)$ consists of all the polynomials in $\mathbb{Z}[x]$ with an
+  even constant term.\\
+  \indent Note, then, if $(2,x)=(g)$ for some polynomial $g\in\mathbb{Z}[x]$,
+  then there must be a polynomial $p\in\mathbb{Z}[x]$ such that $2=gp$, since $2\in(2,x)$.
+  If this is the case, then we have $\deg g + \deg p = 0$, and so $\deg g = \deg p = 0$.
+  This means that $g$ is constant, and hence is either $1$ or $2$. 
+  In the former case, $(g)$ is the whole ring $\mathbb{Z}[x]$, and in the latter case,
+  $(g)$ is the ideal $2\mathbb{Z}[x]$.
+  Neither of these ideals equal the ideal of $(2,x)$, leading us to conclude that no single
+  polynomial in $\mathbb{Z}[x]$ generates the ideal $(2,x)$.
+\end{solution}
+
+\begin{problem}{4.4}
+  Prove that if $k$ is a field, then $k[x]$ is a PID. (Hint: Polynomial divison with remainder)
+\end{problem}
+\begin{solution}
+  Let $I\subseteq k[x]$ be an ideal.
+  If $I = 0 = (0)$, then clearly it is principal.
+  Otherwise, let $p\in I$ be a monic polynomial of minimal degree $d$
+    Let $I\subseteq k[x]$ be an ideal.
+    If $I = 0 = (0)$, then clearly it is principal. \\
+    \indent Otherwise, let $g\in I$ be a monic polynomial of minimal degree $d$.
+    If $p\in I$, then we can apply division with remainder to find polynomials $q,r\in k[x]$
+    such that $$p=gq+r,$$ where $\deg r < d$.
+    Note that since $p\in I$ and $gq\in I$ by (right-) absorption, we then can see that
+    $r=p-gq\in I$, since $I$ is closed under addition.
+    But $d$ is the smallest degree of any nonzero polynomial in $I$ and $\deg r < d$; it
+    then follows that $r = 0$, and so $$p = gq,$$ showing us that $I\subseteq(g)$.
+    \\\indent Of course $(g)\subseteq I$, so we then have $I=(g)$, as desired.
+\end{solution}
+
+\begin{problem}{4.5}
+  Let $I,J$ be ideals in a commutative ring $R$, such that $I+J=(1)$.
+  Prove that $IJ=I\cap J$.
+\end{problem}<++>
+
+\end{document}
