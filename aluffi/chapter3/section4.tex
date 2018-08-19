@@ -190,6 +190,21 @@
 \begin{problem}{4.5}
   Let $I,J$ be ideals in a commutative ring $R$, such that $I+J=(1)$.
   Prove that $IJ=I\cap J$.
-\end{problem}<++>
+\end{problem}
+\begin{solution}
+  The simple fact that $IH\subseteq I\cap J$ was already proven in the text, so suppose
+  $r\in I\cap J$.
+  Since $I+J=(1)=R$, we know there exists an $i\in I$ and a $j\in J$ such that $1=i+j$.
+  Note, then, that:
+  \begin{align*}
+    r &= r\cdot1 \\
+    &= r\cdot(i+j) \\
+    &= r\cdot i + r\cdot j.
+  \end{align*}
+  Since $r\in J$ and $R$ is commutative, we know that $ri\in IJ$, and since $r\in J$, we also know that
+  $rj\in IJ$.
+  Hence $r=ri+rj\in IJ$, and so $I\cap J\subseteq IJ$.
+  Therefore, $IJ=I\cap J$, as desired.
+\end{solution}<++>
 
 \end{document}
