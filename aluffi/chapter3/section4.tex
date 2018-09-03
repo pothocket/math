@@ -555,7 +555,8 @@
     &\in I,
   \end{align*}
   and so $J$ is actually an ideal of $R$.
-  Since we already established that $J\neq R$, this means that $J=I$, since $J$ contains $I$ 
+  Because $1\notin J$ (as $1r\in I$ implies $r\in I$), 
+  this means that $J=I$, since $J$ contains $I$ 
   and $I$ is maximal.\\
   \indent For the slam dunk, observe that if $a,b\in R$ are such that $ab\in I$ and $b\notin I$,
   then $a\in J$ by definition, and so $a\in I$, proving that $I$ is a prime ideal.
@@ -567,4 +568,90 @@
   Prove that if $I$ is a prime ideal in $S$, then $\varphi^{-1}(I)$ is a prime ideal in $R$.
   Show that $\varphi^{-1}(I)$ is not necessarily maximal if $I$ is maximal.
 \end{problem}
+\begin{solution}
+  Let $J\subseteq R$ be the preimage of $I$, $J=\varphi^{-1}(I)$.
+  Note that $r\in R, a\in J$ implies $\varphi(ra)=\varphi(r)\varphi(a)\in I$,
+  and so $J$ is an ideal of $R$. 
+  Then, if $a,b\in R$ are such that $ab\in J$, then
+  $\varphi(ab)=\varphi(a)\varphi(b)\in I$, which implies $\varphi(a)\in I$
+  or $\varphi(b)\in I$ (since I is prime), which implies $a\in J$ or $b\in J$; 
+  hence $J$ is prime.
+\end{solution}
+
+\begin{problem}{4.16}
+  Let $R$ be a commutative ring, and let $P$ be a prime ideal of $R$.
+  Suppose $0$ is the only zero-divisor of $R$ contained in $P$.
+  Prove that $R$ is an integral domain.
+\end{problem}
+\begin{solution}
+  Suppose $R$ is not an integral domain.
+  Then there exist $a,b\in R$, both nonzero, such that $ab=0$.
+  If $P$ is a prime ideal in $R$, then $ab\in P$ since $0$ is contained
+  in every ideal of $R$, and so we know $a\in P$ or $b\in P$. 
+  Hence, $0$ is not the only zero-divisor of $R$ contained in $P$,
+  proving the contrapositive of the desired result.
+\end{solution}
+
+\begin{problem}{4.18}
+  Let $R$ be a commutative ring, and let $N$ be its nilradical.
+  Prove that $N$ is contained in every prime ideal of $R$.
+\end{problem}
+\begin{solution}
+  Let $a\in N$, so that $a^n = 0$ for some integer $n$.
+  If $P$ is a prime ideal of $R$, then we have
+  \begin{align*}
+    0 &= (a^n + P) \\
+    &= (a+P)^n
+  \end{align*}
+  in the ring $R/P$, and so $(a+P) = 0$ as $R/P$ is an integral domain,
+  meaning $a\in P$.
+\end{solution}
+
+\begin{problem}{4.19}
+  Let $R$ be a commutative ring, let $P$ be a prime ideal in $R$, and let
+  $I_j$ be ideals of $R$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Assume that $I_1\cdots I_r\subseteq P$; prove that $I_J\subseteq P$
+      for some $j$.
+    \item By (a), if $P\supseteq \bigcap_{j=1}^{r} I_j$, then
+      $P$ contains one of the ideals $I_j$.
+      Prove or disprove: if $P\supseteq \bigcap_{j=1}^{\infty} I_j$,
+      then $P$ contains one of the ideals $I_j$.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  
+\end{solution}<++>
+
+\begin{problem}{4.22}
+  Prove that $(x^2+1)$ is maximal in $\mathbb{R}[x]$.
+\end{problem}
+\begin{solution}
+  The ring $\mathbb{R}[x]]/(x^2+1)$ is isomorphic to $\mathbb{C}$,
+  which is a field, so $(x^2+1)$ is maximal.
+\end{solution}
+
+\begin{problem}{4.24}
+  Prove that the ring $\mathbb{Z}[x]$ has Krull dimension $\geq2$.
+\end{problem}
+\begin{solution}
+  We consider the ideals $(x)$ and $(x,p)$ (for $p\in\mathbb{Z}$ prime)
+  of $\mathbb{Z}[x]$.
+  Note that:
+  \begin{equation*}
+    \frac{\mathbb{Z}[x]}{x}\cong\mathbb{Z},
+  \end{equation*}
+  and
+  \begin{align*}
+    \frac{\mathbb{Z}[x]}{(x,p)} &\cong \frac{\mathbb{Z}[x]/(x)}{(p)} \\
+    &\cong\frac{\mathbb{Z}}{(p)} \\
+    &= \mathbb{Z}/p\mathbb{Z},
+  \end{align*}
+  and so $(x)$ is prime and $(x,p)$ is maximal (and thus prime). \\
+  \indent The chain of proper inclusions of prime ideals
+  \begin{equation*}
+    0\subsetneq (x)\subsetneq (x,p)
+  \end{equation*}
+  then shows that $\mathbb{Z}[x]$ has Krull dimension at least 2.
+\end{solution}
 \end{document}
