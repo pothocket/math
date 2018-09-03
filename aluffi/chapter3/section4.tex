@@ -1,7 +1,7 @@
 %&pdflatex 
 \documentclass[12pt]{article} 
 \usepackage[margin=1in]{geometry} 
-\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs, enumitem} 
 
 \newenvironment{problem}[2][Problem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
@@ -253,4 +253,292 @@
   polynomial as desired.
 \end{solution}
 
+\begin{problem}{4.8}
+  Let $R$ be a ring and $f(x)\in R[x]$ a monic polynomial.
+  Prove that $f(x)$ is not a (left- or right-) zero divisor.
+\end{problem}
+\begin{solution}
+  Let $g(x)\in R[x]$, be a nonzero polynomial and $a$ be the leading 
+  coefficient of $g(x)$.
+  Since $f(x)$ is monic, the leading coefficient of $f(x)g(x)$ and 
+  $g(x)f(x)$ is $1\cdot a=a\cdot1=a$.
+  Hence, if either one of these polynomials is zero, then $a=0$.
+  Since $a\neq 0$ as $g(x)$ is nonzero, neither of these polynomials is zero.
+  Hence $f(x)$ is not a left- or right- zero divisor.
+\end{solution}
+
+\newpage
+
+\begin{problem}{4.10}
+  Let $d$ be an integer that is not the square of an integer, and consider
+  the subset of $\mathbb{C}$ defined by
+  \begin{equation*}
+    \mathbb{Q}(\sqrt{d}) := \{a+b\sqrt{d}\ |\ a,b\in\mathbb{Q}\}
+  \end{equation*}
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove that $\mathbb{Q}(\sqrt{d})$ is a subring of $\mathbb{C}$.
+    \item Define a function $N : \mathbb{Q}(\sqrt{d})\to \mathbb{Q}$
+      by $N(a+b\sqrt{d}) = a^2 - b^2d$.
+      Prove that $N(zw) = N(z)N(w)$ and that $N(z)\neq0$ if 
+      $z\in\mathbb{Q}(\sqrt{d}), z\neq0$.
+  \end{enumerate}
+  The function $N$ is a 'norm'; it is very useful in the study of 
+  $\mathbb{Q}(\sqrt{d})$ and of its subrings.
+  \begin{enumerate}[label=(\alph*)]
+      \setcounter{enumi}{2}
+    \item Prove that $\mathbb{Q}(\sqrt{d})$ is a field and in fact
+      the smallest subfield of $\mathbb{C}$ containing both 
+      $\mathbb{Q}$ and $\sqrt{d}$. (Use N.)
+    \item Prove that $\mathbb{Q}(\sqrt{d})\cong\mathbb{Q}[t]/(t^2-d)$
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  First, we prove that $\mathbb{Q}(\sqrt{d})$ is a subring of $\mathbb{C}$.
+  If $a+b\sqrt{d}$ and $x+y\sqrt{d}$ are elements of $\mathbb{Q}(\sqrt{d})$,
+  then we have
+  \begin{align*}
+    (a+b\sqrt{d}) + (x+y\sqrt{d}) &= (a+b) + (x+y)\sqrt{d} \\
+    &\in \mathbb{Q}(\sqrt{d})
+  \end{align*}
+  and
+  \begin{align*}
+    (a+b\sqrt{d})(x+y\sqrt{d}) &= ax + ay\sqrt{d} + bx\sqrt{d} + bdy \\
+    &= (ax+bdy) + (ay+bx)\sqrt{d} \\
+    &\in \mathbb{Q}(\sqrt{d}).
+  \end{align*}
+  Of course $1 = 1 + 0\sqrt{d}\in\mathbb{Q}(\sqrt{d})$, so 
+  $\mathbb{Q}(\sqrt{d})$ is a ring. \\
+  \indent Now, define $N : \mathbb{Q}(\sqrt{d})\to \mathbb{Q}$ as
+  in the question.
+  Let $z=z_1+z_2\sqrt{d}$ and $w=w_1+w_2\sqrt{d}$.
+  We then have:
+  \begin{align*}
+    N(zw) &= N( (z_1w_1 + z_2w_2d) + (z_1w_2+z_2w_1)\sqrt{d}) \\
+    &= (z_1w_1 + z_2w_2)^2 - (z_1w_2 + z_2w_1)^2d \\
+    &= z_1^2w_1^2 - z_1^2w_2^2d - z_2^2w_1^2d + z_2^2w_2^2d^2 \\
+    &= (z_1^2 - z_2^2d)(w_1^2-w_2^2d) \\
+    &= N(z)N(w).
+  \end{align*}
+  Of course $z=0$ implies $N(z)=0$, so $N(z)\neq 0$ implies $z\neq0$. \\
+  \indent For part (c), let $z = a+b\sqrt{d}$ be a nonzero element of 
+  $\mathbb{Q}(\sqrt{d})$.
+  Since $N(z)\in\mathbb{Q}$ and is nonzero because $z$ is nonzero, 
+  we know that 
+  \begin{align*}
+    w &=  \frac{a-b\sqrt{d}}{N(z)} \\
+    &= \frac{a}{N(z)} - \frac{b}{N(z)}\sqrt{d}\\
+    &\in\mathbb{Q}(\sqrt{d}),
+  \end{align*}
+  and so we find that
+  \begin{align*}
+    zw &= \left(a+b\sqrt{d}\right)\left(\frac{a-b\sqrt{d}}{N(z)}\right) \\
+    &= \frac{N(z)}{N(z)} \\
+    &= 1,
+  \end{align*}
+  showing that $w$ is a multiplicative inverse of $z$, and hence
+  that $\mathbb{Q}(\sqrt{d})$ is a field.\\
+  \indent Any subfield of $\mathbb{C}$ that conatins $\mathbb{Z}$ and 
+  $\sqrt{d}$ must contain $\mathbb{Q}(\sqrt{d})$, since subfields
+  must be closed under the field operations.
+  Hence $\mathbb{Q}(\sqrt{d})$ is the smallest such subfield. \\
+  \indent Finally, Let 
+  $\varphi : \mathbb{Q}[x]\to \mathbb{Q}\oplus\mathbb{Q}$
+  be the group homomorphism (defined in the book) that sends
+  $g(x)\in\mathbb{Q}[x]$ to the pair $(r_0,r_1)$, where $r_0,r_1$
+  come from the remainder $r_0+r_1x$ when dividing $g(x)$
+  by the polynomial $x^2-d$. \\
+  \indent An argument in the book establishes that $\varphi$ is surjective
+  with kernel equal to the principle ideal $(x^2-d)$, and so we have
+  \begin{equation*}
+    \frac{\mathbb{Q}[x]}{(x^2-d)}\cong \mathbb{Q}\oplus\mathbb{Q},
+  \end{equation*}
+  as abelian groups.\\
+  \indent All we need to do, now, is endow $\mathbb{Q}\oplus\mathbb{Q}$
+  with a ring structure that makes $\varphi$ a homomorphism, and show
+  that this ring is isomorphic to $\mathbb{Q}(\sqrt{d})$.
+  Define an operation $\cdot$ on $\mathbb{Q}\oplus\mathbb{Q}$, then,
+  by 
+  \begin{equation*}
+    (a_0,a_1)\cdot(b_0,b_1) = 
+    \varphi\left(\varphi^{-1}\left(a_0,a_1\right)
+    \cdot\varphi^{-1}\left(b_0,b_1\right)\right),
+  \end{equation*}
+  where $\overline{p(x)}$ is the coset of $p(x)$ in the quotient ring
+  $\mathbb{Q}[x]/(x^2-d)$. 
+  Note that this is well-defined because $\varphi$ is a bijection.\\
+  \indent To prove that $\varphi$ is then a ring homomorphism
+  $\displaystyle\frac{\mathbb{Q}[x]}{(x^2-d)}\to \mathbb{Q}\oplus\mathbb{Q}$,
+  note that:
+  \begin{align*}
+    \varphi^{-1}(a\cdot b) 
+    &= \varphi^{-1}
+      \left( \varphi(\varphi^{-1}(a)\cdot\varphi^{-1}(b) )\right) \\
+      &= \varphi^{-1}(a)\cdot\varphi^{-1}(b),
+  \end{align*}
+  from which it then follows that $\varphi$ preserves multiplication. \\
+  \indent The reader way wish to note, additionally, that the
+  identity with respect to this multiplication defined on
+  $\mathbb{Q}\oplus\mathbb{Q}$, is the pair $(0,1)$, as we have,
+  for $a_0,a_1\in\mathbb{Q}$:
+  \begin{align*}
+    (1,0)\cdot(a_0,a_1) 
+    &= \varphi\left(\varphi^{-1}(0,1)\cdot\varphi^{-1}(a_0,a_1)\right) \\
+    &= \varphi( (\overline{1})\cdot(\overline{a_0+a_1x}) ) \\
+    &= \varphi(\overline{1(a_0+a_1x)}) \\
+    &= \varphi(a_0+a_1x) \\
+    &= (a_0,a_1),
+  \end{align*}
+  where each step follows from simple considerations concerning polynomial
+  division by a polynomial of degree 2, and the properties of ideals
+  with respect to the ring operations.\\
+  \indent Since the remainder when dividing $1$ by the polynomial
+  $x^2-d$ is $1$, we then know that $\varphi(1) = (1,0)$, showing that
+  $\varphi$ preserves the identity with respect to multiplication.\\
+  \indent Since $\varphi$ is a bijection that preserves addition,
+  multiplication, and the identity as defined on $\mathbb{Q}\oplus\mathbb{Q}$,
+  we then know that $\mathbb{Q}\oplus\mathbb{Q}$ is a ring isomorphic
+  to the ring $\mathbb{Q}[x]/(x^2-d)$.\\
+  \indent To characterize this multiplication on $\mathbb{Q}\oplus\mathbb{Q}$,
+  we find with some algebra that
+  \begin{align*}
+    (a_0+a_1)\cdot(b_0+b_1)
+    &= \varphi\left( 
+         \varphi^{-1}(a_0,a_1)\cdot\varphi^{-1}(b_0,b_1) \right) \\
+    &= \varphi\left( (\overline{a_0+a_1x})
+         \cdot(\overline{b_0+b_1x}) \right)\\
+    &= \varphi\left( \overline{(a_0+a_1x)(b_0+b_1x}) \right) \\
+    &= \varphi(\overline{a_0b_0+(a_0b_1+a_1b+0)x+a_1b_1x^2})\\
+    &= \varphi(
+    \overline{(a_0b_0+a_1b_1d) + (a_0b_1+a_1b_0)x + (x^2-d)(a_1b_1)})\\
+    &= \varphi(\overline{(a_0b_0+a_1b_1d) + (a_0b_1+a_1b_0)x})\\
+    &= (a_0b_0+a_1b_1d, a_0b_1+a_1b_0).
+  \end{align*}
+  \indent Inspection of the product $(a_0+a_1\sqrt{d})(b_0+b_1\sqrt{d})$
+  quite easily shows that the mapping $(a_0,a_1)\mapsto a_0+a_1\sqrt{d}$
+  is a ring isomorphism $\mathbb{Q}\oplus\mathbb{Q}\to \mathbb{Q}(\sqrt{d})$,
+  and so we therefore get the isomorphism 
+  $\mathbb{Q}[x]/(x^2-d)\cong\mathbb{Q}(\sqrt{d})$, as desired.
+\end{solution}
+
+\begin{problem}{4.11}
+  Let $R$ be a commutative ring, $a\in R$, and $f_1(x),\dots,f_r(x)\in R[X]$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove the equality of ideals 
+      $$\left( f_1(x),\dots,f_r(x),x-a \right) = 
+      \left( f_1(a),\dots,f_r(a),x-a \right).$$
+    \item Prove the useful substitution trick
+      \begin{equation*}
+        \frac{R[x]}{\left( f_1(x),\dots,f_r(x),x-a \right)}
+        \cong \frac{R}{\left( f_1(a),\dots,f_r(a)\right)}.
+      \end{equation*}
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  First, suppose $f(x)\in R[x]$ and $a\in R$.
+  If we divide $f(x) - f(a)$ by the polynomial $x-a$, we find that
+  \begin{equation*}
+    f(x) - f(a) = q(x)(x-a) + r(x),
+  \end{equation*}
+  where $q(x),r(x)\in R[x]$ and $\deg r(x) = 0$.
+  Evaluating both sides at $a$, we then can see that 
+  \begin{align*}
+    f(a)-f(a) &= q(a)(a-a) + r(a)\\
+    \Rightarrow  0 &= r(a),
+  \end{align*}
+  meaning $r(x)$ must be the zero polynomial since it has degree zero
+  and evaluates to zero at $a$.
+  Thus, we have:
+  \begin{equation*}
+    f(x) = q(x)(x-a) + f(a)
+  \end{equation*}
+  for all $f(x)\in R[x], a\in R$ and some polynomial $q(x)$.\\
+  \indent Applying this to our problem, we then have polynomials
+  $q_j$ such that
+  \begin{equation*}
+    f_j(x) = q_j(x)(x-a) + f_j(a),
+  \end{equation*}
+  for all $1\leq j\leq r$.\\
+  \indent We then have, for all polynomials of the form shown on the 
+  left-hand side in the ideal
+  $\left( f_1(x),\dots,f_r(x),x-a \right)$,
+  \begin{align*}
+    \left( \sum_{j=0}^r p_j(x)f_j(x) \right) + g(x)(x-a) 
+    &=  \left( \sum_{j=0}^r p_j(x)(q_j(x)(x-a)) + f_j(a) \right) + g(x)(x-a)\\
+    &= \sum_{j=1}^r f_j(a) 
+    + \left( g(x) + \sum_{j=1}^n q_j(a) \right)(x-a),
+  \end{align*}
+  and so $(f_1(x),\dots,f_r(x),x-a)\subseteq (f_1(a),\dots,f_r(a),x-a)$.
+  A nearly identical argument gives us the inclusion in the other direction,
+  and so we have the desired equality of ideals. \\
+  \indent With this shiny new lemma, we can now see that\\
+  \begin{align*}
+    \frac{R[x]}{(f_1(x),\dots,f_r(x),x-a)} 
+    &= \frac{R[x]}{(f_1(a),\dots,f_r(a),x-a)} \\
+    &= \frac{R[x]}{(f_1(a),\dots,f_r(a))+(x-a)} \\
+    &\cong \frac{R[x]/(x-a)}{(f_1(a),\dots,f_r(a))} \\
+    &\cong \frac{R}{(f_1(a),\dots,f_r(a))} ,
+  \end{align*}
+  where the first equality follows from the lemma we just proved,
+  the second equality follows from the definition of an ideal generated
+  by multiple elements, the isomorphism in the third line follows
+  from Exercise 3.3, and the isomorphism in the fourth line
+  follows from the isomorphism 
+  \begin{equation*}
+    \frac{R[x]}{(x-a)}\cong R.
+  \end{equation*}
+\end{solution}
+\begin{problem}{4.12}
+  Let $R$ be a commutative ring and $a_1,\dots,a_n$ elements of $R$.
+  Prove that
+  \begin{equation*}
+    \frac{R[x_1,\dots,x_n]}{(x_1-a_1,\dots,x_n-a_n)}\cong R
+  \end{equation*}
+\end{problem}
+\begin{solution}
+  We will proceed by induction.
+  For the base case $n=1$, the isomorphism
+  \begin{equation*}
+    \frac{R[x]}{(x-a)}
+  \end{equation*}
+  has already been established.
+  For the induction step, suppose we have the isomorphism
+  \begin{equation*}
+    \frac{R[x_1,\dots,x_n]}{(x_1-a_1,\dots,x_n-a_n)}
+  \end{equation*}
+  for $a_1,\dots,a_n\in R$, and let $a_{n+1}\in R$.
+  We then have:
+  \begin{align*}
+    \frac{R[x_1,\dots,x_n,x_{n+1}]}{(x_1-a_1,\dots,x_n-a_n,x_{n+1}-a_{n+1})}
+      &= \frac{R[x_1,\dots,x_n][x_{n+1}]}
+      {(x_1-a_1,\dots,x_n-a_n)+(x_{n+1}-a_{n+1})}\\
+      &\cong\frac{R[x_1,\dots,x_n][x_{n+1}]/(x_{n+1}-a_{n+1})}
+      {(x_1-a_1,\dots,x_n-a_n)}\\
+      &\cong \frac{R[x_1,\dots,x_n]}{(x_1-a_1,\dots,x_n-a_n)}\\
+      &\cong R.
+  \end{align*}
+  \indent Here,  the equality in the first line follows from the definition
+  of multivariate polynomial rings and finitely generated ideals,
+  the isomorphism in the second line follows from Exercise 3.3,
+  the isomorphism in the third line follows from the general isomorphism
+  $R[x]/(x-a)\cong R$, and the isomorphism in the fourth line
+  follows from the inductive hypothesis.
+\end{solution}
+
+\begin{problem}{4.13}
+  Let $R$ be an integral domain.
+  For all $k=1,\dots,n$, prove that $(x_1,\dots,x_k)$ is
+  prime in $R[x_1,\dots,x_n]$.
+\end{problem}
+\begin{solution}
+  This follows immediately from the previous exercise, and the fact that 
+  the ideal $I\subseteq R$ is prime iff $R/I$ is an integral domain.
+\end{solution}
+
+\begin{problem}{4.14}
+  Prove 'by hand' that maximal ideals are prime, \textit{without} using 
+  quotient rings.
+\end{problem}
+\begin{solution}
+  
+\end{solution}<++>
 \end{document}
