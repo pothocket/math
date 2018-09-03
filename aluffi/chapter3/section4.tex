@@ -539,6 +539,32 @@
   quotient rings.
 \end{problem}
 \begin{solution}
-  
-\end{solution}<++>
+  We will assume that the ring $R$ is commutative, since this is the only case in which the book
+  deals with prime and maximal ideals (and because it makes things more convenient).
+  We will also assume that $R$ is nonzero, as the result is immediate otherwise. \\
+  \indent Let $I$ be a maximal ideal, and let $J$ be the subset of $R$ defined by\\
+  \begin{equation*}
+    J = \{a\in R\ |\ (\exists b\in R\setminus I): ab\in I \}
+  \end{equation*}
+  \indent Since $I$ is maximal, it does not contain the identity (by definition), and so
+  $a\in I$ implies $a\cdot1_R\in I$, making it clear that $I\subseteq J$. \\
+  \indent Note, then, that if $a\in J$ so that $b\in R\setminus I$ is such that $ab\in I$,
+  then for any $r\in R$, we have:
+  \begin{align*}
+    (ra)b &= r(ab) \\
+    &\in I,
+  \end{align*}
+  and so $J$ is actually an ideal of $R$.
+  Since we already established that $J\neq R$, this means that $J=I$, since $J$ contains $I$ 
+  and $I$ is maximal.\\
+  \indent For the slam dunk, observe that if $a,b\in R$ are such that $ab\in I$ and $b\notin I$,
+  then $a\in J$ by definition, and so $a\in I$, proving that $I$ is a prime ideal.
+\end{solution}
+
+\begin{problem}{4.15}
+  Let $\varphi:R\to S$ be a homomorphism of commutative rings, and let $I\subseteq S$
+  be an ideal.
+  Prove that if $I$ is a prime ideal in $S$, then $\varphi^{-1}(I)$ is a prime ideal in $R$.
+  Show that $\varphi^{-1}(I)$ is not necessarily maximal if $I$ is maximal.
+\end{problem}
 \end{document}
