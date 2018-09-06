@@ -620,14 +620,58 @@
   \end{enumerate}
 \end{problem}
 \begin{solution}
-  
-\end{solution}<++>
+  Let $I_2,\dots,I_n$ be ideals that are not subsets of $P$,
+  and assume $I_1,\dots,I_n\subseteq P$, so that
+  $i_1\cdots i_n\in P$ for all $i_j\in I_j$.
+  An argument by induction then shows that $i_j\in P$ for some 
+  $j$, since $P$ is prime.
+  If we fix $i_2,\dots,i_n$ such that each of these are not
+  in $P$ (since $I_2,\dots,I_n$ are not subsets of $P$),
+  it then follows that $i_1\in P$, for all $i_1\in I_1$;
+  hence $I_1\subseteq P$. \\
+  \indent On the other hand, if $I_1,I_2,\dots$ are ideals of
+  $R$ and $P\supseteq\bigcap_{j=1}^\infty I_j$, then it does not
+  necessarily follow that $P$ contains one of the ideals $j$.
+  For a counterexample, let $R=\mathbb{Z}$, let 
+  $\mathcal{I} = \{n\mathbb{Z} : n\text{ is odd}\}$
+  and let $P=2\mathbb{Z}$.
+  Then $\bigcap\mathcal{I}=\varnothing\subseteq P$, but $P$
+  doesn't contain any of the ideals in $\mathcal{I}$.
+\end{solution}
+
+\begin{problem}{4.20}
+  Let $M$be a two-sided ideal in a (not necessarily commutative) ring $R$.
+  Prove that $M$ is maximal if and only if $R/M$ is a simple ring.
+\end{problem}
+\begin{solution}
+  First suppose $M$ is maximal.
+  Then $R/M$ is a field, which is simple.\\
+  \indent Conversely, suppose $R/M$ is a simple ring.
+  Note that every ideal of $R/M$ is of the form $J/M$ for some ideal $J$
+  of $R$ containing $M$, and every ideal $J$ of $R$ containing $M$
+  gives rise to an ideal $J/M$ of $R/M$.
+  With this correspondence in mind, we know that since $R/M$ is simple,
+  the only ideals of $R/M$ are $\{0\}/M$ and $R/M$, and so the only ideals
+  of $R$ containing $M$ are $(0)$ and $R$ itself.
+  Hence $M$ is maximal in $R$.
+\end{solution}
+
+\begin{problem}{4.21}
+  Let $k$ be a algebraically closed field, and let $I\subseteq k[x]$ be an 
+  ideal.
+  Prove that $I$ is maximal if and only if $I=(x-c)$ for some $c\in k$.
+\end{problem}
+\begin{solution}
+  One direction is obvious: If $I=(x-c)$ for some $c$, 
+  then $k[x]/(x-c)\cong k$ is a field, and so $I$ is maximal. \\
+  \indent On the other hand, assume $I$ is maximal
+\end{solution}
 
 \begin{problem}{4.22}
   Prove that $(x^2+1)$ is maximal in $\mathbb{R}[x]$.
 \end{problem}
 \begin{solution}
-  The ring $\mathbb{R}[x]]/(x^2+1)$ is isomorphic to $\mathbb{C}$,
+  The ring $\mathbb{R}[x]/(x^2+1)$ is isomorphic to $\mathbb{C}$,
   which is a field, so $(x^2+1)$ is maximal.
 \end{solution}
 
