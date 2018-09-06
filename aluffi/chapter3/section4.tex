@@ -664,7 +664,22 @@
 \begin{solution}
   One direction is obvious: If $I=(x-c)$ for some $c$, 
   then $k[x]/(x-c)\cong k$ is a field, and so $I$ is maximal. \\
-  \indent On the other hand, assume $I$ is maximal
+  \indent On the other hand, since $k$ is a field, we know $k[x]$ is a PID,
+  and so there exists some $f(x)\in k[x]$ such that $I=(f(x))$.
+  Assume, then, that $I\neq R$ and $\deg f(x)\neq1$, and so $\deg f(x) > 1$.
+  Since $k$ is algebraically closed, the equation $f(x) = 0$ has a solution
+  $c\in k$.
+  Note, then, that if we divide $f(x)$ by the polynomial $x-c$, we obtain
+  $$f(x) = (x-c)q(x) + r(x)$$ for some $q(x), r(x)\in k[x]$ with $\deg r(x) = 0$.
+  Evaluating each side at $x=c$, we find that $r(c) = 0$, and so $r(x) = 0$;
+  hence $f(x) = (x-c)q(x)$. \\
+  \indent Notice that from this equation, we can see that $\deg f(x) = \deg q(x) + 1$.
+  Since $k$ is a field and hence has no zero divisors, we can then conclude that 
+  $$(f(x))\subsetneq (q(x)),$$
+  as it is clear that $(f(x))\subseteq (q(x))$, and we can see that $q(x)\notin(f(x))$
+  since $\deg q(x) > \deg f(x)$ and $k$ is an integral domain.
+  Therefore $(q(x))$ is an ideal that strictly contains $I$ and is not equal to the whole
+  ring $R$, meaning $I$ is not maximal, giving us the contrapositive of the desired result.
 \end{solution}
 
 \begin{problem}{4.22}
