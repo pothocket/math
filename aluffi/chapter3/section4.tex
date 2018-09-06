@@ -690,6 +690,27 @@
   which is a field, so $(x^2+1)$ is maximal.
 \end{solution}
 
+\begin{problem}{4.23}
+  A ring $R$ has Krull dimension 0 if every prime ideal in $R$ is maximal.
+  Prove that fields and Boolean rings have Krull dimension 0.
+\end{problem}
+\begin{solution}
+  Of course fields have Krull dimension 0, since the only proper ideal
+  of a field is the zero ideal $(0)$, which is prime and hence maximal
+  as fields are PIDs. \\
+  \indent If $R$ is a boolean ring and $P$ is a prime ideal of $R$,
+  then $R/P$ is an integral domain by definition.
+  Since $R$ is boolean, we have, for all $a\in R$,
+  \begin{align*}
+    (a+I)^2 &= a^2+I \\
+    &= a+I,
+  \end{align*}
+  and so $R/P$ is boolean as well.
+  It then follows, by Exercise 3.15, $R/P\cong \mathbb{Z}/2\mathbb{Z}$
+  since $R/P$ is a boolean integral domain.
+  Hence $R/P$ is a field, and so has Krull dimension 0 as desired.
+\end{solution}
+
 \begin{problem}{4.24}
   Prove that the ring $\mathbb{Z}[x]$ has Krull dimension $\geq2$.
 \end{problem}
