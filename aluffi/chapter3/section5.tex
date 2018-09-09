@@ -1,0 +1,163 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs, enumitem} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+\newcommand{\Homod}[2]{\Hom_{#1-\catname{Mod}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 3, Section 5\\ 
+\large Modules over a ring}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{5.5}
+  Let $R$ be a commutative ring, viewed as an $R$-module over itself,
+  and let $M$ be an $R$-module.
+  Prove that $\Homod{R}{R,M}\cong M$ as $R$-modules.
+\end{problem}
+\begin{solution}
+  Let $\varphi : M\to \Homod{R}{R,M}$ be the function defined by $$\varphi(m)(r)=rm.$$
+  Then note that
+  \begin{align*}
+    \varphi(m+n)(r) &= r(m+n) \\
+    &= rm + rn \\
+    &= \varphi(m)(r) + \varphi(n)(r) \\
+    &= (\varphi(m)+\varphi(n))(r),
+  \end{align*}
+  and 
+  \begin{align*}
+    \varphi(sm)(r) &= r(sm) \\
+    &= (rs)m \\
+    &= (sr)m \\
+    &= s(rm) \\
+    &= s\varphi(m)(r) \\
+    &= (s\varphi(m))(r),
+  \end{align*}
+  and so $\varphi$ is an $R-\catname{Mod}$ homomorphism. \\
+  Additionally, we have:
+  \begin{align*}
+    \varphi(m)(r+s) &= (r+s)m \\
+    &= rm+sm \\
+    &= \varphi(m)(r) + \varphi(n)(r)
+  \end{align*}
+  and 
+  \begin{align*}
+    \varphi(m)(rs) &= (rs)m \\
+    &= r(sm) \\
+    &= r\varphi(m)(s),
+  \end{align*}
+  and so $\varphi(m)$ is an $R-\catname{Mod}$ homomorphism for all $m\in M$. \\
+  \indent Now, to prove that $\varphi$ is injective, note that if $\varphi(m) = 0$,
+  then $m = 1_Rm = \varphi(m)(1) = 0$, and so $\varphi$ is injective.
+  For surjectivity, we need the following insight: 
+  For all $m\in M$ and $r\in R$, we have
+  \begin{align*}
+    \varphi(m)(r) &= \varphi(m)(r\cdot1_R) \\
+    &=r\varphi(m)(1_R),
+  \end{align*}
+  and so if $\psi\in\Homod{R}{R,M}$, then we have, for all $r\in R$,
+  \begin{align*}
+    \psi(r) &= r\psi(1_R)\\
+    &= \varphi(\psi(1_R)(r);
+  \end{align*}
+  thus, $\psi$ is in the image of $\varphi$ and $\varphi$ is surjective.
+  Therefore, $\psi$ is an isomorphism and the modules are isomorphic as desired.
+\end{solution}
+
+\begin{problem}{5.6}
+  Let $G$ be an abelian group.
+  Prove that if $G$ has a structure of $\mathbb{Q}$-vector space, then it has only one such structure.
+  (Hint: First prove that every element of $G$ has necessarily infinite order.
+  Alternative hint: The unique ring homomorphism $\mathbb{Z}\to\mathbb{Q}$ is an epimorphism.)
+\end{problem}
+\begin{solution}
+  Let $G$ be an abelian group.
+  A $\mathbb{Q}$-vector space structure on $G$ is precisely a ring homomorphism
+  $\sigma:G\to\Homc{Ab}{G}$.
+  Let $\sigma_1,\sigma_2$, then, be two of these ring homomorphisms.
+  Note that $\sigma_1$ and $\sigma_2$ agree on the integers, as if we view $\mathbb{Q}$ and
+  $\Homc{Ab}{G}$ as $\mathbb{Z}$-modules, we then have, for all $n\in\mathbb{Z}$,
+  \begin{align*}
+    \varphi_1(n) &= \varphi_1(n\cdot1) \\
+    &= n\cdot\varphi_1(1)\\
+    &= n\cdot\id\\
+    &= n\cdot\varphi_2(1)\\
+    &= \varphi_2(n\cdot1) \\
+    &= \varphi_2(n).
+  \end{align*}
+  Thus, if $\iota:\mathbb{Z}\to\mathbb{Q}$ is the unique ring homomorphism $\mathbb{Z}\to\mathbb{Q}$,
+  i.e. the inclusion, we have $\sigma_1\iota = \sigma_2\iota$.
+  Since $\iota$ is a ring epimorphism, this then implies that $\sigma_1=\sigma_2$, and so
+  there is only one $\mathbb{Q}$-vector space structure on $\mathbb{G}$, as desired.
+\end{solution}
+
+\newpage
+
+\begin{problem}{5.7}
+  Let $K$ be a field, and let $k\subseteq K$ be a subfield of $K$.
+  Show that $K$ is a vector space over $k$ (and in fact a $k$-algebra) in a natural way.
+  In this situation, we say that $K$ is an \textit{extension} of $k$.
+\end{problem}
+\begin{solution}
+  Note that the inclusion $\sigma:k\to\Homc{Ab}{K}$ is a ring homomorphism, and thus a natural
+  $k$-vector space structure on $K$.
+  This $\sigma$ also gives us a $k$-algebra structure on $K$ since the center of $K$ is $K$
+  itself, and so $\im\sigma\subseteq Z(K)$.\\
+  \indent More explicitly, the "scalar" multiplication $\kappa x$ for $\kappa\in k$ and $x\in K$
+  is just multiplication within the field $K$, and the $k$-algebra structure on $K$
+  also consists of multiplication as defined in the field $K$.
+\end{solution}
+
+\begin{problem}{5.8}
+  What is the initial object of the category $R\catname{-Alg}$?
+\end{problem}<++>
+
+\end{document}
