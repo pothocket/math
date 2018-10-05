@@ -1,0 +1,130 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs, enumitem} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+\newcommand{\Homod}[2]{\Hom_{#1-\catname{Mod}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+
+\newcommand{\Int}{\text{Int}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+} \newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+
+\begin{document}
+
+\title{Topology and Groupoids Exercises\\ \large Chapter 2, Section 5\\ 
+\large Continuity}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{5.3}
+  Let $X=A\cup B,Y$ be topological spaces and let $f:X\to Y$ be a function such that $f|A,f|B$ 
+  are continuous
+  Prove that $f$ is continuous if
+  \begin{align*}
+    \overline{(A\setminus B)}\cap(B\setminus A)&=\varnothing\\
+    (A\setminus B)\cap\overline{(B\setminus A)}&=\varnothing.
+  \end{align*}
+\end{problem}
+\begin{proof}
+  First, note that 
+  \begin{align*}
+    X\setminus B &= (A\cap B)\setminus B\\
+    &= A\setminus B,
+  \end{align*}
+  and so we have that
+  $x\in\overline{(A\setminus B)}
+  =\overline{(X\setminus B)}$ if and only if every neighborhood of $x$
+  meets $X\setminus B$; that is, if and only if no neighborhood of $x$ is entirely
+  contained within $B$, if and only if $x\notin\Int{B}$, if and only if 
+  $x\in (X\setminus\Int B)$.
+  Hence, $\overline{(A\setminus B)} = X\setminus\Int B$.
+  Consequently, we have
+  \begin{align*}
+    \varnothing &= \overline{(A\setminus B)}\cap(B\setminus A) \\
+    &= (X\setminus\Int B)\cap(B\setminus A).
+  \end{align*}
+  \indent It then follows that if $x\in(B\setminus A)$, then $x\notin(X\setminus\Int B)$;
+    that is, $x\in\Int B$.
+    Therefore, $(B\setminus A)\subseteq\Int B$.
+    A similar argument shows that $(A\setminus B)\subseteq\Int A$.\\
+    \indent It then follows from the "gluing rule" (2.5.11) that $f$ is continuous.
+\end{proof}
+
+\begin{problem}{5.4}
+  Let $X$ be a topological space and let $f,g:X\to\R$.
+  Prove that the following functions $x\to\R$ are maps.
+  \begin{enumerate}[label=(\alph*)]
+    \item $x\mapsto |f(x)|$
+    \item $x\mapsto f(x)/g(x) \text{ (if $g(x)$ is never 0)}$
+    \item $x\mapsto \max\{f(x),g(x)\}, x\mapsto\min\{f(x),g(x)\}$
+  \end{enumerate}
+\end{problem}
+\begin{solution}\ 
+  \begin{enumerate}[label=(\alph*)]
+    \item First, consider the function $h:\R\to\R$ that maps $x\mapsto |x|$.
+      Let $A=(-\infty,0]$ and $B=[0,\infty)$.
+      Then note that $A$ and $B$ are both closed, $\R=A\cap B$, and the restrictions
+      of $h$ to $A$ and $B$ ($h|_A(x)=-x, h|_B(x)=x$) are continuous.
+      It then follows from the "gluing rule" that $h$ is continuous.
+      Note, then, that the function $x\mapsto|f(x)|$ is just the composition
+      $hf$, and so the function is continuous since $h$ and $f$ are continuous.
+    \item Note that the function $x\mapsto 1/x$ is continuous on $\R\setminus\{0\}$, and 
+      so the function $x\mapsto f(x)/g(x)$ is continuous since it can be written
+      as a composition of continuous maps
+      \begin{align*}
+        x &\mapsto (f(x),g(x))\\
+        &\mapsto \left(f(x),\frac{1}{g(x)}\right)\\
+        &\mapsto (f(x))\left( \frac{1}{g(x)} \right)\\
+        &= \frac{f(x)}{g(x)}.
+      \end{align*}
+  \end{enumerate}
+\end{solution}
+
+\end{document}
