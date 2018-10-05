@@ -18,15 +18,17 @@
 \newcommand{\catname}[1]{\normalfont\textbf{#1}}
 \newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
 \newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+\newcommand{\Alg}[1]{#1\catname{-Alg}}
 
 \newcommand{\Hom}{\text{Hom}}
 \newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
-\newcommand{\Homod}[2]{\Hom_{#1-\catname{Mod}}(#2)}
+\newcommand{\Homod}[2]{\Hom_{#1\catname{-Mod}}(#2)}
 
 \newcommand{\Obj}{\text{Obj}}
 \newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
 \newcommand{\Aut}{\text{Aut}}
 \newcommand{\End}{\text{End}}
+\newcommand{\Endmod}[2]{\End_{#1\catname{-Mod}}(#2)}
 
 \newcommand{\id}{\text{id}}
 \newcommand{\im}{\text{im }}
@@ -50,13 +52,37 @@
 \newtheorem*{exmp}{Example}
 \newtheorem*{cexmp}{Counterexample}
 
-
 \begin{document}
 
 \title{Algebra: Chapter 0 Exercises\\ \large Chapter 3, Section 5\\ 
 \large Modules over a ring}
 \author{David Melendez}
 \maketitle
+
+\begin{problem}{5.4}
+  Let $R$ be a ring.
+  A nonzero $R$-module $M$ is \textit{simple} (or \textit{irreducible})
+  if its only submodules are $\{0\}$ and $M$.
+  Let $M,N$ be simple modules, and let $\varphi:M\to N$ be a homomorphism
+  of $R$-modules.
+  Prove that either $\varphi=0$ or $\varphi$ is an isomorphism.
+\end{problem}
+
+\begin{solution}
+  Let $\varphi:M\to N$ be an $R$-module homomorphism. 
+  Then $\ker\varphi$ is a submodule of $M$, and hence is either $\{0\}$
+  or $M$. 
+  If $\ker\varphi=M$, then $\varphi$ is the zero homomorphism.\\
+  \indent Otherwise, we have $\ker\varphi=\{0\}$, telling us that $\varphi$
+  is injective, and we turn our attention
+  to $\im\varphi$.
+  Since $\ker\varphi=0$, and $M,N$ are nonzero, we know that $\im\varphi$
+  has at least one nonzero element.
+  Since $\im\varphi$ is a submodule of $N$, this implies that $\im\varphi=N$,
+  as $N$ is simple.
+  Thus $\varphi$ is surjective, and so it is an isomorphism, as desired.
+
+\end{solution}<++>
 
 \begin{problem}{5.5}
   Let $R$ be a commutative ring, viewed as an $R$-module over itself,
@@ -158,6 +184,168 @@
 
 \begin{problem}{5.8}
   What is the initial object of the category $R\catname{-Alg}$?
-\end{problem}<++>
+\end{problem}
+\begin{solution}
+  Let $A$ be an $R$-algebra, and let $\varphi : R\to S$ be an $\Alg{R}$ 
+  homomorphism, where the $R$-algebra structure on $R$ is given by
+  the identity map.
+  The conditions on $R$-algebra homomorphisms then force, for all $r\in R$,
+  \begin{align*}
+    \varphi(r) &= \varphi(r\cdot1_R) \\
+    &= r\cdot\varphi(1_R) \\
+    &= r\cdot1_A.
+  \end{align*}
+  To verify that $\varphi$ is an $\Alg{R}$ homomorphism, note that:
+  \begin{align*}
+    \varphi(r_1+r_2) &= (r_1+r_2)\cdot1_A \\
+    &= r_1\cdot1_A + r_2\cdot1_A \\
+    &= \varphi(r_1) + \varphi(r_2),
+  \end{align*}
+  \begin{align*}
+    \varphi(r_1r_2) &= (r_1r_2)\cdot1_A \\
+    &= (r_1r_2)\cdot(1_A1_A) \\
+    &= (r_1\cdot1_A)(r_2\cdot1_A) \\
+    &= \varphi(r_1)\varphi(r_2),
+  \end{align*}
+  \begin{align*}
+    \varphi(1_R) &= 1_R\cdot 1_A\\
+    &= 1_A,
+  \end{align*}
+  and
+  \begin{align*}
+    \varphi(sr_1) &= (sr_1)\cdot1_R \\
+    &= s\cdot(r_1\cdot 1_R)\\
+    &= s\cdot\varphi(r_1),
+  \end{align*}
+  using $R$'s properties as a ring, $R$-module, and $R$-algebra.\\
+  \indent Since $\varphi$ is the unique homomorphism $R\to A$ for
+  all $R$-algebras $A$, we then have that $R$ is initial in $\Alg{R}$.
+\end{solution}
+
+\newpage
+
+\begin{problem}{5.9}
+  Let $R$ be a commutative ring, and let $M$ be an $R$-module.
+  Prove that the operation of composition on the $R$-module $\Endmod{R}{M}$
+  makes the latter an $R$-algebra in a natural way.\\
+  \indent Prove that $\mathcal{M}_n(R)$ is an $R$-algebra, in a natural way.
+\end{problem}
+\begin{solution}
+  Let $\alpha:R\to\Endmod{R}{M}$ be the ring homomorphism defined by
+  \begin{equation*}
+    \varphi(r)(m) = rm;
+  \end{equation*}
+  it is easy to verify that $\varphi(r)$ is an $R$-module endomorphism for
+  all $r\in R$, and that $\varphi$ itself is a ring homomorphism. \\
+  \indent Note that if $\varphi$ is an $R$-module endomorphism of $M$,
+  then we have, for all $r\in R$,
+  \begin{align*}
+    (\alpha(r)\circ\varphi)(m) &= \varphi(r)(\varphi(m))\\
+    &= r\cdot\varphi(m)\\
+    &= \varphi(r\cdot m)\\
+    &= (\varphi\circ\alpha(r))(m),
+  \end{align*}
+  and so $\varphi(r)$ is in the center of $\Endmod{R}{M}$ for all $r\in R$. \\
+  Because of this, $\alpha$ then gives us an $R$-module (and indeed
+  an $R$-algebra) structure on the ring $\Endmod{R}{M}$, which is precisely
+  the usual $R$-module structure on $\Endmod{R}{M}$, as desired. \\
+  \indent In the case of the ring $\mathcal{M}_n(R)$, we can endow the ring
+  with an $R$-algebra structure using the homomorphism 
+  $\alpha:R\to\mathcal{M}_n(R)$, defined by
+  \begin{equation*}
+    \alpha(r)(A) = rA,
+  \end{equation*}
+  where the multiplication on the right-hand side is just scalar 
+  multiplication.
+  Another way to think of this is the fact that $\alpha$ maps $r\in R$
+  to the matrix with $r$'s on the diagonal and $0$ elsewhere.
+  It's pretty clear that this is a ring homomorphism whose image is contained
+  in the center of $\mathcal{M}_n(A)$ (since diagonal matrices over a
+  commutative ring commute with all other matrices), so I'll stop there.
+\end{solution}
+
+\begin{problem}{5.10}
+  Let $R$ be a commutative ring, and let $M$ be a simple $R$-module.
+  Prove that $\Endmod{R}{M}$ is a division $R$-algebra.
+\end{problem}
+\begin{solution}
+  Since $M$ is simple, every $R$-module endomorphism of $M$
+  is either zero or an isomorphism, i.e. has an inverse in 
+  $\Endmod{R}{M}$.
+  Hence $\Endmod{R}{M}$ is a division ring, and thus a division
+  algebra over $R$ by the previous exercise.
+\end{solution}
+
+\begin{problem}{5.11}
+  Let $R$ be a commutative ring, and let $M$ be an $R$-module.
+  Prove that there is a natural bijection between the set of
+  $R[x]$-module structures on $M$ and $\Endmod{R}{M}$.
+\end{problem}
+\begin{solution}
+  Todo
+\end{solution}
+
+\begin{problem}{5.12}
+  Let $R$ be a ring.
+  Let $M,N$ be $R$-modules, and let $\varphi:M\to N$ be a homomorphism
+  of $R$-modules.
+  Assume $\varphi$ is a bijection, so that it has an inverse $\varphi^{-1}$
+  as a set-function.
+  Prove that $\varphi^{-1}$ is a homomorphism of $R$-modules, and hence
+  that a bijective $R$-module homomorphism is an isomorphism of 
+  $R$-modules.
+\end{problem}
+\begin{solution}
+  Since $\varphi$ is a bijective homomorphism of groups, we know already
+  that $\varphi$ is a isomorphism between the groups $M$ and $N$, 
+  and $\varphi^{-1}$ is a group homomorphism. \\
+  \indent Let $r\in R$ and $m\in M$.
+  Note, then, that
+  \begin{align*}
+    r\varphi^{-1}(m) &= \varphi^{-1}(\varphi(r\varphi^{-1}(m))) \\
+    &= \varphi^{-1}(r\varphi(\varphi^{-1}(m))) \\
+    &= \varphi^{-1}(rm),
+  \end{align*}
+  and so $\varphi^{-1}$ is a homomorphism of $R$-modules.
+  Therefore, $\varphi$ is an isomorphism of $R$-modules, as desired.
+\end{solution}
+
+\begin{problem}{5.13}
+  Let $R$ be an integral domain, and let $I$ be a nonzero principal ideal of
+  $R$. 
+  Prove that $I$ is isomorphic to $R$ as an $R$-module.
+\end{problem}
+\begin{solution}
+  Let $a\in R$ be nonzero, and let $I=(a)\subseteq R$ be the principal ideal
+  of $R$ generated by $a$.
+  Note that if $x\in I$, then there exists some $r\in R$ such that 
+  $x=ra$.
+  Since $R$ is an integral domain, we can see that $x=r_1a=r_2a$ implies
+  $r_1=r_2$, and so the following function is well-defined:
+  \begin{align*}
+    \varphi:I&\to R;\\
+    ra&\mapsto r
+  \end{align*}
+  To verify that this is an $R$-module homomorphism, note that we have,
+  for all $r\in R$,
+  \begin{align*}
+    \varphi(r_1a+r_2a) &= \varphi( (r_1+r_2)a ) \\
+    &= r_1+r_2\\
+    &= \varphi(r_1a)+\varphi(r_2a).
+  \end{align*}
+  Additionally, we have for all $r,s\in R$,
+  \begin{align*}
+    \varphi(s(ra)) &= \varphi( (sr)a)\\
+    &= sr \\
+    &= s\varphi(ra);
+  \end{align*}
+  hence $\varphi$ is an $R$-module homomorphism, as desired.\\
+  \indent Additionally, note that if $r\in R$, then $r\varphi(ra)$,
+  and so $\varphi$ is surjective.
+  If $\varphi(ra)=0$, then $r=0$ by definition, and so $\varphi$ is
+  injective.
+  Hence $\varphi$ is an isomorphism of $R$-modules between $I$ and $R$,
+  as desired.
+\end{solution}
 
 \end{document}
