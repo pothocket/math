@@ -1,0 +1,233 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd} 
+\usepackage{enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\Int}[1]{\text{Int}\,#1}
+\newcommand{\Ints}[2]{\text{Int}_{#1}\,#2}
+\newcommand{\Cl}[2]{\text{Cl}_{#1}\,#2}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Topology and Groupoids Exercises\\ \large Chapter 2, Section 6}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{6.1}
+  Let $A$ be a subspace of $X$ and let $\mathcal{B}$ be a base for the neighbourhoods of $X$.
+  Construct from $\mathcal{B}$ a base of the neighborhoods of $A$.
+\end{problem}
+\begin{solution}
+  Let $x\in A$ and let $M$ be a neighborhood in $A$ of $x$.
+  Then there exists a neighborhood $N$ in $X$ of $x$ such that $M=N\cap A$.
+  Then, because $N$ is a neighbourhood in $X$ of $x$, there exists a
+  neighborhood $P\in\mathcal{B}(x)$ of $x$ such that $P\subseteq N$.
+  We then have that $P\cap A$ is a neighborhood in $A$ of $x$, and
+  $P\cap A\subseteq N\cap A = M$.\\
+  \indent Thus, $\mathcal{B}_A(x) = \{P\cap A : P\in\mathcal{B}(x)\}$
+  forms a basis for the neighbourhoods of $A$.
+\end{solution}
+
+\begin{problem}{6.2}
+  Let $\mathcal{B}(x),\mathcal{B}'(x')$ be bases for the neighbourhoods of
+  $x\in X,x'\in X'$, respectively.
+  Prove that the sets $M\times N$ for $M\in\mathcal{B}(x),N\in\mathcal{B'}(x)$
+  form a base for the neighbourhoods of $(x,x')\in X\times X'$, and that
+  the sets $M\times M$ form a base for the neighbourhoods of 
+  $(x,x)\in X\times X$.
+\end{problem}
+\begin{proof}
+  Let $P$ be a neighbourhood of $(x,x')\in X\times X'$.
+  Then, there exist neighborhoods $M\subseteq X$ of $x$ and $M'\subseteq X'$ of
+  $x'$ such that $M\times M'\subseteq P$.
+  Further, we then have neighborhoods $N\in\mathcal{B}(x)$ of $x$ and 
+  $N'\in\mathcal{B}'(x')$ of $x'$ such that $N\subseteq M$ and 
+  $N'\subseteq M'$; consequently, $N\times N'\subseteq M\times M'$ is
+  a neighbourhood of $(x,x')$.
+  Therefore, the sets $M\times M'$ for $M\in\mathcal{B}(x)$ and
+  $M'\in\mathcal{B}'(x')$ form a basis for the neighbourhoods in $X\times X'$,
+  as desired. \\
+  \indent The proof of the second result is very similar.
+\end{proof}
+
+\begin{problem}{6.3}
+  A topological space $X$ is said to satisfy the 
+  \textit{first axiom of countability} if there is a base $\mathcal{B}$
+  for the neighbourhoods of $X$ such that $\mathcal{B}$ is countable
+  for each $x\in X$.
+  Prove that the following satisfy the first axiom of countability:
+  $\R,\Q,$ a discrete space, a space with a countable number of open sets.
+\end{problem}
+\begin{solution}
+  For $\R$ and $\Q$, $\mathcal{B}(x)=\{(x-1/n,x+1/n):n\in\N\}$ works.\\
+  \indent For a discrete space, $\mathcal{B}(x) = \{x\}$ works.\\
+  \indent For a space with countably many open sets, simply let 
+  $\mathcal{B}(x)$ be the set of all open sets containing $x$.
+  Then, $\mathcal{B}(x)$ is countable, and if $N$ is a neighbourhood of 
+  $x$, then we have $N\supseteq\Int N\in\mathcal{B}(x)$.
+\end{solution}
+
+\newpage
+
+\begin{problem}{6.4}
+  Prove that subspaces and (finite) products of first-countable spaces
+  are also first-countable.
+\end{problem}
+\begin{proof}
+  If $A$ is a subspace of $X$, then the base for the neighbourhoods of $A$
+  constructed in Exercise $6.1$ is countable.
+  Hence $A$ is first-countable. \\
+  \indent If $X_1,\dots,X_n$ are first countable and $\mathcal{B}_j$ is a
+  countable base for $X_j$ with $1\leq j\leq n$, then 
+  $\mathcal{B}:p\mapsto \prod_j \mathcal{B}_j(p_j)$ is a countable base
+  for the neighbourhoods of $\prod_j X_j$.
+\end{proof}
+
+\begin{problem}{6.5}
+  A topological space $X$ has a countable base for the neighbourhoods at $x$.
+  Prove that there is a base for the neighbourhoods of $x$ of sets 
+  $B_n,n\in\N$, such that \\ $B_n\supseteq B_{n+1},n\in\N$.
+\end{problem}
+\begin{proof}
+  Let $\mathcal{B}$ be a countable base for the neighbourhoods of $x$.
+  Since $\mathcal{B}$ is countable, there exists a bijection 
+  $f:\N\to\mathcal{B}$. \\
+  \indent Let $B_1=f(1)$, and for $n>1$, define $B_n$ by
+  \begin{equation*}
+    B_n = f(n)\cap\bigcap_{1\leq i<n} B_i.
+  \end{equation*}
+  Then, $B_n\supseteq B_{n+1}$ for $n\in\N$ since each $B_{n+1}$ is
+  an intersection with $B_n$, and each $B_n$ is a neighbourhood of $x$
+  by virtue of being an intersection of finitely many neighbourhoods of $x$.\\
+  \indent Note, then, that if $M$ is a neighbourhood of $x$, then there exists
+  a $k\in\N$ such that $f(k)\subseteq M$.
+  But we also have $B_k\subseteq f(k)$ (since $B_k$ is an intersection
+  involving $f(k)$), and so $B_k\subseteq M$.
+  Thus, for each neighbourhood $M$ of $x$, there exists a $k\in\N$ such
+  that $B_k\subseteq M$, and so $\{B_i\}_{i\in\N}$ is a base for the
+  neighbourhoods of $x$, as desired.
+\end{proof}
+
+\begin{problem}{6.6}
+  Use the conditions for continuity to prove the following:\\
+  \indent Let $A$ be a subspace of $X$, and let $\Int, \Ints{A}$ denote 
+  respectively the interior operators for $X,A$.
+  If $B\subseteq X$, then
+  \begin{equation*}
+    (\Int B)\cap A\subseteq\Ints{A}{B\cap A}.
+  \end{equation*}
+\end{problem}
+\begin{proof}
+  Let $\iota:A\to X$ be the inclusion from $A$ into $X$.
+  Then $\iota$ is continuous, and so we have that for all $B\subseteq X$ that
+  \begin{equation*}
+    \iota^{-1}[\Int B]\subseteq\Ints{A}\iota^{-1}[B].
+  \end{equation*}
+  Note, then, that if $D\subseteq X$, then $\iota(x)\in S$ iff 
+  $x\in D$ and $x\in A$, iff $x\in D\cap A$.
+  Thus, $\iota^{-1}[\Int B]= (\Int B)\cap A$, and $\iota^{-1}[B] = B\cap A$,
+  and so we have that
+  \begin{equation*}
+    (\Int B)\cap A\subseteq \Ints{A}{B\cap A},
+  \end{equation*}
+  as desired. \\
+  \indent The next part of the problem asks us to prove a similar result
+  for closures.
+  This proof is essentially identical.
+\end{proof}
+
+\newpage
+
+\begin{problem}{6.7}
+  Prove that the continuity of $f:X\to Y$ is not equivalent to the condition:
+  if $A\subseteq X$, then $\Int f[A]\subseteq f[\Int A]$.
+\end{problem}
+\begin{solution}
+  Let $f:\R\to\R$ be defined by $x\mapsto x$ for $x\leq 1$, and 
+  $x\mapsto 2-x$ for $x>1$.
+  Then $f$ is clearly continuous. \\
+  \indent Then, let $A=(-1,0)\cup(0,1)\cup\{2\}$.
+  We then have
+  \begin{align*}
+    \Int f[A] &= \Int(f[(-1,0)]\cup f[(0,1)]\cup f[\{2\}]) \\
+    &= \Int(-1,0)\cup(0,1)\cup\{0\} \\
+    &= (-1,1).
+  \end{align*}
+  However, we also have
+  \begin{align*}
+    f[\Int A] &= f[(-1,0)\cup(0,-1)]\\
+    &= (-1,0)\cup(0,1),
+  \end{align*}
+  which does not contain $(-1,1)$.
+\end{solution}
+
+\begin{problem}{6.10}
+  Prove the following generalized gluing rule: 
+  Let $X,Y$ be topological spaces and let $f:X\to Y$ be a function.
+  If $A_1,\dots,A_n$ are closed subsets of $X$ such that
+  $X=\bigcup_i A_i$ and $f_i = f|_{A_i}$ is continuous for each $i$,
+  then $f$ is continuous.
+\end{problem}
+\begin{proof}
+  Let $C$ be a closed set in $Y$, and let $B_i = f_i^{-1}[C]$.
+  Since each $f_i$ is continuous, we have that each $B_i$ is closed in $A_i$.
+  Thus, for each $i$, there exists a $D_i\subseteq X$, closed in $X$, such
+  that $B_i=D_i\cap A_i$.
+  Consequently, we have that
+  \begin{align*}
+    f^{-1}[C] &= \bigcup_if_i^{-1}[C] \\
+    &= \bigcup_iB_i \\
+    &= \bigcup_i(D_i\cap A_i),
+  \end{align*}
+  which is closed in $X$, since each $D_i,A_i$ is closed, and intersections
+  and finite unions preserve closedness.
+  Therefore, $f$ is continuous, as desired.
+\end{proof}
+
+\end{document}
