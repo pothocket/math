@@ -1,0 +1,156 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs, enumitem} 
+%\usepackage{enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+
+\newcommand{\Int}[1]{\text{Int}\,#1}
+\newcommand{\Ints}[2]{\text{Int}_{#1}\,#2}
+\newcommand{\Cl}[2]{\text{Cl}_{#1}\,#2}
+
+\newcommand{\id}{\text{id}}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\begin{document}
+
+\title{Topology and Groupoids Exercises\\ \large Chapter 2, Section 8}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{8.3}
+  Let $X,Y$ be metric spaces (their metrics will both be referred to as $d$)
+  Show that the following functions define metrics on $X\times Y$
+  whose metric topology is the product topology.
+  \begin{enumerate}[label=(\alph*)]
+    \item $D\left( (x,y),(x',y') \right)=d(x,x')+d(y,y')$ 
+    \item $D\left( (x,y),(x',y') \right)=\sqrt{d(x,x')^2+d(y,y')^2}$
+  \end{enumerate}
+\end{problem}
+
+\begin{proof}
+  For (a), first let $N$ be a $D$-neighbourhood of $(a,b)\in X\times Y$.
+  Then there exists an $\varepsilon>0$ such that 
+  $B_D\left( (a,b), \varepsilon\right)\subseteq N$; that is, if
+  $(x,y)\in B_D\left( (a,b),\varepsilon \right)$, then 
+  \begin{align*}
+    D\left( (x,y),(a,b) \right) &= d(x,a) + d(y,b) \\
+    &< \varepsilon.
+  \end{align*}
+  Let $$M=\displaystyle B_d\left(a,\frac{\varepsilon}{2}\right)
+  \times B_d\left(b,\frac{\varepsilon}{2}\right).$$
+  We then have that if $(x,y)\in M$, then $d(x,a)<\varepsilon/2$ and 
+  $d(y,b)<\varepsilon/2$, and so 
+  \begin{align*}
+    D\left( (x,y),(a,b) \right) &= d(x,a) + d(y,b) \\
+    &< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} \\
+      &= \varepsilon,
+  \end{align*}
+  and so we have that $M\subseteq B_D\left( (a,b),\varepsilon \right)
+  \subseteq N$, and so $N$ is a product neighbourhood of $(a,b)$.
+  Thus every $D$-neighbourhood of $(a,b)$ is a product neighbourhood of 
+  $(a,b)$. \\
+  \indent Conversely, suppose $N$ is a product neighbourhood of 
+  $(a,b)\in X\times Y$.
+  Then there exist $\varepsilon_1,\varepsilon_2>0$ such that
+  $B_d(a,\varepsilon_1)\times B_d(b,\varepsilon_2)\subseteq N$.
+  If we let $\varepsilon=\min\{\varepsilon_1,\varepsilon_2\}$, then we have
+  that if $(x,y)\in B_D\left( (a,b),\varepsilon \right)$, then
+  \begin{align*}
+    D\left( (a,b),(x,y) \right) &= d(a,x) + d(b,y) \\
+    &< \varepsilon;
+  \end{align*}
+  and so certainly $d(a,x)<\varepsilon$ and $d(b,y)<\varepsilon$.
+  Consequently, we have that $x\in B_d(a,\varepsilon)$ and
+  $y\in B_d(b,\varepsilon)$, and so 
+  $(x,y)\in N$.
+  Therefore, we have that $B_D\left( (a,b),\varepsilon \right)\subseteq N$,
+  and so $N$ is a $D$-neighbourhood of $(a,b)$, as desired.\\
+  \indent
+  For (b), let $(a,b)\in X\times Y$ and assume $N$ is a $D$-ball about
+  $(a,b)$; that is, there exists an $\varepsilon>0$ such that
+  \begin{equation*}
+    N=B_D\left( (a,b),\varepsilon \right).
+  \end{equation*}
+  Then, let $\delta = \varepsilon/\sqrt2$, and let $M$ be the set
+  \begin{equation*}
+    M=B_d(a,\delta)\times B_d(b,\delta)\subseteq X\times Y
+  \end{equation*}
+  \indent We then have that if $(x,y)\in M$, then $d(x,a)<\delta$
+  and $d(y,b)<\delta$, and so
+  \begin{align*}
+    d(x,a)^2 + d(y,b)^2 &< 2\delta^2 \\
+    &= \varepsilon^2.
+  \end{align*}
+  Therefore, we have that $D\left( (a,b),(x,y) \right)<\varepsilon$,
+  and so $(x,y)\in N$.
+  Consequently, we have that $M\subseteq N$, and so $N$ is a product
+  neighbourhood of $(a,b)$.
+  Thus, every $D$-neighbourhood is a product neighbourhood.\\
+  \indent Suppose conversely that $N$ is a basic product neighbourhood of \
+  $(a,b)$, and so \\$N=B_d(a,\varepsilon_1)\times B_d(b,\varepsilon_2)$
+  for some $\varepsilon_1,\varepsilon_2 > 0$.
+  Then, let $\delta=\min\{\varepsilon_1,\varepsilon_2,1\}$.
+  Note that $\delta<1$, and let $M=B_D\left( (a,b),\delta \right).$
+  We then have that if $(x,y)\in M$, then
+  \begin{alignat*}{2}
+    & B_d\left( (a,b),(x,y) \right) &&< \delta \\
+    \implies & \sqrt{d(a,x)^2+d(b,y)^2} &&< \delta \\
+    \implies & d(a,x)^2 + d(b,y)^2 &&< \delta^2 \\
+    \implies & d(a,x)^2 &&< \delta^2 - d(b,y)^2 \\
+    \implies & d(a,x) &&< \sqrt{\delta^2-d(b,y)^2} \\
+    &&&< \sqrt{\varepsilon_1^2-d(b,y)^2}\\
+    &&&< \sqrt{\varepsilon_1^2}\\
+    &&&= \varepsilon_1.
+  \end{alignat*}
+  Similarly, we have that $d(b,y)<\varepsilon_2$.
+  Thus, $(x,y)\in N$, and so we have that $M\subseteq N$, showing that
+  $N$ is a $D$-neighbourhood of $(a,b)$.
+  Consequently, every product neighbourhood is a $D$-neighbourhood.\\ 
+  \indent Since product neighbourhoods and $D$-neighbourhoods coincide,
+  it then follows that the metric topology induced by $D$ is the
+  product topology, as desired.
+\end{proof}
+
+\end{document}

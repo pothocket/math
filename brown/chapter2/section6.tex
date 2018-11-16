@@ -207,6 +207,22 @@
   which does not contain $(-1,1)$.
 \end{solution}
 
+\begin{problem}{6.9}
+  Let $f,g:X\to\R$ be maps.
+  Prove that the sets
+  \begin{align*}
+    A&=\{x\in X:f(x)\geq g(x)\}\\
+    B&=\{x\in X:f(x)\leq g(x)\}\\
+  \end{align*}
+  are closed.
+\end{problem}
+\begin{proof}
+  Define $h_1:X\to\R$ by $h(x) = \max\{f(x),g(x)\}$.
+  Then, $A$ is the set of all $x\in X$ such that $h(x)=f(x)$;
+  thus, $A$ is closed by an example from the book.
+  A similar proof where $h$ is a minimum works for $B$.
+\end{proof}
+
 \begin{problem}{6.10}
   Prove the following generalized gluing rule: 
   Let $X,Y$ be topological spaces and let $f:X\to Y$ be a function.
