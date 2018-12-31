@@ -1,0 +1,175 @@
+%&pdflatex 
+\documentclass[12pt]{article} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,tikz-cd, mathrsfs, enumitem} 
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{proposition}[1][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1.}]}{\end{trivlist}}
+
+\newcommand{\til}{\char`\~}
+\newcommand{\bs}{\textbackslash} 
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\catsup}[2]{\normalfont\textbf{#1}^{#2}}
+\newcommand{\catsub}[2]{\normalfont\textbf{#1}_{#2}}
+\newcommand{\Alg}[1]{#1\catname{-Alg}}
+\newcommand{\Mod}[1]{#1\catname{-Mod}}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Homc}[2]{\Hom_{\catname{#1}}(#2)}
+\newcommand{\Homod}[2]{\Hom_{#1\catname{-Mod}}(#2)}
+
+\newcommand{\Obj}{\text{Obj}}
+\newcommand{\Objc}[1]{\text{Obj}(\catname{#1})}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Endmod}[2]{\End_{#1\catname{-Mod}}(#2)}
+
+\newcommand{\id}{\text{id}}
+\newcommand{\im}{\text{im }}
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)}
+
+\newcommand{\coker}{\text{coker }}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+{\end{proof}}
+
+\newenvironment{sproof}{
+  \renewcommand\qedsymbol{$\square$}
+  \begin{proof}
+  }{
+  \end{proof}
+}
+
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{exmp}{Example}
+\newtheorem*{cexmp}{Counterexample}
+
+\begin{document}
+
+\title{Algebra: Chapter 0 Exercises\\ \large Chapter 3, Section 7\\ 
+\large Complexes and homology}
+\author{David Melendez}
+\maketitle
+
+\begin{problem}{7.1}
+  Assume the complex
+  \[
+  \begin{tikzcd}
+    &\cdots \ar[r] &0 \ar[r,"f"] &M \ar[r,"g"] &0 \ar[r] &\cdots
+  \end{tikzcd}
+  \]
+  is exact.
+  Prove $M\cong0$.
+  \begin{proof}
+    By exactness, we have that $M=\ker g=\im f=0$.
+  \end{proof}
+\end{problem}
+
+\begin{problem}{7.2}
+  Assume that the complex
+  \[
+    \begin{tikzcd}
+      &\cdots \ar[r] &0 \ar[r] &M \ar[r,"\varphi"] &M' \ar[r] &0 \ar[r] &\cdots
+    \end{tikzcd}
+  \]
+  is exact.
+  Prove that $M\cong M'$.
+\end{problem}
+\begin{proof}
+  By exactness, we have that $\ker\varphi=\im\{0:0\to M\} = 0$ and $\im\varphi=\ker\{0:M'\to 0\}=M'$
+  Thus $\varphi$ is an isomorphism, as desired.
+\end{proof}
+
+\begin{problem}{7.3}
+  Assume the complex
+  \[
+    \begin{tikzcd}
+      &0\ar[r] &L \ar[r,"\alpha"] &M \ar[r,"\varphi"] &M' \ar[r,"\beta"] &N \ar[r] &0
+    \end{tikzcd}
+  \]
+  is exact.
+  Show that up to natural identifications, $L=\ker\varphi$ and $N=\coker\varphi$.
+\end{problem}
+\begin{proof}
+  By exactness, we have that $\ker\varphi=\im\alpha\cong L$ (since $\alpha$ is injective),
+  and $\coker\varphi=M'/\im\varphi=M'/\ker\beta\cong N$, since $\beta$ is surjective.
+\end{proof}
+
+\begin{problem}{7.4}
+  Construct short exact sequences of $\Z-modules$
+  \[
+    \begin{tikzcd}
+      &(a) &0 \ar[r] &\Z^{\oplus\N} \ar[r,"f"] &\Z^{\oplus\N} \ar[r,"g"] &\Z \ar[r] &0 \\
+      &(b) &0 \ar[r] &\Z^{\oplus\N} \ar[r,"f"] &\Z^{\oplus\N} \ar[r,"g"] &\Z^{\oplus\N} \ar[r] &0
+    \end{tikzcd}
+  \]
+\end{problem}
+\begin{solution}\ 
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $f(n_1,n_2,\dots)=(0,n_1,n_2,\dots)$ and $g(n_1,n_2,\dots)=n_1$.
+    \item Let $f(n_1,n_2,\dots)=(n_1,0,n_2,0,n_3,\dots)$ and $g(n_1,b_2,\dots)=(n_2,n_4,n_6,\dots)$.
+  \end{enumerate}
+\end{solution}
+
+\begin{problem}{7.5}
+  Assume that the complex
+  \[
+    \begin{tikzcd}
+      &\cdots \ar[r] &L \ar[r,"f"] &M \ar[r,"g"] &N \ar[r] &\cdots
+    \end{tikzcd}
+  \]
+  is exact and that $L$ and $N$ are Noetherian.
+  Prove that $M$ is Noetherian.
+\end{problem}
+\begin{proof}
+  First, nt hat since $L$ is Noetherian, we have that $\im f$ is Noetherian, since it is the 
+  homomorphic image of a Noetherian module.
+  Next, note hat $M/\im f=M/\ker g$ is a submodule of $N$, and hence is also Noetherian. \\
+  \indent Therefore, since $\im f$ and $M/\im f$ are Noetherian, we have that $M$ is Noetherian,
+  as desired.
+\end{proof}
+
+\begin{problem}{7.7}
+  Let
+  \[
+    \begin{tikzcd}
+      &0 \ar[r] &M \ar[r] &N \ar[r] &P \ar[r] &0
+    \end{tikzcd}
+  \]
+  be a short exact equence of $R$-modules, and let $L$ be an $R$-module.
+  \begin{enumerate}[label=(\roman*)]
+    \item Prove that athere is an exact sequence \\
+      \[
+        \begin{tikzcd}
+          &0 \ar[r] &\Homod{R}{P,L} \ar[r] &\Homod{R}{N, L} \ar[r] &\Homod{R}{M, L}
+        \end{tikzcd}
+      \]
+
+    \item Let $M$ be  cyclic $R$-module, so that $M\cong R/I$ for a (left-)ideal $I$, and let
+      $N$ be another $R$-module.
+      Prove that $\Homod{R}{M, N}\cong \{n\in N | (\forall a\in I),an=0\}$.
+      For $a,b\in\Z$, prove that $\Homc{Ab}{\Z/a\Z,\Z/b\Z}\cong\Z/\gcd(a,b)\Z$.
+
+    \item Construct an example showing that the rightmost homomorphism in (i) need not be onto.
+    \item Show that if the original sequence splits, then the rightmost homomorphism in (i)
+      \textit{is} onto.
+  \end{enumerate}
+\end{problem}
+\end{document}
